@@ -1,0 +1,145 @@
+---
+import Logo from '@/components/ui/Logo.astro'
+import Facebook from '@/components/icons/Facebook.astro'
+import Twitter from '@/components/icons/Twitter.astro'
+import YouTube from '@/components/icons/YouTube.astro'
+import MapPin from '@/components/icons/MapPin.astro'
+import Phone from '@/components/icons/Phone.astro'
+import Mail from '@/components/icons/Mail.astro'
+
+const socialLinks = [
+  {
+    href: 'https://www.facebook.com/LAUEMPRENDE/',
+    icon: Facebook,
+    label: 'Facebook',
+  },
+  {
+    href: 'https://www.youtube.com/channel/UC_Ms4V2kYDsh7F_CSsHyQ6A',
+    icon: YouTube,
+    label: 'YouTube',
+  },
+  {
+    href: 'https://x.com/LaUEmprende',
+    icon: Twitter,
+    label: 'X/Twitter',
+  },
+]
+
+const contactInfo = [
+  {
+    href: 'https://maps.app.goo.gl/kfvN1RnjZ928bhgj6',
+    isExternal: true,
+    icon: MapPin,
+    text: 'Ibarra, Velasco 2-39 entre Salinas y Juan Montalvo',
+  },
+  {
+    href: 'tel:+59362921234',
+    isExternal: false,
+    icon: Phone,
+    text: '+593 06 2997800',
+  },
+  {
+    href: 'mailto:gerencia@lauemprende.com',
+    isExternal: false,
+    icon: Mail,
+    text: 'gerencia@lauemprende.com',
+  },
+]
+
+const legalLinks = [
+  { href: '/aviso-legal', label: 'Aviso legal' },
+  { href: '/privacidad', label: 'Política de privacidad' },
+  { href: '/terminos', label: 'Términos y condiciones' },
+  { href: '/transparencia', label: 'Portal de Transparencia' },
+  { href: '/contratacion-publica', label: 'Contratación pública' },
+  { href: '/accesibilidad', label: 'Accesibilidad' },
+]
+
+const currentYear = new Date().getFullYear()
+---
+
+<footer class="bg-primary-dark border-accent border-t-2 py-8 text-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+      <div
+        class="flex flex-col items-center gap-4 text-center md:col-span-2 md:text-left lg:items-start"
+      >
+        <a href="/" class="flex items-center gap-2 hover:opacity-90">
+          <Logo size="xl" />
+          <span class="text-2xl font-bold uppercase">La UEmprende</span>
+        </a>
+        <p class="text-secondary max-w-lg text-sm leading-relaxed">
+          Entre las líneas de servicios de La EMPRESA PUBLICA LA UEMPRENDE EP,
+          se encuentra: diseño, gestión, implementación, operación y
+          administración de proyectos de obras, bienes y servicios, en todas sus
+          formas y apoyo en proyectos promovidos por la Universidad Técnica del
+          Norte.
+        </p>
+
+        <div class="flex gap-4">
+          {
+            socialLinks.map(({ href, icon: Icon, label }) => (
+              <a
+                href={href}
+                target="_blank"
+                rel="nofollow noreferrer noopener"
+                class="bg-primary hover:bg-accent hover:text-primary flex size-9 items-center justify-center rounded-full transition-all hover:scale-110"
+                aria-label={label}
+              >
+                <Icon />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <div class="text-center md:text-left">
+        <h3 class="mb-6 text-sm font-bold text-white uppercase">
+          Información legal
+        </h3>
+        <ul class="text-secondary space-y-3 text-sm">
+          {
+            legalLinks.map(({ href, label }) => (
+              <li>
+                <a
+                  href={href}
+                  class="hover:text-accent transition-colors hover:underline"
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="text-center md:text-left">
+        <h3 class="mb-6 text-sm font-bold text-white uppercase">Contacto</h3>
+        <ul class="text-secondary space-y-3 text-sm">
+          {
+            contactInfo.map(({ href, icon: Icon, text, isExternal }) => (
+              <li>
+                <a
+                  href={href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'nofollow noreferrer noopener' : undefined}
+                  class="hover:text-accent flex items-start justify-center gap-3 transition-colors md:justify-start"
+                >
+                  <Icon />
+                  <span class="wrap-break-word">{text}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="border-border-light text-muted mt-8 border-t pt-6 text-center text-sm"
+    >
+      <p>
+        &copy; {currentYear} Empresa Pública LA UEMPRENDE E.P. Todos los derechos
+        reservados.
+      </p>
+    </div>
+  </div>
+</footer>

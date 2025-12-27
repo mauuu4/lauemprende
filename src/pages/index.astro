@@ -1,8 +1,22 @@
 ---
-import Layout from '../layouts/Layout.astro'
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '@/layouts/Layout.astro'
 ---
 
-<Layout />
+<Layout
+  title="La UEmprende - Inicio"
+  description="Empresa Pública La UEmprende EP - Innovación y emprendimiento universitario"
+>
+  <section class="bg-light py-20">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="text-center">
+        <h1 class="mb-6 text-4xl font-bold text-primary md:text-6xl">
+          Bienvenidos a La UEmprende
+        </h1>
+        <p class="mx-auto mb-8 max-w-3xl text-lg text-gray-700">
+          Diseño, gestión, implementación, operación y administración de proyectos
+          de obras, bienes y servicios en apoyo a la Universidad Técnica del Norte.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
