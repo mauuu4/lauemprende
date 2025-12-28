@@ -1,0 +1,151 @@
+---
+import { cursos } from '@/data/cursos'
+import Close from '@/components/icons/Close.astro'
+import { Image } from 'astro:assets'
+---
+
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    {
+      cursos.map((curso) => (
+        <div class="swiper-slide">
+          <div class="relative h-full">
+            <Image
+              src={curso.imagen}
+              alt={curso.titulo}
+              width={390}
+              height={550}
+              class="carousel-image h-full w-full cursor-zoom-in object-cover transition-transform hover:scale-105"
+              loading="eager"
+            />
+            <div class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 via-black/50 to-transparent px-6 pt-12 pb-6">
+              <h3 class="mb-3 text-lg font-bold text-white">{curso.titulo}</h3>
+              {curso.urlInscripcion && (
+                <a
+                  href={curso.urlInscripcion}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-accent text-primary hover:bg-accent/90 inline-block rounded-md px-5 py-2 text-sm font-medium backdrop-blur-sm transition-all hover:scale-105"
+                >
+                  Inscríbete aquí
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>
+<div class="swiper-pagination"></div>
+
+<!-- Lightbox Modal -->
+<div
+  id="lightbox"
+  class="fixed inset-0 z-9999 hidden items-center justify-center bg-black/85 select-none"
+>
+  <button
+    id="lightbox-close"
+    class="absolute top-4 right-4 z-10000 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-white/10 text-white transition-all hover:scale-110 hover:bg-white/20"
+    aria-label="Cerrar imagen"
+  >
+    <Close />
+  </button>
+  <img
+    id="lightbox-img"
+    src=""
+    alt="Zoom"
+    class="max-h-[90vh] max-w-[95vw] rounded-lg object-contain shadow-2xl select-none"
+  />
+</div>
+
+<script>
+  import Swiper from 'swiper'
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+
+  import 'swiper/css'
+  import 'swiper/css/navigation'
+  import 'swiper/css/pagination'
+
+  new Swiper('.mySwiper', {
+    modules: [Navigation, Pagination, Autoplay],
+    slidesPerView: 'auto',
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    mousewheel: true,
+    keyboard: true,
+  })
+
+  // Lightbox functions
+  const lightbox = document.getElementById('lightbox')!
+  const lightboxImg = document.getElementById(
+    'lightbox-img'
+  ) as HTMLImageElement
+  const lightboxClose = document.getElementById('lightbox-close')!
+  const carouselImages = document.querySelectorAll('.carousel-image')
+
+  function openLightbox(src: string) {
+    lightboxImg.src = src
+    lightbox.classList.remove('hidden')
+    lightbox.classList.add('flex')
+    document.body.style.overflow = 'hidden'
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add('hidden')
+    lightbox.classList.remove('flex')
+    document.body.style.overflow = 'auto'
+  }
+
+  // Event listeners
+  carouselImages.forEach((img) => {
+    img.addEventListener('click', () => {
+      // Usa la URL optimizada que genera Astro
+      const src = (img as HTMLImageElement).src
+      openLightbox(src)
+    })
+  })
+
+  lightboxClose.addEventListener('click', closeLightbox)
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox()
+  })
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox()
+  })
+</script>
+
+<style>
+  .swiper {
+    width: 100%;
+    height: 550px;
+  }
+
+  .swiper-slide {
+    width: 390px;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 2px solid #e5e7eb;
+  }
+
+  .swiper-pagination {
+    position: relative;
+    margin-top: 20px;
+  }
+</style>

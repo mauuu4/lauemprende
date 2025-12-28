@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import Carousel from '@/components/ui/Carousel.astro'
 ---
 
 <Layout
@@ -12,11 +13,20 @@ import Layout from '@/layouts/Layout.astro'
         <h1 class="mb-6 text-4xl font-bold text-primary md:text-6xl">
           Bienvenidos a La UEmprende
         </h1>
-        <p class="mx-auto mb-8 max-w-3xl text-lg text-gray-700">
+        <p class="mx-auto mb-4 max-w-3xl text-lg text-gray-700">
           Diseño, gestión, implementación, operación y administración de proyectos
           de obras, bienes y servicios en apoyo a la Universidad Técnica del Norte.
         </p>
       </div>
+    </div>
+  </section>
+
+    <section>
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="mb-4 text-center text-3xl font-bold text-primary md:text-4xl">
+        Cursos
+      </h2>
+      <Carousel />
     </div>
   </section>
 </Layout>
