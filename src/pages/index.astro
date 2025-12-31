@@ -1,32 +1,32 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { cursos } from '@/data/cursos'
+import { comunicados } from '@/data/comunicados'
 import Carousel from '@/components/ui/Carousel.astro'
+import Hero from '@/components/sections/Hero.astro'
 ---
 
 <Layout
   title="La UEmprende - Inicio"
   description="Empresa Pública La UEmprende EP - Innovación y emprendimiento universitario"
 >
-  <section class="bg-light py-20">
+  <Hero />
+
+  <section id="cursos" class="py-10">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="text-center">
-        <h1 class="mb-6 text-4xl font-bold text-primary md:text-6xl">
-          Bienvenidos a La UEmprende
-        </h1>
-        <p class="mx-auto mb-4 max-w-3xl text-lg text-gray-700">
-          Diseño, gestión, implementación, operación y administración de proyectos
-          de obras, bienes y servicios en apoyo a la Universidad Técnica del Norte.
-        </p>
-      </div>
+        <h2 class="text-primary mb-4 text-center text-3xl font-bold md:text-4xl">
+          Cursos
+        </h2>
+      <Carousel items={cursos} id="cursos" />
     </div>
   </section>
 
-    <section>
+  <section id="comunicados" class="bg-gray-50 py-10">
     <div class="mx-auto max-w-7xl px-6">
-      <h2 class="mb-4 text-center text-3xl font-bold text-primary md:text-4xl">
-        Cursos
-      </h2>
-      <Carousel />
+        <h2 class="text-primary mb-4 text-center text-3xl font-bold md:text-4xl">
+          Comunicados
+        </h2>
+      <Carousel items={comunicados} id="comunicados" />
     </div>
   </section>
 </Layout>

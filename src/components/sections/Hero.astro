@@ -1,0 +1,84 @@
+---
+import ModuleCard from '../ui/ModuleCard.astro'
+---
+
+<section
+  role="region"
+  aria-labelledby="hero-title"
+  class="relative min-h-[450px] bg-cover bg-center pb-32 pt-20"
+>
+  <img
+    src="/images/fondo-hero.png"
+    alt=""
+    aria-hidden
+    class="absolute inset-0 -z-10 h-full w-full object-cover"
+  />
+
+  <div class="bg-primary/70 absolute inset-0 mix-blend-multiply" aria-hidden>
+  </div>
+
+  <div
+    class="from-primary absolute inset-0 bg-linear-to-t via-transparent to-transparent opacity-90"
+  >
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-6 text-center">
+    <h1 id="hero-title" class="mb-4 text-4xl font-bold text-white md:text-5xl">
+      Bienvenidos a La UEmprende
+    </h1>
+    <p class="mx-auto mb-8 max-w-3xl text-lg text-white/95">
+      Diseño, gestión, implementación, operación y administración de proyectos
+      de obras, bienes y servicios en apoyo a la Universidad Técnica del Norte.
+    </p>
+
+    <div class="flex justify-center gap-4">
+      <a
+        href="#cursos"
+        class="inline-flex items-center justify-center rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+        >Cursos</a
+      >
+      <a
+        href="#comunicados"
+        class="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-white/20 focus:ring-2 focus:ring-white/30 focus:outline-none"
+        >Comunicados</a
+      >
+    </div>
+  </div>
+</section>
+
+<section class="relative z-20 -mt-20">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
+      <ModuleCard
+        title="Inscripciones"
+        subtitle="Módulo Cursos"
+        href="https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::"
+        icon="edit"
+      />
+      <ModuleCard
+        title="Docentes"
+        subtitle="Portafolio Académico"
+        href="https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::"
+        icon="teacher"
+      />
+      <ModuleCard
+        title="Estudiantes"
+        subtitle="Portafolio Inglés"
+        href="https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::"
+        icon="student"
+      />
+      <ModuleCard
+        title="Servicios UEP"
+        subtitle="Portafolio Institucional"
+        href="https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::"
+        icon="briefcase"
+      />
+      <ModuleCard
+        title="Resultados"
+        subtitle="Exámenes de Ubicación"
+        href="https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::"
+        icon="chart"
+      />
+    </div>
+  </div>
+</section>

@@ -1,135 +1,101 @@
 ---
-import { cursos } from '@/data/cursos'
 import Close from '@/components/icons/Close.astro'
 import { Image } from 'astro:assets'
+
+interface Enlace {
+  texto: string
+  url: string
+  tipo: 'principal' | 'secundario' | 'link'
+}
+
+interface Item {
+  id: number
+  titulo: string
+  imagen: ImageMetadata
+  enlaces: Enlace[]
+  activo: boolean
+}
+
+interface Props {
+  items: Item[]
+  id: string
+}
+
+const { items, id } = Astro.props
 ---
 
-<div class="swiper mySwiper">
-  <div class="swiper-wrapper">
-    {
-      cursos.map((curso) => (
-        <div class="swiper-slide">
-          <div class="relative h-full">
-            <Image
-              src={curso.imagen}
-              alt={curso.titulo}
-              width={390}
-              height={550}
-              class="carousel-image h-full w-full cursor-zoom-in object-cover transition-transform hover:scale-105"
-              loading="eager"
-            />
-            <div class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 via-black/50 to-transparent px-6 pt-12 pb-6">
-              <h3 class="mb-3 text-lg font-bold text-white">{curso.titulo}</h3>
-              {curso.urlInscripcion && (
-                <a
-                  href={curso.urlInscripcion}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="bg-accent text-primary hover:bg-accent/90 inline-block rounded-md px-5 py-2 text-sm font-medium backdrop-blur-sm transition-all hover:scale-105"
-                >
-                  Inscríbete aquí
-                </a>
-              )}
+<div class="swiper-container-wrapper">
+  <div class="swiper" data-swiper-id={id}>
+    <div class="swiper-wrapper">
+      {
+        items.map((item) => (
+          <div class="swiper-slide">
+            <div class="relative h-full">
+              <Image
+                src={item.imagen}
+                alt={item.titulo}
+                width={800}
+                height={1100}
+                class="carousel-image h-full w-full cursor-zoom-in object-cover transition-transform hover:scale-105"
+                loading="lazy"
+                data-lightbox-trigger={id}
+              />
+              <div class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 to-transparent px-4 py-4">
+                {/* <h3 class="mb-2 text-lg font-bold text-white">{item.titulo}</h3> */}
+                <div class="flex flex-col items-start gap-2">
+                  {item.enlaces.length > 0 &&
+                    item.enlaces.map((enlace) => {
+                      const estilosPorTipo = {
+                        principal: 'bg-blue-600 text-white hover:bg-blue-700',
+                        secundario: 'bg-white/90 text-gray-900 hover:bg-white',
+                        link: 'bg-accent/90 text-primary hover:bg-accent',
+                      }
+
+                      const clases = `inline-flex items-center gap-1 rounded-lg px-3 py-2 text-[11px] font-semibold uppercase tracking-wide backdrop-blur-sm transition-all hover:scale-105 shadow-lg ${estilosPorTipo[enlace.tipo]}`
+
+                      return (
+                        <a
+                          href={enlace.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class={clases}
+                        >
+                          {enlace.texto}
+                        </a>
+                      )
+                    })}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      ))
-    }
+        ))
+      }
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
-</div>
-<div class="swiper-pagination"></div>
 
-<!-- Lightbox Modal -->
-<div
-  id="lightbox"
-  class="fixed inset-0 z-9999 hidden items-center justify-center bg-black/85 select-none"
->
-  <button
-    id="lightbox-close"
-    class="absolute top-4 right-4 z-10000 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-white/10 text-white transition-all hover:scale-110 hover:bg-white/20"
-    aria-label="Cerrar imagen"
+  <div class="swiper-pagination"></div>
+
+  <!-- Lightbox Modal -->
+  <div
+    class="carousel-lightbox fixed inset-0 z-9999 hidden items-center justify-center bg-black/85 select-none"
+    data-lightbox={id}
   >
-    <Close />
-  </button>
-  <img
-    id="lightbox-img"
-    src=""
-    alt="Zoom"
-    class="max-h-[90vh] max-w-[95vw] rounded-lg object-contain shadow-2xl select-none"
-  />
+    <button
+      class="lightbox-close absolute top-5 right-5 z-10000 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-white/15 text-2xl text-white transition-all hover:scale-110 hover:bg-white/25"
+      aria-label="Cerrar imagen"
+    >
+      <Close />
+    </button>
+    <img
+      class="lightbox-img max-h-[90vh] max-w-[95vw] rounded-lg object-contain shadow-2xl select-none"
+      src=""
+      alt="Zoom"
+    />
+  </div>
 </div>
-
-<script>
-  import Swiper from 'swiper'
-  import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-
-  import 'swiper/css'
-  import 'swiper/css/navigation'
-  import 'swiper/css/pagination'
-
-  new Swiper('.mySwiper', {
-    modules: [Navigation, Pagination, Autoplay],
-    slidesPerView: 'auto',
-    spaceBetween: 30,
-    loop: true,
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    mousewheel: true,
-    keyboard: true,
-  })
-
-  // Lightbox functions
-  const lightbox = document.getElementById('lightbox')!
-  const lightboxImg = document.getElementById(
-    'lightbox-img'
-  ) as HTMLImageElement
-  const lightboxClose = document.getElementById('lightbox-close')!
-  const carouselImages = document.querySelectorAll('.carousel-image')
-
-  function openLightbox(src: string) {
-    lightboxImg.src = src
-    lightbox.classList.remove('hidden')
-    lightbox.classList.add('flex')
-    document.body.style.overflow = 'hidden'
-  }
-
-  function closeLightbox() {
-    lightbox.classList.add('hidden')
-    lightbox.classList.remove('flex')
-    document.body.style.overflow = 'auto'
-  }
-
-  // Event listeners
-  carouselImages.forEach((img) => {
-    img.addEventListener('click', () => {
-      // Usa la URL optimizada que genera Astro
-      const src = (img as HTMLImageElement).src
-      openLightbox(src)
-    })
-  })
-
-  lightboxClose.addEventListener('click', closeLightbox)
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox()
-  })
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox()
-  })
-</script>
 
 <style>
   .swiper {
@@ -148,4 +114,122 @@ import { Image } from 'astro:assets'
     position: relative;
     margin-top: 20px;
   }
+
+  .carousel-lightbox.active {
+    display: flex;
+  }
 </style>
+
+<script>
+  import Swiper from 'swiper'
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+
+  import 'swiper/css'
+  import 'swiper/css/navigation'
+  import 'swiper/css/pagination'
+
+  function initSwipers() {
+    const swiperElements = document.querySelectorAll('[data-swiper-id]')
+
+    swiperElements.forEach((element) => {
+      // Prevenir reinicialización
+      if (element.classList.contains('swiper-initialized')) return
+
+      const swiperId = element.getAttribute('data-swiper-id')
+      if (!swiperId) return
+
+      // Inicializar Swiper
+      const swiper = new Swiper(element as HTMLElement, {
+        modules: [Navigation, Pagination, Autoplay],
+        slidesPerView: 'auto',
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: element.querySelector('.swiper-button-next') as HTMLElement,
+          prevEl: element.querySelector('.swiper-button-prev') as HTMLElement,
+        },
+        pagination: {
+          el: element.parentElement?.querySelector(
+            '.swiper-pagination'
+          ) as HTMLElement,
+          clickable: true,
+        },
+        mousewheel: true,
+        keyboard: true,
+      })
+
+      // Configurar Lightbox
+      const wrapper = element.closest('.swiper-container-wrapper')
+      if (!wrapper) return
+
+      const lightbox = wrapper.querySelector(
+        `[data-lightbox="${swiperId}"]`
+      ) as HTMLElement
+      const lightboxImg = lightbox?.querySelector(
+        '.lightbox-img'
+      ) as HTMLImageElement
+      const lightboxClose = lightbox?.querySelector(
+        '.lightbox-close'
+      ) as HTMLElement
+      const triggers = wrapper.querySelectorAll(
+        `[data-lightbox-trigger="${swiperId}"]`
+      )
+
+      if (!lightbox || !lightboxImg || !lightboxClose) return
+
+      // Funciones del Lightbox
+      const openLightbox = (src: string) => {
+        lightboxImg.src = src
+        lightbox.classList.add('active')
+        document.body.style.overflow = 'hidden'
+        swiper.autoplay.stop()
+      }
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('active')
+        document.body.style.overflow = ''
+        swiper.autoplay.start()
+      }
+
+      // Event listeners
+      triggers.forEach((img) => {
+        img.addEventListener('click', (e) => {
+          e.preventDefault()
+          const src = (img as HTMLImageElement).src
+          openLightbox(src)
+        })
+      })
+
+      lightboxClose.addEventListener('click', (e) => {
+        e.stopPropagation()
+        closeLightbox()
+      })
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox()
+        }
+      })
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox()
+        }
+      })
+    })
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwipers)
+  } else {
+    initSwipers()
+  }
+
+  // Para View Transitions de Astro
+  document.addEventListener('astro:page-load', initSwipers)
+</script>
