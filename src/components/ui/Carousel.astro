@@ -1,34 +1,24 @@
 ---
-import Close from '@/components/icons/Close.astro'
 import { Image } from 'astro:assets'
-
-interface Enlace {
-  texto: string
-  url: string
-  tipo: 'principal' | 'secundario' | 'link'
-}
-
-interface Item {
-  id: number
-  titulo: string
-  imagen: ImageMetadata
-  enlaces: Enlace[]
-  activo: boolean
-}
+import Close from '@icons/ui/Close.astro'
+import ButtonLink from '@/components/ui/ButtonLink.astro'
+import type { ItemCarousel } from '@/types'
 
 interface Props {
-  items: Item[]
+  items: ItemCarousel[]
   id: string
+  loading?: 'eager' | 'lazy'
+  eagerCount?: number
 }
 
-const { items, id } = Astro.props
+const { items, id, loading = 'lazy', eagerCount = 6 } = Astro.props
 ---
 
 <div class="swiper-container-wrapper">
   <div class="swiper" data-swiper-id={id}>
     <div class="swiper-wrapper">
       {
-        items.map((item) => (
+        items.map((item, index) => (
           <div class="swiper-slide">
             <div class="relative h-full">
               <Image
@@ -37,33 +27,18 @@ const { items, id } = Astro.props
                 width={800}
                 height={1100}
                 class="carousel-image h-full w-full cursor-zoom-in object-cover transition-transform hover:scale-105"
-                loading="lazy"
+                loading={
+                  loading === 'eager' && index < eagerCount ? 'eager' : 'lazy'
+                }
                 data-lightbox-trigger={id}
               />
               <div class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 to-transparent px-4 py-4">
-                {/* <h3 class="mb-2 text-lg font-bold text-white">{item.titulo}</h3> */}
                 <div class="flex flex-col items-start gap-2">
-                  {item.enlaces.length > 0 &&
-                    item.enlaces.map((enlace) => {
-                      const estilosPorTipo = {
-                        principal: 'bg-blue-600 text-white hover:bg-blue-700',
-                        secundario: 'bg-white/90 text-gray-900 hover:bg-white',
-                        link: 'bg-accent/90 text-primary hover:bg-accent',
-                      }
-
-                      const clases = `inline-flex items-center gap-1 rounded-lg px-3 py-2 text-[11px] font-semibold uppercase tracking-wide backdrop-blur-sm transition-all hover:scale-105 shadow-lg ${estilosPorTipo[enlace.tipo]}`
-
-                      return (
-                        <a
-                          href={enlace.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class={clases}
-                        >
-                          {enlace.texto}
-                        </a>
-                      )
-                    })}
+                  {item.enlaces.map((enlace) => (
+                    <ButtonLink variant={enlace.tipo} href={enlace.url}>
+                      {enlace.texto}
+                    </ButtonLink>
+                  ))}
                 </div>
               </div>
             </div>
@@ -80,11 +55,11 @@ const { items, id } = Astro.props
 
   <!-- Lightbox Modal -->
   <div
-    class="carousel-lightbox fixed inset-0 z-9999 hidden items-center justify-center bg-black/85 select-none"
+    class="carousel-lightbox fixed inset-0 z-9999 hidden items-center justify-center bg-black/85"
     data-lightbox={id}
   >
     <button
-      class="lightbox-close absolute top-5 right-5 z-10000 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-white/15 text-2xl text-white transition-all hover:scale-110 hover:bg-white/25"
+      class="lightbox-close absolute top-5 right-5 z-10000 flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-2xl text-white transition-all hover:scale-110 hover:bg-white/25"
       aria-label="Cerrar imagen"
     >
       <Close />
@@ -145,7 +120,7 @@ const { items, id } = Astro.props
         spaceBetween: 30,
         loop: true,
         autoplay: {
-          delay: 5000,
+          delay: 8000,
           disableOnInteraction: false,
         },
         navigation: {

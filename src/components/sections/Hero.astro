@@ -1,24 +1,61 @@
 ---
-import ModuleCard from '../ui/ModuleCard.astro'
+import { Image } from 'astro:assets'
+import ButtonLink from '@/components/ui/ButtonLink.astro'
+import fondo from '@public/images/fondo-hero.png'
+import Edit from '@icons/modules/Edit.astro'
+import Teacher from '@icons/modules/Teacher.astro'
+import Student from '@icons/modules/Student.astro'
+import Briefcase from '@icons/modules/Briefcase.astro'
+import Chart from '@icons/modules/Chart.astro'
+
+const modulos = [
+  {
+    title: 'Inscripciones',
+    subtitle: 'Módulo Cursos',
+    href: 'https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::',
+    Icon: Edit,
+  },
+  {
+    title: 'Docentes',
+    subtitle: 'Portafolio Académico',
+    href: 'https://cloud.lauemprende.com/ords/f?p=213:LOGIN_DESKTOP::::::',
+    Icon: Teacher,
+  },
+  {
+    title: 'Estudiantes',
+    subtitle: 'Portafolio Inglés',
+    href: 'https://cloud.lauemprende.com/ords/f?p=110:LOGIN::::::',
+    Icon: Student,
+  },
+  {
+    title: 'Servicios UEP',
+    subtitle: 'Portafolio Institucional',
+    href: 'https://www.lauemprende.com/wp-content/uploads/2023/04/portafolio_UEmprende.pdf',
+    Icon: Briefcase,
+  },
+  {
+    title: 'Resultados',
+    subtitle: 'Exámenes de Ubicación',
+    href: 'https://www.lauemprende.com/wp-content/uploads/2025/RESULTADOS%20PRUEBA%20UBICACION.pdf',
+    Icon: Chart,
+  },
+]
 ---
 
 <section
-  role="region"
   aria-labelledby="hero-title"
-  class="relative min-h-[450px] bg-cover bg-center pb-32 pt-20"
+  class="relative min-h-[450px] pt-20 pb-32"
 >
-  <img
-    src="/images/fondo-hero.png"
-    alt=""
-    aria-hidden
-    class="absolute inset-0 -z-10 h-full w-full object-cover"
+  <Image
+    src={fondo}
+    alt="Fondo Hero"
+    loading="eager"
+    class="absolute inset-0 h-full w-full object-cover"
   />
 
-  <div class="bg-primary/70 absolute inset-0 mix-blend-multiply" aria-hidden>
-  </div>
-
   <div
-    class="from-primary absolute inset-0 bg-linear-to-t via-transparent to-transparent opacity-90"
+    class="from-primary/60 via-primary/30 bg-primary/70 absolute inset-0 bg-linear-to-t to-transparent mix-blend-multiply"
+    aria-hidden="true"
   >
   </div>
 
@@ -32,53 +69,113 @@ import ModuleCard from '../ui/ModuleCard.astro'
     </p>
 
     <div class="flex justify-center gap-4">
-      <a
+      <ButtonLink
+        variant="primary"
+        size="md"
         href="#cursos"
-        class="inline-flex items-center justify-center rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-        >Cursos</a
+        target="_self"
+        uppercase={false}
       >
-      <a
+        Cursos
+      </ButtonLink>
+      <ButtonLink
+        variant="link"
+        size="md"
         href="#comunicados"
-        class="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-white/20 focus:ring-2 focus:ring-white/30 focus:outline-none"
-        >Comunicados</a
+        target="_self"
+        uppercase={false}
       >
+        Comunicados
+      </ButtonLink>
     </div>
   </div>
 </section>
 
-<section class="relative z-20 -mt-20">
-  <div class="mx-auto max-w-7xl">
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
-      <ModuleCard
-        title="Inscripciones"
-        subtitle="Módulo Cursos"
-        href="https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::"
-        icon="edit"
-      />
-      <ModuleCard
-        title="Docentes"
-        subtitle="Portafolio Académico"
-        href="https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::"
-        icon="teacher"
-      />
-      <ModuleCard
-        title="Estudiantes"
-        subtitle="Portafolio Inglés"
-        href="https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::"
-        icon="student"
-      />
-      <ModuleCard
-        title="Servicios UEP"
-        subtitle="Portafolio Institucional"
-        href="https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::"
-        icon="briefcase"
-      />
-      <ModuleCard
-        title="Resultados"
-        subtitle="Exámenes de Ubicación"
-        href="https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::"
-        icon="chart"
-      />
+<!-- Módulos de acceso rápido -->
+<section class="relative -mt-20">
+  <div class="mx-auto max-w-7xl px-6">
+    <!-- Acordeón en mobile -->
+    <details class="group md:hidden">
+      <summary
+        class="text-primary flex cursor-pointer list-none items-center justify-between rounded-lg bg-white px-6 py-4 font-semibold shadow-lg transition-colors hover:bg-gray-50"
+      >
+        <span class="text-lg">Accesos Rápidos</span>
+        <svg
+          class="h-5 w-5 transition-transform duration-300 group-open:rotate-180"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </summary>
+
+      <div
+        class="mt-2 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-lg"
+      >
+        {
+          modulos.map(({ title, subtitle, href, Icon }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary flex items-center gap-4 px-6 py-3 transition-colors hover:bg-gray-50"
+            >
+              <div class="bg-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
+                <Icon size={24} />
+              </div>
+              <div class="flex-1">
+                <h3 class="font-semibold">{title}</h3>
+                <p class="text-sm text-gray-600">{subtitle}</p>
+              </div>
+              <svg
+                class="h-5 w-5 shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </a>
+          ))
+        }
+      </div>
+    </details>
+
+    <!-- Grid en desktop -->
+    <div class="hidden gap-5 md:grid md:grid-cols-5">
+      {
+        modulos.map(({ title, subtitle, href, Icon }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group hover:border-primary relative flex flex-col items-center overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+          >
+            <div class="absolute inset-0 bg-blue-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+            <div class="group-hover:bg-primary relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 shadow-sm transition-all duration-300 group-hover:text-white">
+              <Icon size={32} />
+            </div>
+
+            <h3 class="relative z-10 mb-1 text-sm font-bold text-gray-800 transition-colors">
+              {title}
+            </h3>
+            <span class="relative z-10 text-xs text-gray-500">{subtitle}</span>
+
+            <div class="bg-primary absolute bottom-0 left-0 h-1 w-full scale-x-0 transition-transform duration-400 group-hover:scale-x-100" />
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>

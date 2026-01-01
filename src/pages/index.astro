@@ -12,20 +12,20 @@ import Hero from '@/components/sections/Hero.astro'
 >
   <Hero />
 
-  <section id="cursos" class="py-10">
+  <section id="cursos" class="scroll-mt-15 py-10">
     <div class="mx-auto max-w-7xl px-6">
-        <h2 class="text-primary mb-4 text-center text-3xl font-bold md:text-4xl">
-          Cursos
-        </h2>
-      <Carousel items={cursos} id="cursos" />
+      <h2 class="text-primary mb-4 text-center text-3xl font-bold md:text-4xl">
+        Cursos
+      </h2>
+      <Carousel items={cursos} id="cursos" loading="eager" />
     </div>
   </section>
 
-  <section id="comunicados" class="bg-gray-50 py-10">
+  <section id="comunicados" class="scroll-mt-15 bg-gray-50 py-10">
     <div class="mx-auto max-w-7xl px-6">
-        <h2 class="text-primary mb-4 text-center text-3xl font-bold md:text-4xl">
-          Comunicados
-        </h2>
+      <h2 class="text-primary mb-4 text-center text-3xl font-bold md:text-4xl">
+        Comunicados
+      </h2>
       <Carousel items={comunicados} id="comunicados" />
     </div>
   </section>
