@@ -4,6 +4,9 @@ import { cursos } from '@/data/cursos'
 import { comunicados } from '@/data/comunicados'
 import Carousel from '@/components/ui/Carousel.astro'
 import Hero from '@/components/sections/Hero.astro'
+import Counter from '@/components/ui/Counter.astro'
+import Calendar from '@/components/icons/ui/Calendar.astro'
+import TrendUp from '@/components/icons/ui/TrendUp.astro'
 ---
 
 <Layout
@@ -27,6 +30,31 @@ import Hero from '@/components/sections/Hero.astro'
         Comunicados
       </h2>
       <Carousel items={comunicados} id="comunicados" />
+    </div>
+  </section>
+
+  <section id="estadisticas" class="bg-gray-50 pb-16 pt-6">
+    <div class="mx-auto max-w-7xl px-6">
+      <!-- Separador sutil -->
+      <div class="mx-auto mb-10 max-w-xs">
+        <div class="h-px bg-linear-to-r from-transparent via-gray-300 to-transparent"></div>
+      </div>
+
+      <h2 class="text-primary mb-10 text-center text-3xl font-bold md:text-4xl">
+        Estadísticas de Visitas
+      </h2>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:max-w-4xl lg:mx-auto">
+        <Counter
+          end={42500}
+          label="Visitas mes pasado"
+          icon={Calendar}
+        />
+        <Counter
+          end={38200}
+          label="Visitas este mes"
+          icon={TrendUp}
+        />
+      </div>
     </div>
   </section>
 </Layout>

@@ -7,6 +7,8 @@ import Teacher from '@icons/modules/Teacher.astro'
 import Student from '@icons/modules/Student.astro'
 import Briefcase from '@icons/modules/Briefcase.astro'
 import Chart from '@icons/modules/Chart.astro'
+import ChevronDown from '@icons/ui/ChevronDown.astro'
+import ChevronRight from '@icons/ui/ChevronRight.astro'
 
 const modulos = [
   {
@@ -100,18 +102,7 @@ const modulos = [
         class="text-primary flex cursor-pointer list-none items-center justify-between rounded-lg bg-white px-6 py-4 font-semibold shadow-lg transition-colors hover:bg-gray-50"
       >
         <span class="text-lg">Accesos Rápidos</span>
-        <svg
-          class="h-5 w-5 transition-transform duration-300 group-open:rotate-180"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"></path>
-        </svg>
+        <ChevronDown class="h-5 w-5 transition-transform duration-300 group-open:rotate-180" />
       </summary>
 
       <div
@@ -132,19 +123,7 @@ const modulos = [
                 <h3 class="font-semibold">{title}</h3>
                 <p class="text-sm text-gray-600">{subtitle}</p>
               </div>
-              <svg
-                class="h-5 w-5 shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <ChevronRight class="h-5 w-5 shrink-0" />
             </a>
           ))
         }

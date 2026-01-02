@@ -1,0 +1,112 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'div'> {
+  end: number
+  duration?: number
+  label: string
+  suffix?: string
+  prefix?: string
+  icon?: any
+}
+
+const {
+  end,
+  duration = 2000,
+  label,
+  suffix = '',
+  prefix = '',
+  icon: Icon,
+  class: className,
+  ...rest
+} = Astro.props
+---
+
+<div
+  class={`flex min-h-[180px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-transparent bg-white px-8 py-10 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-primary-light hover:shadow-xl md:py-12 ${className || ''}`}
+  {...rest}
+>
+  {Icon && <Icon class="text-primary-light h-12 w-12" />}
+  <p class="text-sm font-semibold tracking-wide text-gray-500 uppercase">
+    {label}
+  </p>
+  <div class="flex items-baseline gap-1">
+    {
+      prefix && (
+        <span class="text-primary text-2xl font-semibold md:text-3xl">
+          {prefix}
+        </span>
+      )
+    }
+    <span
+      class="text-primary text-4xl leading-none font-bold md:text-5xl"
+      data-end={end}
+      data-duration={duration}
+    >
+      0
+    </span>
+    {
+      suffix && (
+        <span class="text-primary text-2xl font-semibold md:text-3xl">
+          {suffix}
+        </span>
+      )
+    }
+  </div>
+</div>
+
+<script>
+  function animateCounter(element: HTMLElement) {
+    const end = parseInt(element.dataset.end || '0')
+    const duration = parseInt(element.dataset.duration || '2000')
+    const start = 0
+    const startTime = performance.now()
+
+    function easeOutExpo(t: number): number {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t)
+    }
+
+    function updateCounter(currentTime: number) {
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const easedProgress = easeOutExpo(progress)
+      const current = Math.floor(start + (end - start) * easedProgress)
+
+      element.textContent = current.toLocaleString('es-ES')
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter)
+      } else {
+        element.textContent = end.toLocaleString('es-ES')
+      }
+    }
+
+    requestAnimationFrame(updateCounter)
+  }
+
+  function initCounters() {
+    const counters = document.querySelectorAll<HTMLElement>('[data-end]')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target as HTMLElement)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+
+    counters.forEach((counter) => observer.observe(counter))
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounters)
+  } else {
+    initCounters()
+  }
+
+  document.addEventListener('astro:page-load', initCounters)
+</script>
