@@ -1,0 +1,117 @@
+---
+import Layout from '@/layouts/Layout.astro'
+
+const servicios = [
+  'Asesoramiento empresarial y gestión.',
+  'Capacitación y enseñanza.',
+  'Organización y dirección de todo tipo de eventos.',
+  'Administración y ejecución de proyectos obras, bienes y servicios en todas las áreas.',
+  'Administración de programas de protección ambiental.',
+  'Asesoramiento empresarial en materia de gestión.',
+  'Servicio de Organización de ferias, muestra de exposiciones',
+  'Servicios Profesionales, científicos y técnicos',
+  'Investigación de mercado y encuestas de opinión pública',
+  'Servicios relacionados con actividades turísticas',
+]
+
+const cursosCortos = [
+  'Cursos de Academia CISCO',
+  'Gestión de Calidad',
+  'Mecánica y Electrónica',
+  'Sistemas',
+  'Mecatrónica',
+  'Industrial',
+  'Textil',
+  'Automotriz',
+  'Eléctrica',
+  'Agroindustrias',
+  'Agronegocios',
+  'Agropecuaria',
+  'Recursos Naturales',
+  'Gestión Forestal',
+  'Biotecnología',
+  'Energías Renovables',
+  'Administración',
+  'Contabilidad',
+  'Economía',
+  'Mercadotecnia',
+  'Gastronomía',
+  'Turismo y Hotelería',
+  'Legislación y Peritaje',
+  'Salud - Enfermería',
+  'Educación – Docente del Magisterio',
+  'Terapia Física',
+  'Nutrición',
+  'Psicología Educativa',
+  'Psicología en general',
+  'Artes plásticas',
+  'Diseño y Publicidad',
+  'Diseño Gráfico',
+  'Gestión y Desarrollo Social',
+  'Relaciones Públicas',
+  'Secretariado Ejecutivo',
+  'Físico Matemático',
+  'Inglés Regular, Intensivo y Especial',
+  'Panadería',
+  'Educación Física',
+  'Entrenamiento deportivo',
+  'Contratación en Compras Públicas',
+  'Gestión Cultural',
+  'Etiqueta y Protocolo',
+  'Habilidades de Etiqueta Empresarial',
+  'Talento humano en el sector público y privado',
+]
+---
+
+<Layout
+  title="Ofertas - La UEmprende"
+  description="Servicios y Cursos Cortos ofrecidos por La UEmprende"
+>
+  <!-- Sección Servicios -->
+  <section class="bg-white py-16">
+    <div class="mx-auto max-w-7xl px-6">
+      <h1 class="text-primary mb-4 text-3xl font-bold md:text-4xl">
+        Servicios
+      </h1>
+      <p class="mb-8 text-gray-600">
+        De conformidad con el Registro Único de Contribuyentes Sociedades la
+        Empresa Pública La Uemprende E.P. ofrece los siguientes servicios:
+      </p>
+
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          servicios.map((servicio) => (
+            <div class="rounded-lg bg-gray-100 px-4 py-3 transition-all duration-200 hover:bg-gray-200">
+              <p class="text-sm text-gray-700">{servicio}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Cursos Cortos -->
+  <section class="bg-gray-50 py-16">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="text-primary mb-4 text-3xl font-bold md:text-4xl">
+        Cursos Cortos
+      </h2>
+      <p class="mb-8 text-gray-600">
+        Cursos Cortos en diferentes temáticas con el aval de la Universidad
+        Técnica del Norte.
+      </p>
+
+      <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {
+          cursosCortos.map((curso) => (
+            <div class="group rounded-lg bg-white px-4 py-3 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+              <p class="group-hover:text-primary text-sm font-medium text-gray-700 transition-colors">
+                {curso}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,214 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { Image } from 'astro:assets'
+
+// Importar imágenes - Auxiliares Panadería HIAS
+import hias0 from '@/assets/images/galeria/auxiliares_panaderia_hias/Hias0.jpg'
+import hias2 from '@/assets/images/galeria/auxiliares_panaderia_hias/Hias2.jpg'
+import hias3 from '@/assets/images/galeria/auxiliares_panaderia_hias/Hias3.jpg'
+import hias4 from '@/assets/images/galeria/auxiliares_panaderia_hias/Hias4.jpg'
+import hias5 from '@/assets/images/galeria/auxiliares_panaderia_hias/Hias5.jpg'
+
+// Curso Enfermería
+import enfermeria1 from '@/assets/images/galeria/curso_enfermeria/enfermeria1.jpeg'
+import enfermeria2 from '@/assets/images/galeria/curso_enfermeria/enfermeria2.jpeg'
+import enfermeria3 from '@/assets/images/galeria/curso_enfermeria/enfermeria3.jpeg'
+import enfermeria4 from '@/assets/images/galeria/curso_enfermeria/enfermeria4.jpeg'
+import enfermeria5 from '@/assets/images/galeria/curso_enfermeria/enfermeria5.jpeg'
+import enfermeria6 from '@/assets/images/galeria/curso_enfermeria/enfermeria6.jpeg'
+
+// Curso Panadería
+import panaderia1 from '@/assets/images/galeria/curso_panaderia/CPanaderia1.jpg'
+import panaderia2 from '@/assets/images/galeria/curso_panaderia/CPanaderia2.jpg'
+import panaderia3 from '@/assets/images/galeria/curso_panaderia/CPanaderia3.jpg'
+
+// Desarrollo Organización
+import desarrollo1 from '@/assets/images/galeria/desarrollo_organizacion/Desarrollo1.png'
+import desarrollo2 from '@/assets/images/galeria/desarrollo_organizacion/Desarrollo2.png'
+
+// Propedéutico
+import propedeutico1 from '@/assets/images/galeria/propedeutico/PROPEDEUTICO1.jpeg'
+import propedeutico2 from '@/assets/images/galeria/propedeutico/PROPEDEUTICO2.jpeg'
+import propedeutico3 from '@/assets/images/galeria/propedeutico/PROPEDEUTICO3.jpeg'
+import propedeutico4 from '@/assets/images/galeria/propedeutico/PROPEDEUTICO4.jpeg'
+import propedeutico5 from '@/assets/images/galeria/propedeutico/PROPEDEUTICO5.jpeg'
+
+// VI Congreso REDU
+import redu1 from '@/assets/images/galeria/vi_congreso_redu/redu1.jpg'
+import redu2 from '@/assets/images/galeria/vi_congreso_redu/redu2.jpg'
+import redu3 from '@/assets/images/galeria/vi_congreso_redu/redu3.jpg'
+import redu4 from '@/assets/images/galeria/vi_congreso_redu/redu4.jpg'
+import redu5 from '@/assets/images/galeria/vi_congreso_redu/redu5.jpg'
+import redu6 from '@/assets/images/galeria/vi_congreso_redu/redu6.jpg'
+import redu7 from '@/assets/images/galeria/vi_congreso_redu/redu7.jpg'
+import redu8 from '@/assets/images/galeria/vi_congreso_redu/redu8.jpg'
+
+// Datos de la galería - estructura simplificada
+const categorias = [
+  {
+    nombre: 'Auxiliares de Panadería - HIAS',
+    imagenes: [hias0, hias2, hias3, hias4, hias5],
+  },
+  {
+    nombre: 'Curso de Enfermería',
+    imagenes: [
+      enfermeria1,
+      enfermeria2,
+      enfermeria3,
+      enfermeria4,
+      enfermeria5,
+      enfermeria6,
+    ],
+  },
+  {
+    nombre: 'Curso de Panadería',
+    imagenes: [panaderia1, panaderia2, panaderia3],
+  },
+  {
+    nombre: 'Desarrollo Organizacional',
+    imagenes: [desarrollo1, desarrollo2],
+  },
+  {
+    nombre: 'Propedéutico',
+    imagenes: [
+      propedeutico1,
+      propedeutico2,
+      propedeutico3,
+      propedeutico4,
+      propedeutico5,
+    ],
+  },
+  {
+    nombre: 'VI Congreso REDU',
+    imagenes: [redu1, redu2, redu3, redu4, redu5, redu6, redu7, redu8],
+  },
+]
+
+// Función para calcular el tamaño de cada imagen en el grid
+function getImageSize(index: number, total: number): string {
+  // 2 imágenes: ambas iguales
+  if (total === 2) return ''
+
+  // 3 imágenes: primera ancha, las otras 2 normales debajo
+  if (total === 3) {
+    if (index === 0) return 'col-span-2'
+    return ''
+  }
+
+  // 4+ imágenes: primera grande (2x2)
+  if (index === 0) return 'col-span-2 row-span-2'
+
+  // 6+ imágenes: añadir una imagen ancha extra
+  if (total >= 6 && index === 3) return 'col-span-2'
+
+  return ''
+}
+
+// Lazy loading: primera categoría eager, segunda categoría solo 3 primeras eager
+function shouldLoadEager(catIndex: number, imgIndex: number): boolean {
+  if (catIndex === 0) return true // Primera categoría: todas eager
+  if (catIndex === 1 && imgIndex < 3) return true // Segunda categoría: solo 3 primeras
+  return false // Resto: lazy
+}
+---
+
+<Layout
+  title="Galería - La UEmprende"
+  description="Galería de imágenes de La UEmprende"
+>
+  <section class="bg-gray-50 py-12 md:py-16">
+    <div class="mx-auto max-w-7xl px-6">
+      {
+        categorias.map((categoria, catIndex) => (
+          <article class="mb-16 last:mb-0">
+            <h2 class="mb-6 text-2xl font-bold text-gray-900 md:text-3xl">
+              {categoria.nombre}
+            </h2>
+
+            <div class="pswp-gallery gallery-grid">
+              {categoria.imagenes.map((img, i) => (
+                <a
+                  href={img.src}
+                  data-pswp-width={img.width}
+                  data-pswp-height={img.height}
+                  class:list={[
+                    'gallery-item group relative block overflow-hidden rounded-lg shadow-lg',
+                    'hover:shadow-primary/20 transition-all duration-300 hover:shadow-2xl',
+                    getImageSize(i, categoria.imagenes.length),
+                  ]}
+                >
+                  <Image
+                    src={img}
+                    alt={categoria.nombre}
+                    width={600}
+                    height={600}
+                    format="webp"
+                    quality={80}
+                    loading={shouldLoadEager(catIndex, i) ? 'eager' : 'lazy'}
+                    class="h-full w-full object-cover"
+                  />
+                  <div class="pointer-events-none absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/5" />
+                </a>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 160px;
+      grid-auto-flow: dense;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 180px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 200px;
+      }
+    }
+
+    /* Fondo mientras carga la imagen */
+    .gallery-item {
+      background: linear-gradient(135deg, #e5e7eb 0%, #f3f4f6 100%);
+    }
+
+    .gallery-item img {
+      background-color: #f3f4f6;
+    }
+
+    .pswp {
+      --pswp-bg: rgba(0, 20, 40, 0.95);
+    }
+  </style>
+
+  <script>
+    import PhotoSwipeLightbox from 'photoswipe/lightbox'
+    import 'photoswipe/style.css'
+
+    new PhotoSwipeLightbox({
+      gallery: '.pswp-gallery',
+      children: 'a',
+      pswpModule: () => import('photoswipe'),
+      showHideAnimationType: 'zoom',
+      imageClickAction: 'zoom',
+      tapAction: 'toggle-controls',
+      wheelToZoom: true,
+      easing: 'cubic-bezier(0.4, 0, 0.22, 1)',
+      showAnimationDuration: 400,
+      hideAnimationDuration: 400,
+    }).init()
+  </script>
+</Layout>
