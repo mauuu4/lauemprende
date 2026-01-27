@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets'
+import ArrowRight from '@/components/icons/ui/ArrowRight.astro'
+---
+
+<section id="quienes-somos" class="scroll-mt-20 bg-white py-12 md:py-16">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mb-12 text-center">
+      <h2 class="text-primary mb-3 text-3xl font-bold md:text-4xl">
+        Quiénes Somos
+      </h2>
+      <div class="bg-accent mx-auto h-1 w-24 rounded-full"></div>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-[350px_1fr] lg:gap-16">
+      <div class="mx-auto w-full max-w-[350px] lg:mx-0">
+        <div class="from-primary/20 to-primary/5 overflow-hidden rounded-2xl bg-linear-to-br p-2 shadow-xl">
+          <div class="overflow-hidden rounded-xl bg-gray-100">
+            <Image
+              src="/images/Ing.LuisAlbertoAcosta.jpg"
+              alt="Gerente General La UEmprende"
+              width={350}
+              height={467}
+              class="aspect-3/4 w-full object-cover transition-transform duration-500 hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div
+          class="mt-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-lg transition-all duration-300 hover:shadow-xl"
+        >
+          <h3 class="text-primary mb-1 text-lg font-bold">
+            Ing. Luis Alberto Acosta
+          </h3>
+          <p class="text-sm text-gray-600">Gerente General</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center space-y-4">
+        <div class="space-y-4 text-gray-700">
+          <p class="text-base leading-relaxed">
+            <span class="text-primary font-bold">LA UEMPRENDE EP</span> es una empresa
+            pública con personería jurídica de derecho público, de nacionalidad ecuatoriana
+            y patrimonio propio, dotada de autonomía presupuestaría, financiera, económica,
+            administrativa y de gestión; que opera sobre bases comerciales.
+          </p>
+
+          <p class="text-base leading-relaxed">
+            Esta empresa es constituida como un <span class="font-semibold"
+              >eje estratégico externo de la Universidad Técnica del Norte</span
+            > para alcanzar objetivos de desarrollo sostenible encaminados a motivar
+            el estudio canalizando alternativas para la transferencia de conocimientos
+            que permitan innovar para emprender.
+          </p>
+
+          <p class="text-base leading-relaxed">
+            Respondemos a las necesidades de progreso de la región y el país, a
+            través de la prestación de <span class="font-semibold"
+              >servicios educativos, empresariales, productivos y tecnológicos</span
+            > mediante capacitación, consultoría, fiscalizaciones; entre otros.
+          </p>
+
+          <p class="text-base leading-relaxed">
+            Nuestra misión fundamental es el impulso de la <span
+              class="font-semibold">educación continua</span
+            >, complemento básico de la moderna universidad. Desarrollamos
+            programas del Idioma Inglés, profesionalización para auxiliares de
+            enfermería, cursos para gestores culturales, y dirigimos la Escuela
+            de Conducción entregando conductores profesionales a la sociedad.
+          </p>
+
+          <p class="text-base leading-relaxed">
+            Junto a un equipo de valiosos profesionales, académicos y técnicos
+            con experiencia calificada, nos comprometemos con el servicio y la
+            calidad en atención a los requerimientos ciudadanos, consolidando
+            nuestra gestión y permanencia en el tiempo.
+          </p>
+        </div>
+
+        <div class="pt-4">
+          <a
+            href="/presentacion"
+            class="bg-primary group inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white shadow-xl transition-all duration-300 hover:bg-blue-800 hover:shadow-2xl hover:scale-105"
+          >
+            Ver más información
+            <ArrowRight
+              class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-2"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

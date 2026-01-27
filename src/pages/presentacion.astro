@@ -1,0 +1,228 @@
+---
+import { Image } from 'astro:assets'
+import Layout from '@/layouts/Layout.astro'
+import ArrowLeft from '@/components/icons/ui/ArrowLeft.astro'
+---
+
+<Layout title="Presentación - La UEmprende">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    <section
+      class="bg-primary relative overflow-hidden py-16 text-white md:py-20"
+    >
+      <div
+        class="absolute inset-0 bg-linear-to-br from-blue-900/20 to-transparent"
+      >
+      </div>
+      <div class="relative mx-auto max-w-7xl px-6">
+        <div class="text-center">
+          <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+            Presentación Institucional
+          </h1>
+          <p class="mx-auto max-w-2xl text-lg text-blue-100">
+            Conoce nuestra trayectoria y compromiso con el desarrollo regional
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenido Principal -->
+    <section class="py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <!-- Sección Superior con Imagen -->
+        <div class="mb-12 grid gap-12 lg:grid-cols-[400px_1fr]">
+          <!-- Imagen del Gerente -->
+          <div class="mx-auto w-full max-w-[400px] lg:mx-0">
+            <div class="sticky top-24">
+              <div class="overflow-hidden rounded-2xl shadow-xl">
+                <Image
+                  src="/images/Ing.LuisAlbertoAcosta.jpg"
+                  alt="Ing. Luis Alberto Acosta - Gerente General"
+                  width={400}
+                  height={533}
+                  loading="eager"
+                  class="aspect-3/4 w-full object-cover"
+                />
+              </div>
+              <div
+                class="mt-6 rounded-xl border border-gray-200 bg-white p-6 shadow-md"
+              >
+                <h3 class="text-primary mb-1 text-xl font-bold">
+                  Ing. Luis Alberto Acosta
+                </h3>
+                <p class="text-sm font-medium text-gray-600">Gerente General</p>
+                <p class="mt-3 text-xs text-gray-500">
+                  LA UEMPRENDE EP - Empresa Pública
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido de Texto -->
+          <div class="space-y-6">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm md:p-10"
+            >
+              <h2 class="text-primary mb-6 text-2xl font-bold">
+                ¿Quiénes Somos?
+              </h2>
+              <div
+                class="prose prose-gray max-w-none space-y-4 leading-relaxed text-gray-700"
+              >
+                <p>
+                  <span class="text-primary font-bold">LA UEMPRENDE EP</span> es una
+                  empresa pública con personería jurídica de derecho público, de nacionalidad
+                  ecuatoriana y patrimonio propio, dotada de autonomía presupuestaría,
+                  financiera, económica, administrativa y de gestión; que opera sobre
+                  bases comerciales.
+                </p>
+
+                <p>
+                  Esta empresa es constituida como un eje estratégico externo de
+                  la Universidad Técnica del Norte para alcanzar objetivos de
+                  desarrollo sostenible encaminados a motivar el estudio
+                  canalizando alternativas para la transferencia de
+                  conocimientos que permitan innovar para emprender.
+                </p>
+
+                <p>
+                  LA UEMPRENDE EP responde a las necesidades de progreso de la
+                  región y el país, a través de la prestación de servicios
+                  educativos, empresariales, productivos, tecnológicos mediante
+                  capacitación, consultoría, fiscalizaciones; entre otros.
+                </p>
+
+                <p>
+                  La planificación sistemática, una cultura de evaluación
+                  continua, el estudio de mercados, la eficiencia y la inversión
+                  responsable serán los mecanismos para alcanzar los objetivos
+                  trazados en el plan operativo anual y en el plan estratégico
+                  institucional, con lo que en conjunto consolidaremos la
+                  gestión y la permanencia de la empresa en el tiempo.
+                </p>
+
+                <p>
+                  Somos creativos y dinamizaremos el crecimiento sostenido y,
+                  junto a un equipo de valiosos seres humanos entre expertos,
+                  académicos, profesionales y técnicos con experiencia
+                  calificada nos comprometemos con el servicio y la calidad en
+                  atención a los requerimientos ciudadanos como prospectiva del
+                  desarrollo de los pueblos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección Vinculación UTN -->
+        <div
+          class="mb-12 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm md:p-10"
+        >
+          <h2 class="text-primary mb-6 text-2xl font-bold">
+            Vinculación con la Universidad Técnica del Norte
+          </h2>
+          <div
+            class="prose prose-gray max-w-none space-y-4 leading-relaxed text-gray-700"
+          >
+            <p>
+              La Universidad Técnica del Norte, convertida en el más grande
+              monumento a la Educación y a la cultura del Norte ecuatoriano y
+              del país en general, cuenta con su Empresa Pública LA UEMPRENDE
+              EP, legítimamente constituida conforme a la normativa legal en
+              vigencia.
+            </p>
+
+            <p>
+              Nuestra empresa tiene como fundamental misión el impulso de la
+              educación continua, complemento básico de la moderna universidad;
+              aspecto que le permite desarrollar acciones trascendentales en el
+              ejercicio permanente del vínculo con la colectividad. Al momento
+              desarrollamos los estudios del Idioma Inglés para niños,
+              adolescentes y para la propia juventud universitaria. Estamos
+              cumpliendo el gran reto de entrega la información al Registro
+              Social, con base en el levantamiento de encuestas en Pichincha,
+              Imbabura y Carchi, indispensables para la planificación del
+              desarrollo que requiere el Estado ecuatoriano.
+            </p>
+          </div>
+        </div>
+
+        <!-- Sección Programas y Servicios con segunda imagen -->
+        <div class="grid gap-12 lg:grid-cols-[1fr_350px]">
+          <div
+            class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm md:p-10"
+          >
+            <h2 class="text-primary mb-6 text-2xl font-bold">
+              Programas y Servicios
+            </h2>
+            <div
+              class="prose prose-gray max-w-none space-y-4 leading-relaxed text-gray-700"
+            >
+              <p>
+                Desarrollamos programas de profesionalización para auxiliares de
+                enfermería, cursos para gestores culturales.
+              </p>
+
+              <p>
+                Dirigimos la Escuela de Conducción para continuar entregando a
+                la sociedad, conductores profesionales en las diversas
+                categorías.
+              </p>
+
+              <p>
+                Hemos ganado un concurso interuniversitario para profesionalizar
+                al magisterio en 18 provincias del país y, también otros,
+                promovidos por el Ministerio de Educación para capacitación a
+                los educadores del país.
+              </p>
+
+              <p>
+                Sin duda, LA UEMPRENDE EP es una empresa pública que cuenta con
+                el talento humano profesional de calidad para ejecutar las
+                acciones señaladas y otras encaminadas al desarrollo
+                empresarial, productivo, tecnológico, consultor; entre otros,
+                siempre encaminados al desarrollo nacional y regional.
+              </p>
+            </div>
+          </div>
+
+          <!-- Imagen del Presidente del Directorio -->
+          <div class="mx-auto w-full max-w-[350px] lg:mx-0">
+            <div class="overflow-hidden rounded-2xl shadow-xl">
+              <Image
+                src="/images/dr_Posso.jpeg"
+                alt="Dr. Antonio Posso - Presidente del Directorio"
+                width={350}
+                height={467}
+                loading="lazy"
+                class="aspect-3/4 w-full object-cover"
+              />
+            </div>
+            <div
+              class="mt-6 rounded-xl border border-gray-200 bg-white p-6 shadow-md"
+            >
+              <h3 class="text-primary mb-1 text-xl font-bold">
+                Dr. Antonio Posso
+              </h3>
+              <p class="text-sm font-medium text-gray-600">Presidente del Directorio</p>
+              <p class="mt-3 text-xs text-gray-500">
+                LA UEMPRENDE EP - Empresa Pública
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-16 text-center">
+          <a
+            href="/"
+            class="bg-primary inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-blue-800 hover:shadow-xl"
+          >
+            <ArrowLeft class="h-5 w-5" />
+            Volver al inicio
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -23,31 +23,39 @@ const {
 ---
 
 <div
-  class={`flex min-h-[180px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-transparent bg-white px-8 py-10 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-primary-light hover:shadow-xl md:py-12 ${className || ''}`}
+  class={`group relative flex min-h-[200px] flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl border border-gray-200 bg-white px-8 py-12 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 hover:shadow-2xl md:py-14 ${className || ''}`}
   {...rest}
 >
-  {Icon && <Icon class="text-primary-light h-12 w-12" />}
-  <p class="text-sm font-semibold tracking-wide text-gray-500 uppercase">
-    {label}
-  </p>
-  <div class="flex items-baseline gap-1">
-    {
-      prefix && (
-        <span class="text-primary text-2xl font-semibold md:text-3xl">
-          {prefix}
-        </span>
-      )
-    }
-    <span
-      class="text-primary text-4xl leading-none font-bold md:text-5xl"
-      data-end={end}
-      data-duration={duration}
-    >
-      0
-    </span>
-    {
-      suffix && (
-        <span class="text-primary text-2xl font-semibold md:text-3xl">
+  <!-- Efecto de fondo -->
+  <div class="from-primary/5 absolute inset-0 bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+
+  <div class="relative z-10 flex flex-col items-center gap-4">
+    {Icon && (
+      <div class="bg-primary/10 rounded-full p-3 transition-transform duration-300 group-hover:scale-110">
+        <Icon class="text-primary h-10 w-10" />
+      </div>
+    )}
+    <p class="text-xs font-bold uppercase tracking-wider text-gray-500">
+      {label}
+    </p>
+    <div class="flex items-baseline gap-1">
+      {
+        prefix && (
+          <span class="text-primary text-2xl font-semibold md:text-3xl">
+            {prefix}
+          </span>
+        )
+      }
+      <span
+        class="text-primary text-5xl font-bold leading-none md:text-6xl"
+        data-end={end}
+        data-duration={duration}
+      >
+        0
+      </span>
+      {
+        suffix && (
+          <span class="text-primary text-2xl font-semibold md:text-3xl">
           {suffix}
         </span>
       )

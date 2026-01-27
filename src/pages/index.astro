@@ -7,6 +7,9 @@ import Hero from '@/components/sections/Hero.astro'
 import Counter from '@/components/ui/Counter.astro'
 import Calendar from '@/components/icons/ui/Calendar.astro'
 import TrendUp from '@/components/icons/ui/TrendUp.astro'
+import QuienesSomos from '@/components/sections/QuienesSomos.astro'
+import MisionVisionObjetivos from '@/components/sections/MisionVisionObjetivos.astro'
+import Organigrama from '@/components/sections/Organigrama.astro'
 ---
 
 <Layout
@@ -15,35 +18,44 @@ import TrendUp from '@/components/icons/ui/TrendUp.astro'
 >
   <Hero />
 
-  <section id="cursos" class="scroll-mt-15 py-10">
+  <section id="cursos" class="scroll-mt-15 bg-white py-12 md:py-16">
     <div class="mx-auto max-w-7xl px-6">
-      <h2 class="text-primary mb-4 text-center text-3xl font-bold md:text-4xl">
-        Cursos
-      </h2>
+      <div class="mb-12 text-center">
+        <h2 class="text-primary mb-3 text-3xl font-bold md:text-4xl">
+          Cursos
+        </h2>
+        <div class="bg-accent mx-auto h-1 w-24 rounded-full"></div>
+      </div>
       <Carousel items={cursos} id="cursos" loading="eager" />
     </div>
   </section>
 
-  <section id="comunicados" class="scroll-mt-15 bg-gray-50 py-10">
+  <section id="comunicados" class="scroll-mt-15 bg-gray-50 py-12 md:py-16">
     <div class="mx-auto max-w-7xl px-6">
-      <h2 class="text-primary mb-4 text-center text-3xl font-bold md:text-4xl">
-        Comunicados
-      </h2>
+      <div class="mb-12 text-center">
+        <h2 class="text-primary mb-3 text-3xl font-bold md:text-4xl">
+          Comunicados
+        </h2>
+        <div class="bg-accent mx-auto h-1 w-24 rounded-full"></div>
+      </div>
       <Carousel items={comunicados} id="comunicados" />
     </div>
   </section>
 
-  <section id="estadisticas" class="bg-gray-50 pb-16 pt-6">
-    <div class="mx-auto max-w-7xl px-6">
-      <!-- Separador sutil -->
-      <div class="mx-auto mb-10 max-w-xs">
-        <div class="h-px bg-linear-to-r from-transparent via-gray-300 to-transparent"></div>
-      </div>
+  <!-- Nuevas secciones -->
+  <QuienesSomos />
+  <MisionVisionObjetivos />
+  <Organigrama />
 
-      <h2 class="text-primary mb-10 text-center text-3xl font-bold md:text-4xl">
-        Estadísticas de Visitas
-      </h2>
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:max-w-4xl lg:mx-auto">
+  <section id="estadisticas" class="scroll-mt-20 bg-gray-50 py-12 md:py-16">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-12 text-center">
+        <h2 class="text-primary mb-3 text-3xl font-bold md:text-4xl">
+          Estadísticas de Visitas
+        </h2>
+        <div class="bg-accent mx-auto h-1 w-24 rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:max-w-4xl lg:mx-auto">
         <Counter
           end={42500}
           label="Visitas mes pasado"

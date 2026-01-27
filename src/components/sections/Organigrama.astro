@@ -1,0 +1,32 @@
+---
+// Componente Organigrama simplificado con diseño institucional
+import { Image } from 'astro:assets'
+---
+
+<section id="organigrama" class="scroll-mt-20 bg-white py-12 md:py-16">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mb-12 text-center">
+      <h2 class="text-primary mb-3 text-3xl font-bold md:text-4xl">
+        Estructura Organizacional
+      </h2>
+      <div class="bg-accent mx-auto h-1 w-24 rounded-full"></div>
+      <p class="mt-4 text-gray-600">Conoce nuestra estructura organizativa</p>
+    </div>
+
+    <!-- Organigrama -->
+    <div class="mx-auto max-w-5xl">
+      <div class="rounded-2xl bg-white p-4 shadow-lg md:p-6">
+        <div class="overflow-hidden rounded-xl border border-gray-100">
+          <Image
+            src="/images/Organigrama2025.png"
+            alt="Organigrama La UEmprende 2025"
+            width={1200}
+            height={800}
+            class="h-auto w-full"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

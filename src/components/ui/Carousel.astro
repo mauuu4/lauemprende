@@ -20,19 +20,19 @@ const { items, id, loading = 'lazy', eagerCount = 6 } = Astro.props
       {
         items.map((item, index) => (
           <div class="swiper-slide">
-            <div class="relative h-full">
+            <div class="group relative h-full overflow-hidden rounded-lg">
               <Image
                 src={item.imagen}
                 alt={item.titulo}
                 width={800}
                 height={1100}
-                class="carousel-image h-full w-full cursor-zoom-in object-cover transition-transform hover:scale-105"
+                class="carousel-image h-full w-full cursor-zoom-in object-cover transition-all duration-500 group-hover:scale-110"
                 loading={
                   loading === 'eager' && index < eagerCount ? 'eager' : 'lazy'
                 }
                 data-lightbox-trigger={id}
               />
-              <div class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 to-transparent px-4 py-4">
+              <div class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 via-black/50 to-transparent px-4 py-4 transition-all duration-300 group-hover:from-black/90">
                 <div class="flex flex-col items-start gap-2">
                   {item.enlaces.map((enlace) => (
                     <ButtonLink variant={enlace.tipo} href={enlace.url}>

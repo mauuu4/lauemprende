@@ -104,10 +104,10 @@ function getImageSize(index: number, total: number): string {
   return ''
 }
 
-// Lazy loading: primera categoría eager, segunda categoría solo 3 primeras eager
+// Lazy loading: primera categoría eager, segunda categoría 4 primeras eager
 function shouldLoadEager(catIndex: number, imgIndex: number): boolean {
   if (catIndex === 0) return true // Primera categoría: todas eager
-  if (catIndex === 1 && imgIndex < 3) return true // Segunda categoría: solo 3 primeras
+  if (catIndex === 1 && imgIndex < 4) return true // Segunda categoría: 4 primeras eager
   return false // Resto: lazy
 }
 ---
