@@ -10,6 +10,12 @@
     "format": "prettier --write .",
     "lint": "eslint ."
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.5",
