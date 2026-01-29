@@ -5,6 +5,7 @@ import { comunicados } from '@/data/comunicados'
 import Carousel from '@/components/ui/Carousel.astro'
 import Hero from '@/components/sections/Hero.astro'
 import Counter from '@/components/ui/Counter.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
 import Calendar from '@/components/icons/ui/Calendar.astro'
 import TrendUp from '@/components/icons/ui/TrendUp.astro'
 import QuienesSomos from '@/components/sections/QuienesSomos.astro'
@@ -20,24 +21,14 @@ import Organigrama from '@/components/sections/Organigrama.astro'
 
   <section id="cursos" class="scroll-mt-15 bg-white py-12 md:py-16">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="mb-12 text-center">
-        <h2 class="text-primary mb-3 text-3xl font-bold md:text-4xl">
-          Cursos
-        </h2>
-        <div class="bg-accent mx-auto h-1 w-24 rounded-full"></div>
-      </div>
+      <SectionHeader title="Cursos" />
       <Carousel items={cursos} id="cursos" loading="eager" />
     </div>
   </section>
 
   <section id="comunicados" class="scroll-mt-15 bg-gray-50 py-12 md:py-16">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="mb-12 text-center">
-        <h2 class="text-primary mb-3 text-3xl font-bold md:text-4xl">
-          Comunicados
-        </h2>
-        <div class="bg-accent mx-auto h-1 w-24 rounded-full"></div>
-      </div>
+      <SectionHeader title="Comunicados" />
       <Carousel items={comunicados} id="comunicados" />
     </div>
   </section>
@@ -49,12 +40,7 @@ import Organigrama from '@/components/sections/Organigrama.astro'
 
   <section id="estadisticas" class="scroll-mt-20 bg-gray-50 py-12 md:py-16">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="mb-12 text-center">
-        <h2 class="text-primary mb-3 text-3xl font-bold md:text-4xl">
-          Estadísticas de Visitas
-        </h2>
-        <div class="bg-accent mx-auto h-1 w-24 rounded-full"></div>
-      </div>
+      <SectionHeader title="Estadísticas de Visitas" />
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:max-w-4xl lg:mx-auto">
         <Counter
           end={42500}

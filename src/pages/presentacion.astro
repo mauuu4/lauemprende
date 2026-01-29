@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets'
 import Layout from '@/layouts/Layout.astro'
 import ArrowLeft from '@/components/icons/ui/ArrowLeft.astro'
+import gerenteImg from '@public/images/Ing.LuisAlbertoAcosta.jpg'
+import drPossoImg from '@public/images/dr_Posso.jpeg'
 ---
 
 <Layout title="Presentación - La UEmprende">
@@ -36,7 +38,7 @@ import ArrowLeft from '@/components/icons/ui/ArrowLeft.astro'
             <div class="sticky top-24">
               <div class="overflow-hidden rounded-2xl shadow-xl">
                 <Image
-                  src="/images/Ing.LuisAlbertoAcosta.jpg"
+                  src={gerenteImg}
                   alt="Ing. Luis Alberto Acosta - Gerente General"
                   width={400}
                   height={533}
@@ -190,7 +192,7 @@ import ArrowLeft from '@/components/icons/ui/ArrowLeft.astro'
           <div class="mx-auto w-full max-w-[350px] lg:mx-0">
             <div class="overflow-hidden rounded-2xl shadow-xl">
               <Image
-                src="/images/dr_Posso.jpeg"
+                src={drPossoImg}
                 alt="Dr. Antonio Posso - Presidente del Directorio"
                 width={350}
                 height={467}
