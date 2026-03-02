@@ -11,7 +11,9 @@ function animate(element: HTMLElement, targetValue?: number) {
 
   function update(now: number) {
     const progress = Math.min((now - startTime) / duration, 1)
-    element.textContent = Math.floor(end * EASE_OUT_EXPO(progress)).toLocaleString('es-ES')
+    element.textContent = Math.floor(
+      end * EASE_OUT_EXPO(progress)
+    ).toLocaleString('es-ES')
     if (progress < 1) requestAnimationFrame(update)
   }
 
@@ -19,8 +21,12 @@ function animate(element: HTMLElement, targetValue?: number) {
 }
 
 function initCounters() {
-  const staticCounters = document.querySelectorAll<HTMLElement>('[data-end]:not([data-dynamic])')
-  const dynamicCounters = document.querySelectorAll<HTMLElement>('[data-dynamic] [data-end]')
+  const staticCounters = document.querySelectorAll<HTMLElement>(
+    '[data-end]:not([data-dynamic])'
+  )
+  const dynamicCounters = document.querySelectorAll<HTMLElement>(
+    '[data-dynamic] [data-end]'
+  )
 
   // Observer para contadores estáticos
   if (staticCounters.length > 0) {

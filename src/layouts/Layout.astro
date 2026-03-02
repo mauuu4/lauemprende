@@ -2,6 +2,7 @@
 import '@/styles/global.css'
 import Header from '@/components/common/Header.astro'
 import Footer from '@/components/common/Footer.astro'
+import PageCounter from '@/components/ui/PageCounter.astro'
 
 interface Props {
   title?: string
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const { title = 'La UEmprende', description = 'La UEmprende' } = Astro.props
+const currentPath = Astro.url.pathname
 ---
 
 <!doctype html>
@@ -26,6 +28,7 @@ const { title = 'La UEmprende', description = 'La UEmprende' } = Astro.props
 
     <main class="pt-16">
       <slot />
+      <PageCounter pagePath={currentPath} />
     </main>
 
     <Footer />

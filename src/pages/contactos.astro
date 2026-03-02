@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import { directorio } from '@/data/directorio'
+import { correosInstitucionales } from '@/data/correosInstitucionales'
 import PersonCard from '@/components/ui/PersonCard.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import Mail from '@/components/icons/contact/Mail.astro'
@@ -31,6 +32,34 @@ import Phone from '@/components/icons/contact/Phone.astro'
           </div>
         ))
       }
+
+      <!-- Correos Institucionales por Área -->
+      <div class="mt-12 mb-12">
+        <h2 class="text-primary mb-6 text-xl font-bold uppercase">
+          Correos Institucionales por Área
+        </h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          {
+            correosInstitucionales.map((contacto) => (
+              <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg">
+                <h3 class="text-primary mb-3 text-lg font-bold">
+                  {contacto.area}
+                </h3>
+                <p class="mb-4 text-sm leading-relaxed text-gray-700">
+                  {contacto.descripcion}
+                </p>
+                <a
+                  href={`mailto:${contacto.email}`}
+                  class="text-primary hover:text-primary-light inline-flex items-center gap-2 text-sm font-semibold transition-colors"
+                >
+                  <Mail />
+                  {contacto.email}
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
 
       <!-- Información de contacto general -->
       <div class="mt-8 rounded-xl bg-white p-8 shadow-md">

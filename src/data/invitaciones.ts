@@ -1,6 +1,6 @@
 import type { ItemCarousel } from '@/types'
 
-// Importar imágenes de comunicados
+// Importar imágenes de invitaciones a procesos de contratación
 import abastecimientoDisel2 from '@/assets/images/comunicados/abastecimientoDisel2.png'
 import irc2024 from '@/assets/images/comunicados/IRC2024.png'
 import giro3v3 from '@/assets/images/comunicados/giro3v3.png'
@@ -11,7 +11,7 @@ import rendicionCuentas2023 from '@/assets/images/comunicados/Rendicion_Cuentas_
 import irc2022 from '@/assets/images/comunicados/IRC20222.png'
 import giroNegocio5 from '@/assets/images/comunicados/GiroNegocio5.png'
 
-export const comunicados: ItemCarousel[] = [
+export const invitaciones: ItemCarousel[] = [
   {
     id: 1,
     titulo: 'Abastecimiento de Diésel',

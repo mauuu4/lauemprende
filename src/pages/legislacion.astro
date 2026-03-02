@@ -1,0 +1,83 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { legislacion } from '@/data/legislacion'
+import ArrowRight from '@/components/icons/ui/ArrowRight.astro'
+---
+
+<Layout
+  title="Legislación - La UEmprende"
+  description="Marco normativo aplicable a la Empresa Pública LA UEMPRENDE EP"
+>
+  <!-- Hero Section -->
+  <section
+    class="bg-primary relative overflow-hidden py-16 text-white md:py-20"
+  >
+    <div
+      class="absolute inset-0 bg-linear-to-br from-blue-900/20 to-transparent"
+    >
+    </div>
+    <div class="relative mx-auto max-w-7xl px-6">
+      <div class="text-center">
+        <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+          Legislación
+        </h1>
+        <p class="mx-auto max-w-2xl text-lg text-blue-100">
+          Marco normativo interno y general aplicable a la empresa
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido -->
+  <section class="bg-gray-50 py-16">
+    <div class="mx-auto max-w-7xl px-6">
+      {
+        legislacion.map((categoria) => (
+          <div class="mb-12 last:mb-0">
+            <h2 class="text-primary mb-2 text-2xl font-bold md:text-3xl">
+              {categoria.nombre}
+            </h2>
+            {categoria.descripcion && (
+              <p class="mb-6 text-gray-600">{categoria.descripcion}</p>
+            )}
+
+            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {categoria.items.map((item) => (
+                <a
+                  href={item.url}
+                  target={item.url !== '#' ? '_blank' : undefined}
+                  rel={item.url !== '#' ? 'noopener noreferrer' : undefined}
+                  class="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                >
+                  <div class="text-primary mt-0.5 shrink-0">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                    </svg>
+                  </div>
+                  <span class="group-hover:text-primary text-sm font-medium text-gray-700 transition-colors">
+                    {item.titulo}
+                  </span>
+                  {item.url !== '#' && (
+                    <ArrowRight class="group-hover:text-primary mt-0.5 ml-auto h-4 w-4 shrink-0 text-gray-400 transition-colors" />
+                  )}
+                </a>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

@@ -83,11 +83,11 @@ const modulos = [
       <ButtonLink
         variant="link"
         size="md"
-        href="#comunicados"
+        href="#invitaciones"
         target="_self"
         uppercase={false}
       >
-        Comunicados
+        Invitaciones
       </ButtonLink>
     </div>
   </div>
@@ -102,7 +102,9 @@ const modulos = [
         class="text-primary flex cursor-pointer list-none items-center justify-between rounded-lg bg-white px-6 py-4 font-semibold shadow-lg transition-colors hover:bg-gray-50"
       >
         <span class="text-lg">Accesos Rápidos</span>
-        <ChevronDown class="h-5 w-5 transition-transform duration-300 group-open:rotate-180" />
+        <ChevronDown
+          class="h-5 w-5 transition-transform duration-300 group-open:rotate-180"
+        />
       </summary>
 
       <div
@@ -146,7 +148,7 @@ const modulos = [
               <Icon size={32} />
             </div>
 
-            <h3 class="relative z-10 mb-1 text-sm font-bold text-primary transition-colors">
+            <h3 class="text-primary relative z-10 mb-1 text-sm font-bold transition-colors">
               {title}
             </h3>
             <span class="relative z-10 text-xs text-gray-500">{subtitle}</span>

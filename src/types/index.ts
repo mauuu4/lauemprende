@@ -10,7 +10,7 @@ export interface Enlace {
 }
 
 /**
- * Interfaz para elementos que se muestran en el carousel (cursos, comunicados, etc.)
+ * Interfaz para elementos que se muestran en el carousel (cursos, invitaciones, etc.)
  */
 export interface ItemCarousel {
   id: number
@@ -20,4 +20,60 @@ export interface ItemCarousel {
   activo: boolean
   fecha?: string
   descripcion?: string
+}
+
+/** Elemento de normativa legal */
+export interface NormativaItem {
+  titulo: string
+  url: string
+}
+
+/** Categoría de legislación (Normativa Interna, Normativa General) */
+export interface CategoriaLegislacion {
+  nombre: string
+  descripcion?: string
+  items: NormativaItem[]
+}
+
+/** Informe de rendición de cuentas */
+export interface InformeRendicion {
+  id: number
+  titulo: string
+  descripcion?: string
+  enlaces: Enlace[]
+  imagen?: ImageMetadata
+}
+
+/** Año de rendición de cuentas con sus informes */
+export interface AnioRendicion {
+  anio: number
+  informes: InformeRendicion[]
+}
+
+/** Noticia con imagen/video y descripción */
+export interface Noticia {
+  id: number
+  titulo: string
+  descripcion: string
+  imagen?: ImageMetadata
+  video?: string
+  fecha: string
+}
+
+/** Anuncio para el grid estático */
+export interface Anuncio {
+  id: number
+  titulo: string
+  descripcion?: string
+  imagen?: ImageMetadata
+  enlaces: Enlace[]
+  fecha: string
+  activo: boolean
+}
+
+/** Contacto de correo institucional por área */
+export interface AreaContacto {
+  area: string
+  descripcion: string
+  email: string
 }

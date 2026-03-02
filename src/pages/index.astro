@@ -1,16 +1,17 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import { cursos } from '@/data/cursos'
-import { comunicados } from '@/data/comunicados'
+import { invitaciones } from '@/data/invitaciones'
 import Carousel from '@/components/ui/Carousel.astro'
 import Hero from '@/components/sections/Hero.astro'
 import Counter from '@/components/ui/Counter.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import Calendar from '@/components/icons/ui/Calendar.astro'
 import TrendUp from '@/components/icons/ui/TrendUp.astro'
-import QuienesSomos from '@/components/sections/QuienesSomos.astro'
-import MisionVisionObjetivos from '@/components/sections/MisionVisionObjetivos.astro'
-import Organigrama from '@/components/sections/Organigrama.astro'
+
+// Ordenar para que los más recientes (ID más alto) aparezcan primero
+const cursosOrdenados = [...cursos].reverse()
+const invitacionesOrdenadas = [...invitaciones].reverse()
 ---
 
 <Layout
@@ -22,26 +23,23 @@ import Organigrama from '@/components/sections/Organigrama.astro'
   <section id="cursos" class="scroll-mt-15 bg-white py-12 md:py-16">
     <div class="mx-auto max-w-7xl px-6">
       <SectionHeader title="Cursos" />
-      <Carousel items={cursos} id="cursos" loading="eager" />
+      <Carousel items={cursosOrdenados} id="cursos" loading="eager" />
     </div>
   </section>
 
-  <section id="comunicados" class="scroll-mt-15 bg-gray-50 py-12 md:py-16">
+  <section id="invitaciones" class="scroll-mt-15 bg-gray-50 py-12 md:py-16">
     <div class="mx-auto max-w-7xl px-6">
-      <SectionHeader title="Comunicados" />
-      <Carousel items={comunicados} id="comunicados" />
+      <SectionHeader title="Invitaciones a procesos de contratación" />
+      <Carousel items={invitacionesOrdenadas} id="invitaciones" />
     </div>
   </section>
-
-  <!-- Nuevas secciones -->
-  <QuienesSomos />
-  <MisionVisionObjetivos />
-  <Organigrama />
 
   <section id="estadisticas" class="scroll-mt-20 bg-gray-50 py-12 md:py-16">
     <div class="mx-auto max-w-7xl px-6">
       <SectionHeader title="Estadísticas de Visitas" />
-      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:max-w-4xl lg:mx-auto">
+      <div
+        class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:mx-auto lg:max-w-4xl"
+      >
         <Counter
           id="counter-last"
           end={0}
