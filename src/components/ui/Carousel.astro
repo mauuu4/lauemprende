@@ -97,7 +97,7 @@ const { items, id, loading = 'lazy', eagerCount = 6 } = Astro.props
 
 <script>
   import Swiper from 'swiper'
-  import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+  import { Navigation, Pagination } from 'swiper/modules'
 
   import 'swiper/css'
   import 'swiper/css/navigation'
@@ -113,16 +113,12 @@ const { items, id, loading = 'lazy', eagerCount = 6 } = Astro.props
       const swiperId = element.getAttribute('data-swiper-id')
       if (!swiperId) return
 
-      // Inicializar Swiper
+      // Inicializar Swiper (sin autoplay — los más recientes se muestran primero)
       const swiper = new Swiper(element as HTMLElement, {
-        modules: [Navigation, Pagination, Autoplay],
+        modules: [Navigation, Pagination],
         slidesPerView: 'auto',
         spaceBetween: 30,
         loop: true,
-        autoplay: {
-          delay: 8000,
-          disableOnInteraction: false,
-        },
         navigation: {
           nextEl: element.querySelector('.swiper-button-next') as HTMLElement,
           prevEl: element.querySelector('.swiper-button-prev') as HTMLElement,
@@ -161,13 +157,11 @@ const { items, id, loading = 'lazy', eagerCount = 6 } = Astro.props
         lightboxImg.src = src
         lightbox.classList.add('active')
         document.body.style.overflow = 'hidden'
-        swiper.autoplay.stop()
       }
 
       const closeLightbox = () => {
         lightbox.classList.remove('active')
         document.body.style.overflow = ''
-        swiper.autoplay.start()
       }
 
       // Event listeners

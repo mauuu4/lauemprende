@@ -48,9 +48,27 @@ if ($lastMonth < 1) {
 
 $response = [
     'success' => false,
-    'currentMonth' => ['visits' => 0, 'month' => $currentMonth, 'year' => $currentYear],
-    'lastMonth' => ['visits' => 0, 'month' => $lastMonth, 'year' => $lastYear]
+    'currentMonth' => ['visits' => 0, 'month' => $currentMonth, 'year' => $currentYear, 'pages' => []],
+    'lastMonth' => ['visits' => 0, 'month' => $lastMonth, 'year' => $lastYear, 'pages' => []]
 ];
+
+/**
+ * Extrae estadísticas por página del bloque BEGIN_SIDER de AWStats
+ */
+function parseSiderBlock($content) {
+    $pages = [];
+    if (preg_match('/BEGIN_SIDER \d+\n(.*?)END_SIDER/s', $content, $siderMatch)) {
+        $lines = explode("\n", trim($siderMatch[1]));
+        foreach ($lines as $line) {
+            if (str_starts_with($line, '#') || trim($line) === '') continue;
+            $parts = explode(' ', $line);
+            if (count($parts) >= 2) {
+                $pages[$parts[0]] = (int) $parts[1];
+            }
+        }
+    }
+    return $pages;
+}
 
 if (is_dir($webstatsDir)) {
     $response['success'] = true;
@@ -62,6 +80,7 @@ if (is_dir($webstatsDir)) {
         if (preg_match('/TotalVisits\s+(\d+)/', $content, $m)) {
             $response['currentMonth']['visits'] = (int) $m[1];
         }
+        $response['currentMonth']['pages'] = parseSiderBlock($content);
     }
 
     // Mes anterior
@@ -71,6 +90,7 @@ if (is_dir($webstatsDir)) {
         if (preg_match('/TotalVisits\s+(\d+)/', $content, $m)) {
             $response['lastMonth']['visits'] = (int) $m[1];
         }
+        $response['lastMonth']['pages'] = parseSiderBlock($content);
     }
 }
 

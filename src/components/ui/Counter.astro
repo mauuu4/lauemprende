@@ -27,15 +27,20 @@ const {
   {...rest}
 >
   <!-- Efecto de fondo -->
-  <div class="from-primary/5 absolute inset-0 bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+  <div
+    class="from-primary/5 absolute inset-0 bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+  >
+  </div>
 
   <div class="relative z-10 flex flex-col items-center gap-4">
-    {Icon && (
-      <div class="bg-primary/10 rounded-full p-3 transition-transform duration-300 group-hover:scale-110">
-        <Icon class="text-primary h-10 w-10" />
-      </div>
-    )}
-    <p class="text-xs font-bold uppercase tracking-wider text-gray-500">
+    {
+      Icon && (
+        <div class="bg-primary/10 rounded-full p-3 transition-transform duration-300 group-hover:scale-110">
+          <Icon class="text-primary h-10 w-10" />
+        </div>
+      )
+    }
+    <p class="text-xs font-bold tracking-wider text-gray-500 uppercase">
       {label}
     </p>
     <div class="flex items-baseline gap-1">
@@ -47,7 +52,7 @@ const {
         )
       }
       <span
-        class="text-primary text-5xl font-bold leading-none md:text-6xl"
+        class="text-primary text-5xl leading-none font-bold md:text-6xl"
         data-end={end}
         data-duration={duration}
       >
@@ -56,13 +61,14 @@ const {
       {
         suffix && (
           <span class="text-primary text-2xl font-semibold md:text-3xl">
-          {suffix}
-        </span>
-      )
-    }
+            {suffix}
+          </span>
+        )
+      }
+    </div>
   </div>
-</div>
 
-<script>
-  import '@/scripts/counter'
-</script>
+  <script>
+    import '@/scripts/counter'
+  </script>
+</div>

@@ -1,0 +1,63 @@
+---
+interface Props {
+  pagePath?: string
+}
+
+const { pagePath } = Astro.props
+---
+
+<div
+  class="page-counter py-4 text-center text-xs text-gray-400"
+  data-page-path={pagePath}
+>
+  <span class="page-visit-count" style="display:none;">
+    Visitas a esta página: <span class="count-value">0</span>
+  </span>
+</div>
+
+<script>
+  function initPageCounters() {
+    const counters = document.querySelectorAll('.page-counter')
+    if (counters.length === 0) return
+
+    fetch('/api/stats.php')
+      .then((res) => {
+        if (!res.ok) throw new Error('HTTP ' + res.status)
+        return res.json()
+      })
+      .then((data) => {
+        if (!data.success) return
+        counters.forEach((counter) => {
+          const pagePath = counter.getAttribute('data-page-path') || '/'
+          // Normalizar path: AWStats usa /path/ con trailing slash excepto para /
+          const normalizedPath = pagePath === '/' ? '/' : pagePath + '/'
+          const currentPages = data.currentMonth?.pages || {}
+          const lastPages = data.lastMonth?.pages || {}
+          const currentVisits =
+            currentPages[normalizedPath] || currentPages[pagePath] || 0
+          const lastVisits =
+            lastPages[normalizedPath] || lastPages[pagePath] || 0
+          const total = currentVisits + lastVisits
+
+          const display = counter.querySelector(
+            '.page-visit-count'
+          ) as HTMLElement | null
+          const value = counter.querySelector('.count-value')
+          if (display && value) {
+            value.textContent = total.toLocaleString('es-ES')
+            display.style.display = ''
+          }
+        })
+      })
+      .catch(() => {
+        // Si el API no responde (ej. desarrollo local sin PHP), no mostrar nada
+      })
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPageCounters)
+  } else {
+    initPageCounters()
+  }
+  document.addEventListener('astro:page-load', initPageCounters)
+</script>

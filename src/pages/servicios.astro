@@ -1,0 +1,49 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { servicios } from '@/data/servicios'
+---
+
+<Layout
+  title="Servicios - La UEmprende"
+  description="Servicios ofrecidos por la Empresa Pública LA UEMPRENDE EP"
+>
+  <!-- Hero Section -->
+  <section
+    class="bg-primary relative overflow-hidden py-16 text-white md:py-20"
+  >
+    <div
+      class="absolute inset-0 bg-linear-to-br from-blue-900/20 to-transparent"
+    >
+    </div>
+    <div class="relative mx-auto max-w-7xl px-6">
+      <div class="text-center">
+        <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+          Servicios
+        </h1>
+        <p class="mx-auto max-w-2xl text-lg text-blue-100">
+          Conoce los servicios que ofrecemos a la comunidad
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Servicios -->
+  <section class="bg-gray-50 py-16">
+    <div class="mx-auto max-w-7xl px-6">
+      <p class="mb-8 text-gray-600">
+        De conformidad con el Registro Único de Contribuyentes Sociedades la
+        Empresa Pública La Uemprende E.P. ofrece los siguientes servicios:
+      </p>
+
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          servicios.map((servicio) => (
+            <div class="rounded-lg bg-white px-4 py-3 shadow-sm transition-all duration-200 hover:shadow-md">
+              <p class="text-sm text-gray-700">{servicio}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

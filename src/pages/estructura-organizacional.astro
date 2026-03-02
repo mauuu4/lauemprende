@@ -1,0 +1,31 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import Organigrama from '@/components/sections/Organigrama.astro'
+---
+
+<Layout
+  title="Estructura Organizacional - La UEmprende"
+  description="Estructura organizacional de la Empresa Pública LA UEMPRENDE EP"
+>
+  <!-- Hero Section -->
+  <section
+    class="bg-primary relative overflow-hidden py-16 text-white md:py-20"
+  >
+    <div
+      class="absolute inset-0 bg-linear-to-br from-blue-900/20 to-transparent"
+    >
+    </div>
+    <div class="relative mx-auto max-w-7xl px-6">
+      <div class="text-center">
+        <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+          Estructura Organizacional
+        </h1>
+        <p class="mx-auto max-w-2xl text-lg text-blue-100">
+          Conoce nuestra estructura organizativa
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Organigrama />
+</Layout>
