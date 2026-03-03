@@ -2,15 +2,24 @@
 import '@/styles/global.css'
 import Header from '@/components/common/Header.astro'
 import Footer from '@/components/common/Footer.astro'
-import PageCounter from '@/components/ui/PageCounter.astro'
 
 interface Props {
   title?: string
   description?: string
+  ogImage?: string
 }
 
-const { title = 'La UEmprende', description = 'La UEmprende' } = Astro.props
+const SITE_NAME = 'Empresa Pública LA UEMPRENDE EP'
+const SITE_URL = 'https://www.lauemprende.com'
+
+const {
+  title = 'La UEmprende',
+  description = 'Empresa Pública LA UEMPRENDE EP - Innovación y emprendimiento universitario',
+  ogImage = '/images/og-default.png',
+} = Astro.props
+
 const currentPath = Astro.url.pathname
+const canonicalUrl = `${SITE_URL}${currentPath}`
 ---
 
 <!doctype html>
@@ -20,6 +29,23 @@ const currentPath = Astro.url.pathname
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${SITE_URL}${ogImage}`} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content="es_EC" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${SITE_URL}${ogImage}`} />
+
     <title>{title}</title>
   </head>
 
@@ -28,7 +54,6 @@ const currentPath = Astro.url.pathname
 
     <main class="pt-16">
       <slot />
-      <PageCounter pagePath={currentPath} />
     </main>
 
     <Footer />

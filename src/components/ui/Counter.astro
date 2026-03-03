@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
 
 interface Props extends HTMLAttributes<'div'> {
   end: number
@@ -7,7 +8,7 @@ interface Props extends HTMLAttributes<'div'> {
   label: string
   suffix?: string
   prefix?: string
-  icon?: any
+  icon?: AstroComponentFactory
 }
 
 const {

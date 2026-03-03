@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import ButtonLink from '@/components/ui/ButtonLink.astro'
-import fondo from '@public/images/fondo-hero.png'
+import fondo from '@/assets/images/fondo-hero.png'
 import Edit from '@icons/modules/Edit.astro'
 import Teacher from '@icons/modules/Teacher.astro'
 import Student from '@icons/modules/Student.astro'
@@ -32,13 +32,13 @@ const modulos = [
   {
     title: 'Servicios UEP',
     subtitle: 'Portafolio Institucional',
-    href: 'https://www.lauemprende.com/wp-content/uploads/2023/04/portafolio_UEmprende.pdf',
+    href: '/uploads/portafolio_UEmprende.pdf',
     Icon: Briefcase,
   },
   {
     title: 'Resultados',
     subtitle: 'Exámenes de Ubicación',
-    href: 'https://www.lauemprende.com/wp-content/uploads/2025/RESULTADOS%20PRUEBA%20UBICACION.pdf',
+    href: '/uploads/RESULTADOS PRUEBA UBICACION.pdf',
     Icon: Chart,
   },
 ]

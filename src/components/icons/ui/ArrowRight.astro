@@ -1,5 +1,9 @@
 ---
-const { class: className, ...rest } = Astro.props
+interface Props {
+  class?: string
+}
+
+const { class: className = '' } = Astro.props
 ---
 
 <svg
@@ -7,7 +11,7 @@ const { class: className, ...rest } = Astro.props
   fill="none"
   viewBox="0 0 24 24"
   stroke="currentColor"
-  {...rest}
+  aria-hidden="true"
 >
   <path
     stroke-linecap="round"
