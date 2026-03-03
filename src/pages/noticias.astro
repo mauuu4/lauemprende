@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets'
 import Layout from '@/layouts/Layout.astro'
+import PageHero from '@/components/ui/PageHero.astro'
+import Newspaper from '@/components/icons/ui/Newspaper.astro'
 import { noticias } from '@/data/noticias'
 ---
 
@@ -8,25 +10,10 @@ import { noticias } from '@/data/noticias'
   title="Noticias - La UEmprende"
   description="Noticias y novedades de la Empresa Pública LA UEMPRENDE EP"
 >
-  <!-- Hero Section -->
-  <section
-    class="bg-primary relative overflow-hidden py-16 text-white md:py-20"
-  >
-    <div
-      class="absolute inset-0 bg-linear-to-br from-blue-900/20 to-transparent"
-    >
-    </div>
-    <div class="relative mx-auto max-w-7xl px-6">
-      <div class="text-center">
-        <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-          Noticias
-        </h1>
-        <p class="mx-auto max-w-2xl text-lg text-blue-100">
-          Mantente informado sobre las novedades institucionales
-        </p>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    title="Noticias"
+    description="Mantente informado sobre las novedades institucionales"
+  />
 
   <!-- Contenido -->
   <section class="bg-gray-50 py-16">
@@ -37,40 +24,56 @@ import { noticias } from '@/data/noticias'
             {noticias.map((noticia) => (
               <article class="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                 {noticia.video ? (
-                  <div class="aspect-video w-full">
-                    <iframe
-                      src={noticia.video}
-                      title={noticia.titulo}
-                      class="h-full w-full"
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    />
-                  </div>
+                  noticia.video.endsWith('.mp4') ? (
+                    <div class="aspect-video w-full">
+                      <video
+                        src={noticia.video}
+                        controls
+                        preload="metadata"
+                        class="h-full w-full object-cover"
+                      >
+                        Tu navegador no soporta la reproducción de video.
+                      </video>
+                    </div>
+                  ) : (
+                    <div class="aspect-video w-full">
+                      <iframe
+                        src={noticia.video}
+                        title={noticia.titulo}
+                        class="h-full w-full"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                      />
+                    </div>
+                  )
                 ) : noticia.imagen ? (
-                  <div class="aspect-video w-full overflow-hidden">
-                    <Image
-                      src={noticia.imagen}
-                      alt={noticia.titulo}
-                      width={600}
-                      height={340}
-                      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
+                  typeof noticia.imagen === 'string' ? (
+                    <div class="aspect-video w-full overflow-hidden">
+                      <img
+                        src={noticia.imagen}
+                        alt={noticia.titulo}
+                        width="600"
+                        height="340"
+                        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div class="aspect-video w-full overflow-hidden">
+                      <Image
+                        src={noticia.imagen}
+                        alt={noticia.titulo}
+                        width={600}
+                        height={340}
+                        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  )
                 ) : (
                   <div class="bg-primary/10 flex aspect-video w-full items-center justify-center">
-                    <svg
-                      width="48"
-                      height="48"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      class="text-primary/40"
-                    >
-                      <path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2z" />
-                    </svg>
+                    <Newspaper class="text-primary/40 h-12 w-12" />
                   </div>
                 )}
                 <div class="p-6">
@@ -94,17 +97,7 @@ import { noticias } from '@/data/noticias'
         ) : (
           <div class="py-20 text-center">
             <div class="text-primary/30 mx-auto mb-4">
-              <svg
-                width="64"
-                height="64"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                class="mx-auto"
-              >
-                <path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2z" />
-              </svg>
+              <Newspaper class="mx-auto h-16 w-16" />
             </div>
             <h2 class="text-primary mb-2 text-xl font-bold">Próximamente</h2>
             <p class="text-gray-600">

@@ -1,13 +1,4 @@
-export interface PersonalContacto {
-  cargo: string
-  nombre: string
-  email: string
-}
-
-export interface Departamento {
-  departamento: string
-  personal: PersonalContacto[]
-}
+import type { Departamento } from '@/types'
 
 export const directorio: Departamento[] = [
   {

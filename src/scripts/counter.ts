@@ -75,7 +75,9 @@ function initCounters() {
 
         dynamicCounters.forEach((counter) => observer.observe(counter))
       })
-      .catch(() => {})
+      .catch((error) => {
+        console.debug('[counter] Error al cargar estadísticas:', error)
+      })
   }
 }
 
@@ -85,5 +87,3 @@ if (document.readyState === 'loading') {
 } else {
   initCounters()
 }
-
-document.addEventListener('astro:page-load', initCounters)

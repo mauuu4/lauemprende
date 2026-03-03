@@ -1,15 +1,15 @@
 import type { ItemCarousel } from '@/types'
 
 // Importar imágenes de invitaciones a procesos de contratación
-import abastecimientoDisel2 from '@/assets/images/comunicados/abastecimientoDisel2.png'
-import irc2024 from '@/assets/images/comunicados/IRC2024.png'
-import giro3v3 from '@/assets/images/comunicados/giro3v3.png'
-import giro3_2 from '@/assets/images/comunicados/giro3_2.png'
-import giroNegocio3 from '@/assets/images/comunicados/giroNegocio3.png'
-import giroNegocio2_4 from '@/assets/images/comunicados/giroNegocio2_4.png'
-import rendicionCuentas2023 from '@/assets/images/comunicados/Rendicion_Cuentas_web.png'
-import irc2022 from '@/assets/images/comunicados/IRC20222.png'
-import giroNegocio5 from '@/assets/images/comunicados/GiroNegocio5.png'
+import abastecimientoDisel2 from '@/assets/images/invitaciones/abastecimientoDisel2.png'
+import irc2024 from '@/assets/images/invitaciones/IRC2024.png'
+import giro3v3 from '@/assets/images/invitaciones/giro3v3.png'
+import giro3_2 from '@/assets/images/invitaciones/giro3_2.png'
+import giroNegocio3 from '@/assets/images/invitaciones/giroNegocio3.png'
+import giroNegocio2_4 from '@/assets/images/invitaciones/giroNegocio2_4.png'
+import rendicionCuentas2023 from '@/assets/images/invitaciones/Rendicion_Cuentas_web.png'
+import irc2022 from '@/assets/images/invitaciones/IRC20222.png'
+import giroNegocio5 from '@/assets/images/invitaciones/GiroNegocio5.png'
 
 export const invitaciones: ItemCarousel[] = [
   {

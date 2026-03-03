@@ -1,33 +1,19 @@
 ---
 import { Image } from 'astro:assets'
 import Layout from '@/layouts/Layout.astro'
-import gerenteImg from '@public/images/Ing.LuisAlbertoAcosta.jpg'
-import drPossoImg from '@public/images/dr_Posso.jpeg'
+import PageHero from '@/components/ui/PageHero.astro'
+import gerenteImg from '@/assets/images/Ing.LuisAlbertoAcosta.jpg'
+import drPossoImg from '@/assets/images/dr_Posso.jpeg'
 ---
 
 <Layout
   title="Quiénes Somos - La UEmprende"
   description="Conoce la trayectoria y el compromiso institucional de la Empresa Pública LA UEMPRENDE EP"
 >
-  <!-- Hero Section -->
-  <section
-    class="bg-primary relative overflow-hidden py-16 text-white md:py-20"
-  >
-    <div
-      class="absolute inset-0 bg-linear-to-br from-blue-900/20 to-transparent"
-    >
-    </div>
-    <div class="relative mx-auto max-w-7xl px-6">
-      <div class="text-center">
-        <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-          ¿Quiénes Somos?
-        </h1>
-        <p class="mx-auto max-w-2xl text-lg text-blue-100">
-          Conoce nuestra trayectoria y compromiso con el desarrollo regional
-        </p>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    title="¿Quiénes Somos?"
+    description="Conoce nuestra trayectoria y compromiso con el desarrollo regional"
+  />
 
   <!-- Contenido Principal -->
   <section class="bg-gray-50 py-16 md:py-20">

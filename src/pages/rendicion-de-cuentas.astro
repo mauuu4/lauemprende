@@ -1,7 +1,8 @@
 ---
-import { Image } from 'astro:assets'
 import Layout from '@/layouts/Layout.astro'
+import PageHero from '@/components/ui/PageHero.astro'
 import ButtonLink from '@/components/ui/ButtonLink.astro'
+import ChevronDown from '@/components/icons/ui/ChevronDown.astro'
 import { rendicionCuentas } from '@/data/rendicionCuentas'
 ---
 
@@ -9,25 +10,10 @@ import { rendicionCuentas } from '@/data/rendicionCuentas'
   title="Rendición de Cuentas - La UEmprende"
   description="Informes de Rendición de Cuentas de la Empresa Pública LA UEMPRENDE EP"
 >
-  <!-- Hero Section -->
-  <section
-    class="bg-primary relative overflow-hidden py-16 text-white md:py-20"
-  >
-    <div
-      class="absolute inset-0 bg-linear-to-br from-blue-900/20 to-transparent"
-    >
-    </div>
-    <div class="relative mx-auto max-w-7xl px-6">
-      <div class="text-center">
-        <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-          Rendición de Cuentas
-        </h1>
-        <p class="mx-auto max-w-2xl text-lg text-blue-100">
-          Transparencia y responsabilidad en la gestión institucional
-        </p>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    title="Rendición de Cuentas"
+    description="Transparencia y responsabilidad en la gestión institucional"
+  />
 
   <!-- Contenido -->
   <section class="bg-gray-50 py-16">
@@ -42,37 +28,16 @@ import { rendicionCuentas } from '@/data/rendicionCuentas'
               <h2 class="text-primary text-xl font-bold md:text-2xl">
                 {anio.anio}
               </h2>
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+              <ChevronDown
+                size={24}
                 class="text-primary shrink-0 transition-transform duration-300 group-open:rotate-180"
-              >
-                <path d="M19 9l-7 7-7-7" />
-              </svg>
+              />
             </summary>
 
             <div class="border-t border-gray-100 px-6 py-6">
               <div class="space-y-6">
                 {anio.informes.map((informe) => (
                   <div class="flex flex-col gap-6 sm:flex-row">
-                    {informe.imagen && (
-                      <div class="w-full shrink-0 sm:w-48">
-                        <Image
-                          src={informe.imagen}
-                          alt={informe.titulo}
-                          width={192}
-                          height={256}
-                          class="h-auto w-full rounded-lg object-cover shadow-md"
-                          loading="lazy"
-                        />
-                      </div>
-                    )}
                     <div class="flex flex-1 flex-col justify-center">
                       <h3 class="mb-2 text-lg font-bold text-gray-900">
                         {informe.titulo}

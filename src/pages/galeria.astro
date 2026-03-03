@@ -1,4 +1,4 @@
-﻿---
+---
 import Layout from '@/layouts/Layout.astro'
 import { Image } from 'astro:assets'
 import {
@@ -37,7 +37,7 @@ const categorias = loadGalleryImages()
                 >
                   <Image
                     src={img}
-                    alt={categoria.nombre}
+                    alt={`${categoria.nombre} - Imagen ${i + 1} de ${categoria.imagenes.length}`}
                     width={600}
                     height={600}
                     format="webp"

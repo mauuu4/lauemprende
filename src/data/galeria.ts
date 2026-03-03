@@ -1,9 +1,5 @@
 import type { ImageMetadata } from 'astro'
-
-export interface CategoriaGaleria {
-  nombre: string
-  slug: string
-}
+import type { CategoriaGaleria } from '@/types'
 
 // Configuración de categorías de la galería
 export const categoriasConfig: CategoriaGaleria[] = [

@@ -1,9 +1,5 @@
 import type { AnioRendicion } from '@/types'
 
-import irc2024 from '@/assets/images/comunicados/IRC2024.png'
-import rendicionCuentas2023 from '@/assets/images/comunicados/Rendicion_Cuentas_web.png'
-import irc2022 from '@/assets/images/comunicados/IRC20222.png'
-
 export const rendicionCuentas: AnioRendicion[] = [
   {
     anio: 2025,
@@ -22,7 +18,6 @@ export const rendicionCuentas: AnioRendicion[] = [
       {
         id: 2,
         titulo: 'Informe de Rendición de Cuentas 2024',
-        imagen: irc2024,
         enlaces: [
           {
             texto: 'VER INFORME',
@@ -39,7 +34,6 @@ export const rendicionCuentas: AnioRendicion[] = [
       {
         id: 3,
         titulo: 'Rendición de Cuentas 2023',
-        imagen: rendicionCuentas2023,
         enlaces: [
           {
             texto: 'VER INFORME',
@@ -66,7 +60,6 @@ export const rendicionCuentas: AnioRendicion[] = [
       {
         id: 4,
         titulo: 'Informe de Rendición de Cuentas 2022',
-        imagen: irc2022,
         enlaces: [
           {
             texto: 'VER INFORME',

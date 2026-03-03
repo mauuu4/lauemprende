@@ -55,7 +55,7 @@ export interface Noticia {
   id: number
   titulo: string
   descripcion: string
-  imagen?: ImageMetadata
+  imagen?: ImageMetadata | string
   video?: string
   fecha: string
 }
@@ -76,4 +76,23 @@ export interface AreaContacto {
   area: string
   descripcion: string
   email: string
+}
+
+/** Persona del directorio institucional */
+export interface PersonalContacto {
+  cargo: string
+  nombre: string
+  email: string
+}
+
+/** Departamento con su personal */
+export interface Departamento {
+  departamento: string
+  personal: PersonalContacto[]
+}
+
+/** Categoría de la galería de imágenes */
+export interface CategoriaGaleria {
+  nombre: string
+  slug: string
 }

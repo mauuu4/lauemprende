@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import PageHero from '@/components/ui/PageHero.astro'
 import MisionVisionObjetivos from '@/components/sections/MisionVisionObjetivos.astro'
 ---
 
@@ -7,25 +8,10 @@ import MisionVisionObjetivos from '@/components/sections/MisionVisionObjetivos.a
   title="Misión, Visión y Objetivos - La UEmprende"
   description="Misión, Visión y Objetivos institucionales de la Empresa Pública LA UEMPRENDE EP"
 >
-  <!-- Hero Section -->
-  <section
-    class="bg-primary relative overflow-hidden py-16 text-white md:py-20"
-  >
-    <div
-      class="absolute inset-0 bg-linear-to-br from-blue-900/20 to-transparent"
-    >
-    </div>
-    <div class="relative mx-auto max-w-7xl px-6">
-      <div class="text-center">
-        <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-          Misión, Visión y Objetivos
-        </h1>
-        <p class="mx-auto max-w-2xl text-lg text-blue-100">
-          Nuestro propósito y compromiso institucional
-        </p>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    title="Misión, Visión y Objetivos"
+    description="Nuestro propósito y compromiso institucional"
+  />
 
   <MisionVisionObjetivos />
 </Layout>

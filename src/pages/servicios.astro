@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import PageHero from '@/components/ui/PageHero.astro'
 import { servicios } from '@/data/servicios'
 ---
 
@@ -7,25 +8,10 @@ import { servicios } from '@/data/servicios'
   title="Servicios - La UEmprende"
   description="Servicios ofrecidos por la Empresa Pública LA UEMPRENDE EP"
 >
-  <!-- Hero Section -->
-  <section
-    class="bg-primary relative overflow-hidden py-16 text-white md:py-20"
-  >
-    <div
-      class="absolute inset-0 bg-linear-to-br from-blue-900/20 to-transparent"
-    >
-    </div>
-    <div class="relative mx-auto max-w-7xl px-6">
-      <div class="text-center">
-        <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-          Servicios
-        </h1>
-        <p class="mx-auto max-w-2xl text-lg text-blue-100">
-          Conoce los servicios que ofrecemos a la comunidad
-        </p>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    title="Servicios"
+    description="Conoce los servicios que ofrecemos a la comunidad"
+  />
 
   <!-- Sección Servicios -->
   <section class="bg-gray-50 py-16">
