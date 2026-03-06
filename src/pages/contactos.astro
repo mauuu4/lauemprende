@@ -1,8 +1,11 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import { directorio } from '@/data/directorio'
-import { correosInstitucionales } from '@/data/correosInstitucionales'
-import { infoContacto } from '@/data/contacto'
+import {
+  site,
+  directorio,
+  correosInstitucionales,
+  infoContacto,
+} from '@/data/institucion'
 import PersonCard from '@/components/ui/PersonCard.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import ContactInfoItem from '@/components/ui/ContactInfoItem.astro'
@@ -12,8 +15,8 @@ import Phone from '@/components/icons/contact/Phone.astro'
 ---
 
 <Layout
-  title="Contactos - La UEmprende"
-  description="Directorio de contactos y estructura organizacional de La UEmprende"
+  title="Contactos"
+  description={`Directorio de contactos y estructura organizacional de ${site.name}`}
 >
   <section class="bg-gray-50 py-16">
     <div class="mx-auto max-w-7xl px-6">

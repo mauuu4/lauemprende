@@ -1,9 +1,10 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { site } from '@/data/institucion'
 import PageHero from '@/components/ui/PageHero.astro'
 import ContentCard from '@/components/ui/ContentCard.astro'
 import Megaphone from '@/components/icons/ui/Megaphone.astro'
-import { anuncios } from '@/data/anuncios'
+import { anuncios } from '@/data/contenido'
 import { formatDate } from '@/utils/formatDate'
 
 // Ordenar por fecha descendente
@@ -13,8 +14,8 @@ const anunciosOrdenados = [...anuncios]
 ---
 
 <Layout
-  title="Anuncios - La UEmprende"
-  description="Anuncios institucionales de la Empresa Pública LA UEMPRENDE EP"
+  title="Anuncios"
+  description={`Anuncios institucionales de la ${site.fullName}`}
 >
   <PageHero
     title="Anuncios"
@@ -25,21 +26,23 @@ const anunciosOrdenados = [...anuncios]
   <section class="bg-gray-50 py-16">
     <div class="mx-auto max-w-7xl px-6">
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {anunciosOrdenados.map((anuncio) => (
-          <ContentCard
-            titulo={anuncio.titulo}
-            descripcion={anuncio.descripcion}
-            fecha={anuncio.fecha}
-            fechaFormateada={formatDate(anuncio.fecha)}
-            imagen={anuncio.imagen}
-            enlaces={anuncio.enlaces}
-          >
-            <div slot="placeholder-icon" class="text-primary/30 text-center">
-              <Megaphone class="mx-auto h-12 w-12" />
-              <p class="mt-2 text-sm font-medium">Anuncio</p>
-            </div>
-          </ContentCard>
-        ))}
+        {
+          anunciosOrdenados.map((anuncio) => (
+            <ContentCard
+              titulo={anuncio.titulo}
+              descripcion={anuncio.descripcion}
+              fecha={anuncio.fecha}
+              fechaFormateada={formatDate(anuncio.fecha)}
+              imagen={anuncio.imagen}
+              enlaces={anuncio.enlaces}
+            >
+              <div slot="placeholder-icon" class="text-primary/30 text-center">
+                <Megaphone class="mx-auto h-12 w-12" />
+                <p class="mt-2 text-sm font-medium">Anuncio</p>
+              </div>
+            </ContentCard>
+          ))
+        }
       </div>
     </div>
   </section>

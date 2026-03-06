@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import type { ImageMetadata } from 'astro'
+import { site } from '@/data/institucion'
 
 interface Props {
   src: ImageMetadata
@@ -20,7 +21,7 @@ const {
   height,
   nombre,
   cargo,
-  organizacion = 'LA UEMPRENDE EP - Empresa Pública',
+  organizacion = site.fullName,
   loading = 'lazy',
 } = Astro.props
 ---

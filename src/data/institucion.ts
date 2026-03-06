@@ -1,4 +1,84 @@
-import type { Departamento } from '@/types'
+import type { AreaContacto, Departamento, InfoContacto } from '@/types'
+
+// ---------------------------------------------------------------------------
+// Metadata del sitio (SEO, Open Graph, títulos)
+// ---------------------------------------------------------------------------
+
+/** Configuración centralizada del sitio */
+export const site = {
+  /** Nombre corto para títulos y navegación */
+  name: 'La UEmprende',
+  /** Nombre legal / institucional completo */
+  fullName: 'Empresa Pública LA UEMPRENDE EP',
+  /** URL base del sitio (sin trailing slash) */
+  url: 'https://www.lauemprende.com',
+  /** Descripción por defecto para SEO */
+  description:
+    'Empresa Pública LA UEMPRENDE EP - Innovación y emprendimiento universitario',
+  /** Imagen OG por defecto */
+  ogImage: '/images/og-default.png',
+  /** Locale para Open Graph */
+  locale: 'es_EC',
+  /** Resumen institucional de servicios (Hero, Footer, etc.) */
+  tagline:
+    'Diseño, gestión, implementación, operación y administración de proyectos de obras, bienes y servicios, en todas sus formas y apoyo en proyectos promovidos por la Universidad Técnica del Norte.',
+}
+
+// ---------------------------------------------------------------------------
+// Información de contacto general de la institución
+// ---------------------------------------------------------------------------
+
+/**
+ * Informacion de contacto centralizada de la institucion.
+ * Modificar aqui para que se actualice en todo el sitio (Footer, pagina de contactos, etc.)
+ */
+export const infoContacto: InfoContacto = {
+  direccion: 'Ibarra, Velasco 2-39 entre Salinas y Juan Montalvo',
+  telefono: '+593 06 2997800',
+  telefonoExtension: 'Ext: 7351',
+  telefonoHref: 'tel:+59362997800',
+  emailPrincipal: 'gerencia@lauemprende.com',
+  mapsUrl: 'https://maps.app.goo.gl/kfvN1RnjZ928bhgj6',
+  redesSociales: {
+    facebook: 'https://www.facebook.com/LAUEMPRENDE/',
+    youtube: 'https://www.youtube.com/channel/UC_Ms4V2kYDsh7F_CSsHyQ6A',
+    twitter: 'https://x.com/LaUEmprende',
+  },
+}
+
+// ---------------------------------------------------------------------------
+// Correos institucionales por área
+// ---------------------------------------------------------------------------
+
+export const correosInstitucionales: AreaContacto[] = [
+  {
+    area: 'Centro de Idiomas',
+    descripcion:
+      'En caso de consultas, problemas o quejas relacionadas con cursos o ciclos regulares de inglés ofertados por la Empresa Pública.',
+    email: 'directoridiomas@lauemprende.com',
+  },
+  {
+    area: 'Escuela de Conducción',
+    descripcion:
+      'Para consultas sobre programas de formación de conductores profesionales.',
+    email: 'conduccion@lauemprende.com',
+  },
+  {
+    area: 'Gerencia',
+    descripcion: 'Para asuntos de carácter general o institucional.',
+    email: 'gerencia@lauemprende.com',
+  },
+  {
+    area: 'Dirección de Proyectos y Capacitación Continua',
+    descripcion:
+      'Para consultas sobre proyectos, capacitaciones y programas de formación continua.',
+    email: 'directorproyectos@lauemprende.com',
+  },
+]
+
+// ---------------------------------------------------------------------------
+// Directorio de personal por departamento
+// ---------------------------------------------------------------------------
 
 export const directorio: Departamento[] = [
   {

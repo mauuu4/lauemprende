@@ -1,7 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import { cursos } from '@/data/cursos'
-import { invitaciones } from '@/data/invitaciones'
+import { cursos, invitaciones } from '@/data/carousels'
 import Carousel from '@/components/ui/Carousel.astro'
 import Hero from '@/components/sections/Hero.astro'
 import Counter from '@/components/ui/Counter.astro'
@@ -14,10 +13,7 @@ const cursosOrdenados = [...cursos].reverse()
 const invitacionesOrdenadas = [...invitaciones].reverse()
 ---
 
-<Layout
-  title="Inicio - La UEmprende"
-  description="Empresa Pública LA UEMPRENDE EP - Innovación y emprendimiento universitario"
->
+<Layout title="Inicio">
   <Hero />
 
   <section id="cursos" class="scroll-mt-16 bg-white py-12 md:py-16">

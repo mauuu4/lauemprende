@@ -1,12 +1,13 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { site } from '@/data/institucion'
 import PageHero from '@/components/ui/PageHero.astro'
-import { servicios } from '@/data/servicios'
+import { servicios } from '@/data/contenido'
 ---
 
 <Layout
-  title="Servicios - La UEmprende"
-  description="Servicios ofrecidos por la Empresa Pública LA UEMPRENDE EP"
+  title="Servicios"
+  description={`Servicios ofrecidos por la ${site.fullName}`}
 >
   <PageHero
     title="Servicios"
@@ -18,7 +19,7 @@ import { servicios } from '@/data/servicios'
     <div class="mx-auto max-w-7xl px-6">
       <p class="mb-8 text-gray-600">
         De conformidad con el Registro Único de Contribuyentes Sociedades la
-        Empresa Pública La Uemprende E.P. ofrece los siguientes servicios:
+        Empresa Pública LA UEMPRENDE EP ofrece los siguientes servicios:
       </p>
 
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

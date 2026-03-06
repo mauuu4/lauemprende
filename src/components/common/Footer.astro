@@ -1,5 +1,6 @@
 ---
-import { infoContacto } from '@/data/contacto'
+import { site, infoContacto } from '@/data/institucion'
+import { footerLinks } from '@/data/navLinks'
 import Logo from '@/components/ui/Logo.astro'
 import Facebook from '@icons/social/Facebook.astro'
 import Twitter from '@icons/social/Twitter.astro'
@@ -50,13 +51,6 @@ const contactInfo = [
   },
 ]
 
-const legalLinks = [
-  { href: '/transparencia', label: 'Portal de Transparencia' },
-  { href: '/legislacion', label: 'Legislación' },
-  { href: '/rendicion-de-cuentas', label: 'Rendición de Cuentas' },
-  { href: '/contactos', label: 'Contactos' },
-]
-
 const currentYear = new Date().getFullYear()
 ---
 
@@ -68,14 +62,12 @@ const currentYear = new Date().getFullYear()
       >
         <a href="/" class="flex items-center gap-2 hover:opacity-90">
           <Logo size="xl" />
-          <span class="text-2xl font-bold uppercase">La UEmprende</span>
+          <span class="text-2xl font-bold uppercase">{site.name}</span>
         </a>
         <p class="text-secondary max-w-lg text-sm leading-relaxed">
-          Entre las líneas de servicios de La EMPRESA PUBLICA LA UEMPRENDE EP,
-          se encuentra: diseño, gestión, implementación, operación y
-          administración de proyectos de obras, bienes y servicios, en todas sus
-          formas y apoyo en proyectos promovidos por la Universidad Técnica del
-          Norte.
+          Entre las líneas de servicios de la {site.fullName}, se encuentra: {
+            site.tagline.charAt(0).toLowerCase() + site.tagline.slice(1)
+          }
         </p>
 
         <div class="flex gap-4">
@@ -100,7 +92,7 @@ const currentYear = new Date().getFullYear()
         </h3>
         <ul class="text-secondary space-y-3 text-sm">
           {
-            legalLinks.map(({ href, label }) => (
+            footerLinks.map(({ href, label }) => (
               <li>
                 <a
                   href={href}
@@ -140,8 +132,8 @@ const currentYear = new Date().getFullYear()
       class="border-border-light text-muted mt-8 border-t pt-6 text-center text-sm"
     >
       <p>
-        &copy; {currentYear} Empresa Pública LA UEMPRENDE E.P. Todos los derechos
-        reservados.
+        &copy; {currentYear}
+        {site.fullName}. Todos los derechos reservados.
       </p>
     </div>
   </div>

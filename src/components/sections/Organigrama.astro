@@ -1,6 +1,6 @@
 ---
-// Componente Organigrama simplificado con diseño institucional
 import { Image } from 'astro:assets'
+import { site } from '@/data/institucion'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import organigramaImg from '@/assets/images/institucional/Organigrama2025.png'
 ---
@@ -18,7 +18,7 @@ import organigramaImg from '@/assets/images/institucional/Organigrama2025.png'
         <div class="overflow-hidden rounded-xl border border-gray-100">
           <Image
             src={organigramaImg}
-            alt="Organigrama La UEmprende 2025"
+            alt={`Organigrama ${site.fullName}`}
             width={1200}
             height={800}
             class="h-auto w-full"

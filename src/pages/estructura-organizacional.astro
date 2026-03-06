@@ -1,12 +1,13 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { site } from '@/data/institucion'
 import PageHero from '@/components/ui/PageHero.astro'
 import Organigrama from '@/components/sections/Organigrama.astro'
 ---
 
 <Layout
-  title="Estructura Organizacional - La UEmprende"
-  description="Estructura organizacional de la Empresa Pública LA UEMPRENDE EP"
+  title="Estructura Organizacional"
+  description={`Estructura organizacional de la ${site.fullName}`}
 >
   <PageHero
     title="Estructura Organizacional"

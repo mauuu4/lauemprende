@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets'
+import { site } from '@/data/institucion'
 import ButtonLink from '@/components/ui/ButtonLink.astro'
 import fondo from '@/assets/images/institucional/fondo-hero.png'
 import Edit from '@icons/modules/Edit.astro'
@@ -38,11 +39,10 @@ const modulosResolved = modulos.map((m) => ({
 
   <div class="relative z-10 mx-auto max-w-7xl px-6 text-center">
     <h1 id="hero-title" class="mb-4 text-4xl font-bold text-white md:text-5xl">
-      Bienvenidos a La UEmprende
+      Bienvenidos a {site.name}
     </h1>
     <p class="mx-auto mb-8 max-w-3xl text-lg text-white/95">
-      Diseño, gestión, implementación, operación y administración de proyectos
-      de obras, bienes y servicios en apoyo a la Universidad Técnica del Norte.
+      {site.tagline}
     </p>
 
     <div class="flex justify-center gap-4">
@@ -117,9 +117,9 @@ const modulosResolved = modulos.map((m) => ({
             rel="noopener noreferrer"
             class="group hover:border-primary relative flex flex-col items-center overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
           >
-            <div class="absolute inset-0 bg-primary/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <div class="bg-primary/5 absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-            <div class="group-hover:bg-primary relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/5 shadow-sm transition-all duration-300 group-hover:text-white">
+            <div class="group-hover:bg-primary bg-primary/5 relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:text-white">
               <Icon size={32} />
             </div>
 

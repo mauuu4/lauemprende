@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { site } from '@/data/institucion'
 import PageHero from '@/components/ui/PageHero.astro'
 import PersonPhoto from '@/components/ui/PersonPhoto.astro'
 import gerenteImg from '@/assets/images/institucional/Ing.LuisAlbertoAcosta.jpg'
@@ -7,8 +8,8 @@ import drPossoImg from '@/assets/images/institucional/dr_Posso.jpeg'
 ---
 
 <Layout
-  title="Quiénes Somos - La UEmprende"
-  description="Conoce la trayectoria y el compromiso institucional de la Empresa Pública LA UEMPRENDE EP"
+  title="Quiénes Somos"
+  description={`Conoce la trayectoria y el compromiso institucional de la ${site.fullName}`}
 >
   <PageHero
     title="¿Quiénes Somos?"

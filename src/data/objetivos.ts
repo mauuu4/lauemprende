@@ -1,5 +1,21 @@
 import type { Objetivo } from '@/types'
 
+// ---------------------------------------------------------------------------
+// Misión y Visión
+// ---------------------------------------------------------------------------
+
+/** Misión institucional de LA UEMPRENDE EP */
+export const mision =
+  'Generar soluciones integrales para el sector público y privado, vinculando la academia con la sociedad civil mediante el uso e innovación de procesos tecnológicos para contribuir al desarrollo integral del País.'
+
+/** Visión institucional de LA UEMPRENDE EP */
+export const vision =
+  'Al año 2035, es una referente nacional e internacional en gestión y ejecución de proyectos que fomenten la colaboración entre la universidad, el sector público y la comunidad, promoviendo la investigación, innovación y generación de valor social, para su viabilidad empresarial.'
+
+// ---------------------------------------------------------------------------
+// Objetivos estratégicos
+// ---------------------------------------------------------------------------
+
 /** Objetivos estratégicos de LA UEMPRENDE EP */
 export const objetivos: Objetivo[] = [
   {

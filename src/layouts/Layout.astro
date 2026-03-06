@@ -2,6 +2,7 @@
 import '@/styles/global.css'
 import Header from '@/components/common/Header.astro'
 import Footer from '@/components/common/Footer.astro'
+import { site } from '@/data/institucion'
 
 interface Props {
   title?: string
@@ -9,17 +10,17 @@ interface Props {
   ogImage?: string
 }
 
-const SITE_NAME = 'Empresa Pública LA UEMPRENDE EP'
-const SITE_URL = 'https://www.lauemprende.com'
-
 const {
-  title = 'La UEmprende',
-  description = 'Empresa Pública LA UEMPRENDE EP - Innovación y emprendimiento universitario',
-  ogImage = '/images/og-default.png',
+  title: rawTitle,
+  description = site.description,
+  ogImage = site.ogImage,
 } = Astro.props
 
+// Si se pasa un título, se construye "Título - La UEmprende"; si no, solo el nombre del sitio
+const title = rawTitle ? `${rawTitle} - ${site.name}` : site.name
+
 const currentPath = Astro.url.pathname
-const canonicalUrl = `${SITE_URL}${currentPath}`
+const canonicalUrl = `${site.url}${currentPath}`
 ---
 
 <!doctype html>
@@ -36,15 +37,15 @@ const canonicalUrl = `${SITE_URL}${currentPath}`
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${SITE_URL}${ogImage}`} />
-    <meta property="og:site_name" content={SITE_NAME} />
-    <meta property="og:locale" content="es_EC" />
+    <meta property="og:image" content={`${site.url}${ogImage}`} />
+    <meta property="og:site_name" content={site.fullName} />
+    <meta property="og:locale" content={site.locale} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${SITE_URL}${ogImage}`} />
+    <meta name="twitter:image" content={`${site.url}${ogImage}`} />
 
     <title>{title}</title>
   </head>

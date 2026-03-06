@@ -1,4 +1,4 @@
-import type { NavLink } from '@/types'
+import type { NavChild, NavLink } from '@/types'
 
 /** Links de navegación principal — usados por Header.astro */
 export const navLinks: NavLink[] = [
@@ -26,5 +26,13 @@ export const navLinks: NavLink[] = [
   { href: '/servicios', label: 'Servicios' },
   { href: '/noticias', label: 'Noticias' },
   { href: '/anuncios', label: 'Anuncios' },
+  { href: '/contactos', label: 'Contactos' },
+]
+
+/** Links del pie de página (sección "Información legal") — usados por Footer.astro */
+export const footerLinks: NavChild[] = [
+  { href: '/transparencia', label: 'Portal de Transparencia' },
+  { href: '/legislacion', label: 'Legislación' },
+  { href: '/rendicion-de-cuentas', label: 'Rendición de Cuentas' },
   { href: '/contactos', label: 'Contactos' },
 ]

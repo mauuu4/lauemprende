@@ -1,14 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { site } from '@/data/institucion'
 import PageHero from '@/components/ui/PageHero.astro'
 import EnlaceGroup from '@/components/ui/EnlaceGroup.astro'
 import ChevronDown from '@/components/icons/ui/ChevronDown.astro'
-import { rendicionCuentas } from '@/data/rendicionCuentas'
+import { rendicionCuentas } from '@/data/transparencia'
 ---
 
 <Layout
-  title="Rendición de Cuentas - La UEmprende"
-  description="Informes de Rendición de Cuentas de la Empresa Pública LA UEMPRENDE EP"
+  title="Rendición de Cuentas"
+  description={`Informes de Rendición de Cuentas de la ${site.fullName}`}
 >
   <PageHero
     title="Rendición de Cuentas"

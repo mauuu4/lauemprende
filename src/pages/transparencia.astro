@@ -1,17 +1,19 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import ArrowRight from '@/components/icons/ui/ArrowRight.astro'
+
+const currentYear = new Date().getFullYear()
 ---
 
 <Layout
-  title="Transparencia - La UEmprende"
+  title="Transparencia"
   description="Difusión de la Información Pública - LEY ORGÁNICA DE TRANSPARENCIA Y ACCESO A LA INFORMACIÓN PÚBLICA (LOTAIP)"
 >
   <section class="bg-gray-50 py-16">
     <div class="mx-auto max-w-7xl px-6">
       <!-- Título principal -->
       <h1 class="text-primary mb-8 text-center text-3xl font-bold md:text-4xl">
-        Difusión de la Información Pública Año 2025
+        Difusión de la Información Pública Año {currentYear}
       </h1>
 
       <!-- Card principal -->
@@ -74,7 +76,7 @@ import ArrowRight from '@/components/icons/ui/ArrowRight.astro'
               Orgánica de Transparencia y Acceso a la Información Pública
               (LOTAIP), modernizando su cumplimiento y garantizando datos de
               calidad, libres y reutilizables. A través de este portal puedes
-              consultar los archivos que la EMPRESA PUBLICA LA UEMPRENDE EP
+              consultar los archivos que la Empresa Pública LA UEMPRENDE EP
               publica mensualmente.
             </p>
           </div>

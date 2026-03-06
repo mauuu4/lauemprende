@@ -1,19 +1,17 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { site } from '@/data/institucion'
 import { Image } from 'astro:assets'
 import {
   loadGalleryImages,
   getImageSize,
   shouldLoadEager,
-} from '@/data/galeria'
+} from '@/utils/galeria'
 
 const categorias = loadGalleryImages()
 ---
 
-<Layout
-  title="Galería - La UEmprende"
-  description="Galería de imágenes de La UEmprende"
->
+<Layout title="Galería" description={`Galería de imágenes de ${site.name}`}>
   <section class="bg-gray-50 py-12 md:py-16">
     <div class="mx-auto max-w-7xl px-6">
       {

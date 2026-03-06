@@ -1,14 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { site } from '@/data/institucion'
 import PageHero from '@/components/ui/PageHero.astro'
-import { legislacion } from '@/data/legislacion'
+import { legislacion } from '@/data/transparencia'
 import ArrowRight from '@/components/icons/ui/ArrowRight.astro'
 import FileText from '@/components/icons/ui/FileText.astro'
 ---
 
 <Layout
-  title="Legislación - La UEmprende"
-  description="Marco normativo aplicable a la Empresa Pública LA UEMPRENDE EP"
+  title="Legislación"
+  description={`Marco normativo aplicable a la ${site.fullName}`}
 >
   <PageHero
     title="Legislación"

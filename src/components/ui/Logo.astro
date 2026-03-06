@@ -1,4 +1,6 @@
 ---
+import { site } from '@/data/institucion'
+
 interface Props {
   class?: string
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
@@ -17,7 +19,7 @@ const sizeClasses = {
 
 <img
   src="/favicon.svg"
-  alt="Logo de La UEmprende EP"
+  alt={`Logo de ${site.name}`}
   class:list={[sizeClasses[size], className]}
   loading="eager"
   decoding="async"

@@ -1,15 +1,16 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { site } from '@/data/institucion'
 import PageHero from '@/components/ui/PageHero.astro'
 import ContentCard from '@/components/ui/ContentCard.astro'
 import Newspaper from '@/components/icons/ui/Newspaper.astro'
-import { noticias } from '@/data/noticias'
+import { noticias } from '@/data/contenido'
 import { formatDate } from '@/utils/formatDate'
 ---
 
 <Layout
-  title="Noticias - La UEmprende"
-  description="Noticias y novedades de la Empresa Pública LA UEMPRENDE EP"
+  title="Noticias"
+  description={`Noticias y novedades de la ${site.fullName}`}
 >
   <PageHero
     title="Noticias"
@@ -20,18 +21,23 @@ import { formatDate } from '@/utils/formatDate'
   <section class="bg-gray-50 py-16">
     <div class="mx-auto max-w-7xl px-6">
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {noticias.map((noticia) => (
-          <ContentCard
-            titulo={noticia.titulo}
-            descripcion={noticia.descripcion}
-            fecha={noticia.fecha}
-            fechaFormateada={formatDate(noticia.fecha)}
-            imagen={noticia.imagen}
-            video={noticia.video}
-          >
-            <Newspaper slot="placeholder-icon" class="mx-auto h-12 w-12 text-primary/40" />
-          </ContentCard>
-        ))}
+        {
+          noticias.map((noticia) => (
+            <ContentCard
+              titulo={noticia.titulo}
+              descripcion={noticia.descripcion}
+              fecha={noticia.fecha}
+              fechaFormateada={formatDate(noticia.fecha)}
+              imagen={noticia.imagen}
+              video={noticia.video}
+            >
+              <Newspaper
+                slot="placeholder-icon"
+                class="text-primary/40 mx-auto h-12 w-12"
+              />
+            </ContentCard>
+          ))
+        }
       </div>
     </div>
   </section>
