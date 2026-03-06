@@ -1,4 +1,5 @@
 ---
+import { infoContacto } from '@/data/contacto'
 import Logo from '@/components/ui/Logo.astro'
 import Facebook from '@icons/social/Facebook.astro'
 import Twitter from '@icons/social/Twitter.astro'
@@ -9,17 +10,17 @@ import Mail from '@icons/contact/Mail.astro'
 
 const socialLinks = [
   {
-    href: 'https://www.facebook.com/LAUEMPRENDE/',
+    href: infoContacto.redesSociales.facebook,
     icon: Facebook,
     label: 'Facebook',
   },
   {
-    href: 'https://www.youtube.com/channel/UC_Ms4V2kYDsh7F_CSsHyQ6A',
+    href: infoContacto.redesSociales.youtube,
     icon: YouTube,
     label: 'YouTube',
   },
   {
-    href: 'https://x.com/LaUEmprende',
+    href: infoContacto.redesSociales.twitter,
     icon: Twitter,
     label: 'X/Twitter',
   },
@@ -27,25 +28,25 @@ const socialLinks = [
 
 const contactInfo = [
   {
-    href: 'https://maps.app.goo.gl/kfvN1RnjZ928bhgj6',
+    href: infoContacto.mapsUrl,
     isExternal: true,
     icon: MapPin,
     label: 'Ubicación en Google Maps',
-    text: 'Ibarra, Velasco 2-39 entre Salinas y Juan Montalvo',
+    text: infoContacto.direccion,
   },
   {
-    href: 'tel:+59362997800',
+    href: infoContacto.telefonoHref,
     isExternal: false,
     icon: Phone,
-    label: 'Llamar al +593 06 2997800',
-    text: '+593 06 2997800',
+    label: `Llamar al ${infoContacto.telefono}`,
+    text: infoContacto.telefono,
   },
   {
-    href: 'mailto:gerencia@lauemprende.com',
+    href: `mailto:${infoContacto.emailPrincipal}`,
     isExternal: false,
     icon: Mail,
-    label: 'Enviar correo a gerencia@lauemprende.com',
-    text: 'gerencia@lauemprende.com',
+    label: `Enviar correo a ${infoContacto.emailPrincipal}`,
+    text: infoContacto.emailPrincipal,
   },
 ]
 

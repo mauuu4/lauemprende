@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import PageHero from '@/components/ui/PageHero.astro'
-import ButtonLink from '@/components/ui/ButtonLink.astro'
+import EnlaceGroup from '@/components/ui/EnlaceGroup.astro'
 import ChevronDown from '@/components/icons/ui/ChevronDown.astro'
 import { rendicionCuentas } from '@/data/rendicionCuentas'
 ---
@@ -47,19 +47,7 @@ import { rendicionCuentas } from '@/data/rendicionCuentas'
                           {informe.descripcion}
                         </p>
                       )}
-                      {informe.enlaces.length > 0 && (
-                        <div class="flex flex-wrap gap-2">
-                          {informe.enlaces.map((enlace) => (
-                            <ButtonLink
-                              variant={enlace.tipo}
-                              size="sm"
-                              href={enlace.url}
-                            >
-                              {enlace.texto}
-                            </ButtonLink>
-                          ))}
-                        </div>
-                      )}
+                      <EnlaceGroup enlaces={informe.enlaces} />
                     </div>
                   </div>
                 ))}

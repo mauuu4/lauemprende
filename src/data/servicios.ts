@@ -1,4 +1,4 @@
-export const servicios = [
+export const servicios: string[] = [
   'Asesoramiento empresarial y gestión.',
   'Capacitación y enseñanza.',
   'Organización y dirección de todo tipo de eventos.',

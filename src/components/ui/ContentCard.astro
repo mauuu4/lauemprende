@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+import type { Enlace } from '@/types'
+import EnlaceGroup from '@/components/ui/EnlaceGroup.astro'
+
+interface Props {
+  titulo: string
+  descripcion?: string
+  /** Fecha en formato ISO (e.g. '2025-03-01') — usada para el atributo datetime */
+  fecha: string
+  /** Fecha formateada en español para mostrar al usuario */
+  fechaFormateada: string
+  imagen?: ImageMetadata | string
+  video?: string
+  enlaces?: Enlace[]
+}
+
+const {
+  titulo,
+  descripcion,
+  fecha,
+  fechaFormateada,
+  imagen,
+  video,
+  enlaces = [],
+} = Astro.props
+---
+
+<article
+  class="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+>
+  <!-- Media -->
+  {
+    video ? (
+      video.endsWith('.mp4') ? (
+        <div class="aspect-video w-full">
+          <video
+            src={video}
+            controls
+            preload="metadata"
+            class="h-full w-full object-cover"
+          >
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </div>
+      ) : (
+        <div class="aspect-video w-full">
+          <iframe
+            src={video}
+            title={titulo}
+            class="h-full w-full"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
+        </div>
+      )
+    ) : imagen ? (
+      typeof imagen === 'string' ? (
+        <div class="aspect-video w-full overflow-hidden">
+          <img
+            src={imagen}
+            alt={titulo}
+            width="600"
+            height="340"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <div class="aspect-video w-full overflow-hidden">
+          <Image
+            src={imagen}
+            alt={titulo}
+            width={600}
+            height={340}
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      )
+    ) : (
+      <div class="bg-primary/5 flex aspect-video w-full items-center justify-center">
+        <slot name="placeholder-icon" />
+      </div>
+    )
+  }
+
+  <!-- Cuerpo -->
+  <div class="flex flex-1 flex-col p-6">
+    <time class="mb-2 block text-xs font-medium text-gray-500" datetime={fecha}>
+      {fechaFormateada}
+    </time>
+    <h2 class="text-primary mb-3 text-lg font-bold">{titulo}</h2>
+    {
+      descripcion && (
+        <p class="mb-4 flex-1 text-sm leading-relaxed text-gray-700">
+          {descripcion}
+        </p>
+      )
+    }
+    {enlaces.length > 0 && <EnlaceGroup enlaces={enlaces} />}
+  </div>
+</article>

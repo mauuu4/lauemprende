@@ -2,8 +2,10 @@
 import Layout from '@/layouts/Layout.astro'
 import { directorio } from '@/data/directorio'
 import { correosInstitucionales } from '@/data/correosInstitucionales'
+import { infoContacto } from '@/data/contacto'
 import PersonCard from '@/components/ui/PersonCard.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
+import ContactInfoItem from '@/components/ui/ContactInfoItem.astro'
 import Mail from '@/components/icons/contact/Mail.astro'
 import MapPin from '@/components/icons/contact/MapPin.astro'
 import Phone from '@/components/icons/contact/Phone.astro'
@@ -23,7 +25,6 @@ import Phone from '@/components/icons/contact/Phone.astro'
             <h2 class="text-primary mb-6 text-xl font-bold uppercase">
               {departamento}
             </h2>
-
             <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {personal.map((persona) => (
                 <PersonCard {...persona} />
@@ -67,37 +68,18 @@ import Phone from '@/components/icons/contact/Phone.astro'
           Información de Contacto General
         </h2>
         <div class="grid gap-8 md:grid-cols-3">
-          <div class="text-center">
-            <div
-              class="text-primary mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50"
-            >
-              <MapPin />
-            </div>
-            <p class="mb-2 text-sm font-bold text-gray-800">Dirección</p>
-            <p class="text-sm text-gray-600">
-              Ibarra, Velasco 2-39 entre Salinas y Juan Montalvo
-            </p>
-          </div>
-
-          <div class="text-center">
-            <div
-              class="text-primary mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50"
-            >
-              <Phone />
-            </div>
-            <p class="mb-2 text-sm font-bold text-gray-800">Teléfono</p>
-            <p class="text-sm text-gray-600">+593 06 2997800 Ext: 7351</p>
-          </div>
-
-          <div class="text-center">
-            <div
-              class="text-primary mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50"
-            >
-              <Mail />
-            </div>
-            <p class="mb-2 text-sm font-bold text-gray-800">Email</p>
-            <p class="text-sm text-gray-600">gerencia@lauemprende.com</p>
-          </div>
+          <ContactInfoItem label="Dirección" value={infoContacto.direccion}>
+            <MapPin />
+          </ContactInfoItem>
+          <ContactInfoItem
+            label="Teléfono"
+            value={`${infoContacto.telefono} ${infoContacto.telefonoExtension}`}
+          >
+            <Phone />
+          </ContactInfoItem>
+          <ContactInfoItem label="Email" value={infoContacto.emailPrincipal}>
+            <Mail />
+          </ContactInfoItem>
         </div>
       </div>
     </div>

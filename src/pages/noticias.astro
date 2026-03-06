@@ -1,9 +1,10 @@
 ---
-import { Image } from 'astro:assets'
 import Layout from '@/layouts/Layout.astro'
 import PageHero from '@/components/ui/PageHero.astro'
+import ContentCard from '@/components/ui/ContentCard.astro'
 import Newspaper from '@/components/icons/ui/Newspaper.astro'
 import { noticias } from '@/data/noticias'
+import { formatDate } from '@/utils/formatDate'
 ---
 
 <Layout
@@ -18,94 +19,20 @@ import { noticias } from '@/data/noticias'
   <!-- Contenido -->
   <section class="bg-gray-50 py-16">
     <div class="mx-auto max-w-7xl px-6">
-      {
-        noticias.length > 0 ? (
-          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {noticias.map((noticia) => (
-              <article class="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                {noticia.video ? (
-                  noticia.video.endsWith('.mp4') ? (
-                    <div class="aspect-video w-full">
-                      <video
-                        src={noticia.video}
-                        controls
-                        preload="metadata"
-                        class="h-full w-full object-cover"
-                      >
-                        Tu navegador no soporta la reproducción de video.
-                      </video>
-                    </div>
-                  ) : (
-                    <div class="aspect-video w-full">
-                      <iframe
-                        src={noticia.video}
-                        title={noticia.titulo}
-                        class="h-full w-full"
-                        loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                      />
-                    </div>
-                  )
-                ) : noticia.imagen ? (
-                  typeof noticia.imagen === 'string' ? (
-                    <div class="aspect-video w-full overflow-hidden">
-                      <img
-                        src={noticia.imagen}
-                        alt={noticia.titulo}
-                        width="600"
-                        height="340"
-                        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                    </div>
-                  ) : (
-                    <div class="aspect-video w-full overflow-hidden">
-                      <Image
-                        src={noticia.imagen}
-                        alt={noticia.titulo}
-                        width={600}
-                        height={340}
-                        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                    </div>
-                  )
-                ) : (
-                  <div class="bg-primary/10 flex aspect-video w-full items-center justify-center">
-                    <Newspaper class="text-primary/40 h-12 w-12" />
-                  </div>
-                )}
-                <div class="p-6">
-                  <time class="mb-2 block text-xs font-medium text-gray-500">
-                    {new Date(noticia.fecha).toLocaleDateString('es-EC', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </time>
-                  <h2 class="text-primary mb-3 text-lg font-bold">
-                    {noticia.titulo}
-                  </h2>
-                  <p class="text-sm leading-relaxed text-gray-700">
-                    {noticia.descripcion}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <div class="py-20 text-center">
-            <div class="text-primary/30 mx-auto mb-4">
-              <Newspaper class="mx-auto h-16 w-16" />
-            </div>
-            <h2 class="text-primary mb-2 text-xl font-bold">Próximamente</h2>
-            <p class="text-gray-600">
-              Pronto publicaremos noticias y novedades institucionales.
-            </p>
-          </div>
-        )
-      }
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {noticias.map((noticia) => (
+          <ContentCard
+            titulo={noticia.titulo}
+            descripcion={noticia.descripcion}
+            fecha={noticia.fecha}
+            fechaFormateada={formatDate(noticia.fecha)}
+            imagen={noticia.imagen}
+            video={noticia.video}
+          >
+            <Newspaper slot="placeholder-icon" class="mx-auto h-12 w-12 text-primary/40" />
+          </ContentCard>
+        ))}
+      </div>
     </div>
   </section>
 </Layout>

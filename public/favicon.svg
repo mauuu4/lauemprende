@@ -1,24 +1,10 @@
-<svg
+<svg role="img" aria-label="Logo de La UEmprende EP"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="80 110 1920 1600"
-  aria-label="La Uemprende Logo"
+
+
 >
-
-  <style>
-    /* Fondo transparente en modo claro */
-    .fondo-adaptable {
-        fill: transparent;
-    }
-
-    /* Fondo blanco en modo oscuro */
-    @media (prefers-color-scheme: dark) {
-        .fondo-adaptable {
-            fill: #ffffff;
-        }
-    }
-  </style>
-
-  <rect width="1920" height="1600" x="80" y="110" class="fondo-adaptable" rx="200" />
+  <rect width="1920" height="1600" x="80" y="110" fill="white" rx="200"></rect>
 
   <path
     fill="#51649F"

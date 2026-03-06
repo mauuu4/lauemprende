@@ -1,5 +1,39 @@
 import type { ImageMetadata } from 'astro'
 
+// ---------------------------------------------------------------------------
+// Navegación
+// ---------------------------------------------------------------------------
+
+/** Elemento hijo del menú de navegación */
+export interface NavChild {
+  href: string
+  label: string
+}
+
+/** Elemento del menú de navegación principal (con o sin submenú) */
+export interface NavLink {
+  href?: string
+  label: string
+  children?: NavChild[]
+}
+
+// ---------------------------------------------------------------------------
+// Módulos de acceso rápido (Hero)
+// ---------------------------------------------------------------------------
+
+/** Identificador de icono disponible en src/components/icons/modules/ */
+export type ModuloIcon = 'Edit' | 'Teacher' | 'Student' | 'Briefcase' | 'Chart'
+
+/** Módulo de acceso rápido mostrado en el Hero */
+export interface Modulo {
+  title: string
+  subtitle: string
+  href: string
+  icon: ModuloIcon
+}
+
+// ---------------------------------------------------------------------------
+
 /**
  * Representa un enlace en un comunicado o curso
  */
@@ -71,6 +105,21 @@ export interface Anuncio {
   activo: boolean
 }
 
+/** Información de contacto general de la institución */
+export interface InfoContacto {
+  direccion: string
+  telefono: string
+  telefonoExtension: string
+  telefonoHref: string
+  emailPrincipal: string
+  mapsUrl: string
+  redesSociales: {
+    facebook: string
+    youtube: string
+    twitter: string
+  }
+}
+
 /** Contacto de correo institucional por área */
 export interface AreaContacto {
   area: string
@@ -95,4 +144,12 @@ export interface Departamento {
 export interface CategoriaGaleria {
   nombre: string
   slug: string
+}
+
+/** Objetivo estratégico de LA UEMPRENDE EP */
+export interface Objetivo {
+  id: number
+  texto: string
+  /** Clases de Tailwind para posicionamiento en el grid de objetivos */
+  gridClasses: string
 }

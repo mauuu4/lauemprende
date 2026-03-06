@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import ButtonLink from '@/components/ui/ButtonLink.astro'
-import fondo from '@/assets/images/fondo-hero.png'
+import fondo from '@/assets/images/institucional/fondo-hero.png'
 import Edit from '@icons/modules/Edit.astro'
 import Teacher from '@icons/modules/Teacher.astro'
 import Student from '@icons/modules/Student.astro'
@@ -9,39 +9,14 @@ import Briefcase from '@icons/modules/Briefcase.astro'
 import Chart from '@icons/modules/Chart.astro'
 import ChevronDown from '@icons/ui/ChevronDown.astro'
 import ChevronRight from '@icons/ui/ChevronRight.astro'
+import { modulos } from '@/data/modulos'
 
-const modulos = [
-  {
-    title: 'Inscripciones',
-    subtitle: 'Módulo Cursos',
-    href: 'https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::',
-    Icon: Edit,
-  },
-  {
-    title: 'Docentes',
-    subtitle: 'Portafolio Académico',
-    href: 'https://cloud.lauemprende.com/ords/f?p=213:LOGIN_DESKTOP::::::',
-    Icon: Teacher,
-  },
-  {
-    title: 'Estudiantes',
-    subtitle: 'Portafolio Inglés',
-    href: 'https://cloud.lauemprende.com/ords/f?p=110:LOGIN::::::',
-    Icon: Student,
-  },
-  {
-    title: 'Servicios UEP',
-    subtitle: 'Portafolio Institucional',
-    href: '/uploads/portafolio_UEmprende.pdf',
-    Icon: Briefcase,
-  },
-  {
-    title: 'Resultados',
-    subtitle: 'Exámenes de Ubicación',
-    href: '/uploads/RESULTADOS PRUEBA UBICACION.pdf',
-    Icon: Chart,
-  },
-]
+const iconMap = { Edit, Teacher, Student, Briefcase, Chart }
+
+const modulosResolved = modulos.map((m) => ({
+  ...m,
+  Icon: iconMap[m.icon],
+}))
 ---
 
 <section
@@ -111,7 +86,7 @@ const modulos = [
         class="mt-2 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-lg"
       >
         {
-          modulos.map(({ title, subtitle, href, Icon }) => (
+          modulosResolved.map(({ title, subtitle, href, Icon }) => (
             <a
               href={href}
               target="_blank"
@@ -135,16 +110,16 @@ const modulos = [
     <!-- Grid en desktop -->
     <div class="hidden gap-5 md:grid md:grid-cols-5">
       {
-        modulos.map(({ title, subtitle, href, Icon }) => (
+        modulosResolved.map(({ title, subtitle, href, Icon }) => (
           <a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
             class="group hover:border-primary relative flex flex-col items-center overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
           >
-            <div class="absolute inset-0 bg-blue-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <div class="absolute inset-0 bg-primary/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-            <div class="group-hover:bg-primary relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 shadow-sm transition-all duration-300 group-hover:text-white">
+            <div class="group-hover:bg-primary relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/5 shadow-sm transition-all duration-300 group-hover:text-white">
               <Icon size={32} />
             </div>
 
@@ -153,7 +128,7 @@ const modulos = [
             </h3>
             <span class="relative z-10 text-xs text-gray-500">{subtitle}</span>
 
-            <div class="bg-primary absolute bottom-0 left-0 h-1 w-full scale-x-0 transition-transform duration-400 group-hover:scale-x-100" />
+            <div class="bg-primary absolute bottom-0 left-0 h-1 w-full scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
           </a>
         ))
       }
