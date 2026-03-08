@@ -15,18 +15,22 @@ import { servicios } from '@/data/contenido'
   />
 
   <!-- Sección Servicios -->
-  <section class="bg-gray-50 py-16">
+  <section class="bg-surface py-16 md:py-24">
     <div class="mx-auto max-w-7xl px-6">
-      <p class="mb-8 text-gray-600">
+      <p class="text-text-secondary mb-10 max-w-3xl leading-relaxed">
         De conformidad con el Registro Único de Contribuyentes Sociedades la
         Empresa Pública LA UEMPRENDE EP ofrece los siguientes servicios:
       </p>
 
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {
-          servicios.map((servicio) => (
-            <div class="rounded-lg bg-white px-4 py-3 shadow-sm transition-all duration-200 hover:shadow-md">
-              <p class="text-sm text-gray-700">{servicio}</p>
+          servicios.map((servicio, index) => (
+            <div class="group relative flex items-start gap-3 overflow-hidden rounded-xl border border-gray-200/60 bg-white px-5 py-4 transition-all duration-400 hover:shadow-md">
+              <div class="bg-accent absolute top-0 left-0 h-0.5 w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
+              <span class="text-accent mt-0.5 text-xs font-bold">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <p class="text-sm text-text-secondary">{servicio}</p>
             </div>
           ))
         }

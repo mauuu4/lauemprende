@@ -17,21 +17,21 @@ import { rendicionCuentas } from '@/data/transparencia'
   />
 
   <!-- Contenido -->
-  <section class="bg-gray-50 py-16">
+  <section class="bg-surface py-16 md:py-24">
     <div class="mx-auto max-w-4xl px-6">
       {
         rendicionCuentas.map((anio, index) => (
           <details
-            class="group mb-6 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
+            class="group mb-5 overflow-hidden rounded-xl border border-gray-200/60 bg-white"
             open={index === 0}
           >
-            <summary class="flex cursor-pointer list-none items-center justify-between px-6 py-5 transition-colors hover:bg-gray-50">
-              <h2 class="text-primary text-xl font-bold md:text-2xl">
+            <summary class="flex cursor-pointer list-none items-center justify-between px-6 py-5 transition-colors duration-200 hover:bg-surface">
+              <h2 class="text-primary font-display text-xl font-normal md:text-2xl">
                 {anio.anio}
               </h2>
               <ChevronDown
-                size={24}
-                class="text-primary shrink-0 transition-transform duration-300 group-open:rotate-180"
+                size={20}
+                class="text-text-muted shrink-0 transition-transform duration-300 group-open:rotate-180"
               />
             </summary>
 
@@ -40,11 +40,11 @@ import { rendicionCuentas } from '@/data/transparencia'
                 {anio.informes.map((informe) => (
                   <div class="flex flex-col gap-6 sm:flex-row">
                     <div class="flex flex-1 flex-col justify-center">
-                      <h3 class="mb-2 text-lg font-bold text-gray-900">
+                      <h3 class="text-primary mb-2 font-display text-lg font-normal">
                         {informe.titulo}
                       </h3>
                       {informe.descripcion && (
-                        <p class="mb-4 text-sm text-gray-600">
+                        <p class="text-text-secondary mb-4 text-sm">
                           {informe.descripcion}
                         </p>
                       )}

@@ -1,30 +1,23 @@
 ---
 import { Image } from 'astro:assets'
 import { site } from '@/data/institucion'
-import SectionHeader from '@/components/ui/SectionHeader.astro'
 import organigramaImg from '@/assets/images/institucional/Organigrama2025.png'
 ---
 
-<section id="organigrama" class="scroll-mt-20 bg-white py-12 md:py-16">
+<section id="organigrama" class="scroll-mt-20 bg-white py-16 md:py-24">
   <div class="mx-auto max-w-7xl px-6">
-    <SectionHeader
-      title="Estructura Organizacional"
-      subtitle="Conoce nuestra estructura organizativa"
-    />
-
-    <!-- Organigrama -->
     <div class="mx-auto max-w-5xl">
-      <div class="rounded-2xl bg-white p-4 shadow-lg md:p-6">
-        <div class="overflow-hidden rounded-xl border border-gray-100">
-          <Image
-            src={organigramaImg}
-            alt={`Organigrama ${site.fullName}`}
-            width={1200}
-            height={800}
-            class="h-auto w-full"
-            loading="lazy"
-          />
-        </div>
+      <div
+        class="overflow-hidden rounded-xl border border-gray-200/60 bg-white"
+      >
+        <Image
+          src={organigramaImg}
+          alt={`Organigrama ${site.fullName}`}
+          width={1200}
+          height={800}
+          class="h-auto w-full"
+          loading="lazy"
+        />
       </div>
     </div>
   </div>

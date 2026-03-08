@@ -25,38 +25,40 @@ const {
 
 <div
   class:list={[
-    'group hover:border-primary/50 relative flex min-h-[200px] flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl border border-gray-200 bg-white px-8 py-12 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl md:py-14',
+    'group relative flex min-h-[180px] flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border border-gray-200/60 bg-white px-8 py-10 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl md:py-12',
     className,
   ]}
   {...rest}
 >
-  <!-- Efecto de fondo -->
+  <!-- Barra dorada superior -->
   <div
-    class="from-primary/5 absolute inset-0 bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+    class="bg-accent absolute top-0 left-0 h-0.5 w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
   >
   </div>
 
-  <div class="relative z-10 flex flex-col items-center gap-4">
+  <div class="relative z-10 flex flex-col items-center gap-3">
     {
       Icon && (
-        <div class="bg-primary/10 rounded-full p-3 transition-transform duration-300 group-hover:scale-110">
-          <Icon class="text-primary h-10 w-10" />
+        <div class="bg-primary/5 rounded-xl p-3 transition-all duration-300 group-hover:bg-primary/10">
+          <Icon class="text-primary h-8 w-8" />
         </div>
       )
     }
-    <p class="text-xs font-bold tracking-wider text-gray-500 uppercase">
+    <p
+      class="text-[10px] font-semibold tracking-[0.15em] text-text-muted uppercase"
+    >
       {label}
     </p>
     <div class="flex items-baseline gap-1">
       {
         prefix && (
-          <span class="text-primary text-2xl font-semibold md:text-3xl">
+          <span class="text-primary font-display text-2xl md:text-3xl">
             {prefix}
           </span>
         )
       }
       <span
-        class="text-primary text-5xl leading-none font-bold md:text-6xl"
+        class="text-primary font-display text-5xl leading-none md:text-6xl"
         data-end={end}
         data-duration={duration}
       >
@@ -64,7 +66,7 @@ const {
       </span>
       {
         suffix && (
-          <span class="text-primary text-2xl font-semibold md:text-3xl">
+          <span class="text-primary font-display text-2xl md:text-3xl">
             {suffix}
           </span>
         )

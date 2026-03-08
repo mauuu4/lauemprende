@@ -1,34 +1,35 @@
 ---
 import Target from '@/components/icons/ui/Target.astro'
 import Eye from '@/components/icons/ui/Eye.astro'
-import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { mision, vision, objetivos } from '@/data/objetivos'
 ---
 
-<section id="mision-vision" class="scroll-mt-20 bg-gray-50 py-12 md:py-16">
+<section id="mision-vision" class="scroll-mt-20 bg-surface py-16 md:py-24">
   <div class="mx-auto max-w-7xl px-6">
-    <SectionHeader title="Misión, Visión y Objetivos" />
-
     <!-- Misión y Visión -->
-    <div class="mb-16 grid gap-8 md:grid-cols-2">
+    <div class="mb-20 grid gap-8 md:grid-cols-2">
       <!-- Misión -->
       <div
-        class="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-2xl"
+        class="group relative overflow-hidden rounded-xl border border-gray-200/60 bg-white p-8 transition-all duration-500 hover:shadow-lg md:p-10"
       >
+        <!-- Barra dorada superior -->
         <div
-          class="bg-primary/5 absolute top-0 right-0 h-40 w-40 translate-x-10 -translate-y-10 rounded-full transition-transform duration-300 group-hover:scale-150"
+          class="bg-accent absolute top-0 left-0 h-0.5 w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
         >
         </div>
+
         <div class="relative">
           <div class="mb-6 flex items-center gap-4">
             <div
-              class="from-primary flex h-16 w-16 items-center justify-center rounded-xl bg-linear-to-br to-blue-800 shadow-lg"
+              class="bg-primary flex h-14 w-14 items-center justify-center rounded-xl"
             >
-              <Target class="h-8 w-8 text-white" />
+              <Target class="h-7 w-7 text-white" />
             </div>
-            <h3 class="text-2xl font-bold text-gray-900">Misión</h3>
+            <h3 class="font-display text-2xl font-normal text-primary">
+              Misión
+            </h3>
           </div>
-          <p class="leading-relaxed text-gray-700">
+          <p class="text-text-secondary leading-relaxed">
             {mision}
           </p>
         </div>
@@ -36,22 +37,26 @@ import { mision, vision, objetivos } from '@/data/objetivos'
 
       <!-- Visión -->
       <div
-        class="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-2xl"
+        class="group relative overflow-hidden rounded-xl border border-gray-200/60 bg-white p-8 transition-all duration-500 hover:shadow-lg md:p-10"
       >
+        <!-- Barra dorada superior -->
         <div
-          class="bg-accent/10 absolute top-0 right-0 h-40 w-40 translate-x-10 -translate-y-10 rounded-full transition-transform duration-300 group-hover:scale-150"
+          class="bg-accent absolute top-0 left-0 h-0.5 w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
         >
         </div>
+
         <div class="relative">
           <div class="mb-6 flex items-center gap-4">
             <div
-              class="from-accent flex h-16 w-16 items-center justify-center rounded-xl bg-linear-to-br to-yellow-500 shadow-lg"
+              class="bg-primary/10 flex h-14 w-14 items-center justify-center rounded-xl"
             >
-              <Eye class="h-8 w-8 text-white" />
+              <Eye class="h-7 w-7 text-primary" />
             </div>
-            <h3 class="text-2xl font-bold text-gray-900">Visión</h3>
+            <h3 class="font-display text-2xl font-normal text-primary">
+              Visión
+            </h3>
           </div>
-          <p class="leading-relaxed text-gray-700">
+          <p class="text-text-secondary leading-relaxed">
             {vision}
           </p>
         </div>
@@ -60,20 +65,26 @@ import { mision, vision, objetivos } from '@/data/objetivos'
 
     <!-- Objetivos -->
     <div>
-      <h3 class="text-primary mb-8 text-center text-3xl font-bold">
-        Objetivos
-      </h3>
+      <div class="mb-10 text-center">
+        <h3
+          class="text-primary mb-3 font-display text-3xl font-normal md:text-4xl"
+        >
+          Objetivos
+        </h3>
+        <div class="bg-accent mx-auto h-0.5 w-12 rounded-full"></div>
+      </div>
 
-      <div class="grid auto-rows-auto grid-cols-1 gap-6 md:grid-cols-4">
+      <div class="grid auto-rows-auto grid-cols-1 gap-5 md:grid-cols-4">
         {
           objetivos.map((objetivo) => (
             <div
               class:list={[
-                'hover:border-primary/40 flex flex-col justify-center rounded-2xl border border-gray-200 bg-white p-10 shadow-lg transition-all duration-300 hover:shadow-xl',
+                'group relative flex flex-col justify-center overflow-hidden rounded-xl border border-gray-200/60 bg-white p-8 transition-all duration-500 hover:shadow-lg',
                 objetivo.gridClasses,
               ]}
             >
-              <p class="text-center text-base leading-relaxed text-gray-700">
+              <div class="bg-accent absolute top-0 left-0 h-0.5 w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
+              <p class="text-center text-sm leading-relaxed text-text-secondary md:text-base">
                 {objetivo.texto}
               </p>
             </div>

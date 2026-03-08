@@ -22,7 +22,7 @@ const modulosResolved = modulos.map((m) => ({
 
 <section
   aria-labelledby="hero-title"
-  class="relative min-h-[450px] pt-20 pb-32"
+  class="relative overflow-hidden pt-12 pb-24 md:pt-16 md:pb-28"
 >
   <Image
     src={fondo}
@@ -31,59 +31,75 @@ const modulosResolved = modulos.map((m) => ({
     class="absolute inset-0 h-full w-full object-cover"
   />
 
+  <!-- Overlay azul institucional -->
   <div
-    class="from-primary/60 via-primary/30 bg-primary/70 absolute inset-0 bg-linear-to-t to-transparent mix-blend-multiply"
+    class="absolute inset-0 bg-linear-to-b from-primary/90 via-primary/85 to-primary/95"
     aria-hidden="true"
   >
   </div>
 
-  <div class="relative z-10 mx-auto max-w-7xl px-6 text-center">
-    <h1 id="hero-title" class="mb-4 text-4xl font-bold text-white md:text-5xl">
-      Bienvenidos a {site.name}
-    </h1>
-    <p class="mx-auto mb-8 max-w-3xl text-lg text-white/95">
-      {site.tagline}
-    </p>
+  <div class="relative z-10 mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-3xl text-center">
 
-    <div class="flex justify-center gap-4">
-      <ButtonLink
-        variant="primary"
-        size="md"
-        href="#cursos"
-        target="_self"
-        uppercase={false}
+      <h1
+        id="hero-title"
+        class="animate-fade-up mb-4 font-display text-4xl leading-tight font-normal text-white md:text-5xl lg:text-6xl"
+        style="animation-delay: 0.1s"
       >
-        Cursos
-      </ButtonLink>
-      <ButtonLink
-        variant="link"
-        size="md"
-        href="#invitaciones"
-        target="_self"
-        uppercase={false}
+        Bienvenidos a <span class="text-accent">{site.name}</span>
+      </h1>
+
+      <p
+        class="animate-fade-up mx-auto mb-8 max-w-3xl text-base leading-relaxed font-light text-white/75"
+        style="animation-delay: 0.2s"
       >
-        Invitaciones
-      </ButtonLink>
+        {site.tagline}
+      </p>
+
+      <div
+        class="animate-fade-up flex flex-wrap justify-center gap-4"
+        style="animation-delay: 0.3s"
+      >
+        <ButtonLink
+          variant="primary"
+          size="md"
+          href="#cursos"
+          target="_self"
+          uppercase={false}
+        >
+          Ver Cursos
+        </ButtonLink>
+        <ButtonLink
+          variant="link"
+          size="md"
+          href="#invitaciones"
+          target="_self"
+          uppercase={false}
+        >
+          Invitaciones
+        </ButtonLink>
+      </div>
     </div>
   </div>
+
 </section>
 
 <!-- Módulos de acceso rápido -->
-<section class="relative -mt-20">
+<section class="relative -mt-16 z-20">
   <div class="mx-auto max-w-7xl px-6">
     <!-- Acordeón en mobile -->
     <details class="group md:hidden">
       <summary
-        class="text-primary flex cursor-pointer list-none items-center justify-between rounded-lg bg-white px-6 py-4 font-semibold shadow-lg transition-colors hover:bg-gray-50"
+        class="text-primary flex cursor-pointer list-none items-center justify-between rounded-xl border border-gray-200/80 bg-white px-6 py-3 font-display text-lg font-normal shadow-lg transition-colors hover:bg-gray-50"
       >
-        <span class="text-lg">Accesos Rápidos</span>
+        <span>Accesos Rápidos</span>
         <ChevronDown
-          class="h-5 w-5 transition-transform duration-300 group-open:rotate-180"
+          class="h-5 w-5 text-text-muted transition-transform duration-300 group-open:rotate-180"
         />
       </summary>
 
       <div
-        class="mt-2 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-lg"
+        class="mt-2 divide-y divide-gray-100 overflow-hidden rounded-xl border border-gray-200/80 bg-white shadow-lg"
       >
         {
           modulosResolved.map(({ title, subtitle, href, Icon }) => (
@@ -91,16 +107,16 @@ const modulosResolved = modulos.map((m) => ({
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-primary flex items-center gap-4 px-6 py-3 transition-colors hover:bg-gray-50"
+              class="text-primary flex items-center gap-4 px-6 py-3.5 transition-colors hover:bg-surface"
             >
-              <div class="bg-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
-                <Icon size={24} />
+              <div class="bg-primary/5 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg">
+                <Icon size={22} />
               </div>
               <div class="flex-1">
-                <h3 class="font-semibold">{title}</h3>
-                <p class="text-sm text-gray-600">{subtitle}</p>
+                <h3 class="text-sm font-semibold">{title}</h3>
+                <p class="text-xs text-text-muted">{subtitle}</p>
               </div>
-              <ChevronRight class="h-5 w-5 shrink-0" />
+              <ChevronRight class="h-4 w-4 shrink-0 text-text-muted" />
             </a>
           ))
         }
@@ -108,27 +124,27 @@ const modulosResolved = modulos.map((m) => ({
     </details>
 
     <!-- Grid en desktop -->
-    <div class="hidden gap-5 md:grid md:grid-cols-5">
+    <div class="hidden gap-4 md:grid md:grid-cols-5">
       {
-        modulosResolved.map(({ title, subtitle, href, Icon }) => (
+        modulosResolved.map(({ title, subtitle, href, Icon }, index) => (
           <a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            class="group hover:border-primary relative flex flex-col items-center overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+            class="group relative flex flex-col items-center overflow-hidden rounded-xl border border-gray-200/40 bg-white p-6 text-center shadow-md transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+            style={`animation: fadeUp 0.6s var(--ease-out-expo) ${0.1 + index * 0.08}s both`}
           >
-            <div class="bg-primary/5 absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <!-- Barra dorada superior -->
+            <div class="bg-accent absolute top-0 left-0 h-0.5 w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
 
-            <div class="group-hover:bg-primary bg-primary/5 relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:text-white">
-              <Icon size={32} />
+            <div class="bg-primary/5 group-hover:bg-primary mb-4 flex h-14 w-14 items-center justify-center rounded-xl transition-all duration-400 group-hover:text-white group-hover:shadow-lg">
+              <Icon size={28} />
             </div>
 
-            <h3 class="text-primary relative z-10 mb-1 text-sm font-bold transition-colors">
+            <h3 class="text-primary mb-0.5 text-sm font-bold">
               {title}
             </h3>
-            <span class="relative z-10 text-xs text-gray-500">{subtitle}</span>
-
-            <div class="bg-primary absolute bottom-0 left-0 h-1 w-full scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+            <span class="text-[11px] text-text-muted">{subtitle}</span>
           </a>
         ))
       }

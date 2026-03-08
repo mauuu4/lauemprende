@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro'
 import { site } from '@/data/institucion'
 import { Image } from 'astro:assets'
+import PageHero from '@/components/ui/PageHero.astro'
 import {
   loadGalleryImages,
   getImageSize,
@@ -12,14 +13,22 @@ const categorias = loadGalleryImages()
 ---
 
 <Layout title="Galería" description={`Galería de imágenes de ${site.name}`}>
-  <section class="bg-gray-50 py-12 md:py-16">
+  <PageHero
+    title="Galería"
+    description="Explora momentos y eventos destacados de nuestra institución."
+  />
+
+  <section class="bg-surface py-16 md:py-24">
     <div class="mx-auto max-w-7xl px-6">
       {
         categorias.map((categoria, catIndex) => (
           <article class="mb-16 last:mb-0">
-            <h2 class="mb-6 text-2xl font-bold text-gray-900 md:text-3xl">
-              {categoria.nombre}
-            </h2>
+            <div class="mb-6 flex items-center gap-3">
+              <div class="bg-accent h-0.5 w-6 rounded-full" />
+              <h2 class="text-primary font-display text-2xl font-normal md:text-3xl">
+                {categoria.nombre}
+              </h2>
+            </div>
 
             <div class="pswp-gallery gallery-grid">
               {categoria.imagenes.map((img, i) => (
@@ -28,8 +37,8 @@ const categorias = loadGalleryImages()
                   data-pswp-width={img.width}
                   data-pswp-height={img.height}
                   class:list={[
-                    'gallery-item group relative block overflow-hidden rounded-lg shadow-lg',
-                    'hover:shadow-primary/20 transition-all duration-300 hover:shadow-2xl',
+                    'gallery-item group relative block overflow-hidden rounded-lg',
+                    'transition-all duration-500 hover:shadow-xl',
                     getImageSize(i, categoria.imagenes.length),
                   ]}
                 >
@@ -41,9 +50,9 @@ const categorias = loadGalleryImages()
                     format="webp"
                     quality={80}
                     loading={shouldLoadEager(catIndex, i) ? 'eager' : 'lazy'}
-                    class="h-full w-full object-cover"
+                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div class="pointer-events-none absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/5" />
+                  <div class="pointer-events-none absolute inset-0 bg-black/0 transition-all duration-500 group-hover:bg-black/5" />
                 </a>
               ))}
             </div>
@@ -77,15 +86,19 @@ const categorias = loadGalleryImages()
     }
 
     .gallery-item {
-      background: linear-gradient(135deg, #e5e7eb 0%, #f3f4f6 100%);
+      background: linear-gradient(
+        135deg,
+        var(--color-surface-warm) 0%,
+        var(--color-surface) 100%
+      );
     }
 
     .gallery-item img {
-      background-color: #f3f4f6;
+      background-color: var(--color-surface);
     }
 
     .pswp {
-      --pswp-bg: rgba(0, 20, 40, 0.95);
+      --pswp-bg: rgba(6, 27, 46, 0.95);
     }
   </style>
 

@@ -1,34 +1,40 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import PersonCard from '@/components/ui/PersonCard.astro'
+import PageHero from '@/components/ui/PageHero.astro'
+import ContactInfoItem from '@/components/ui/ContactInfoItem.astro'
+import Mail from '@/components/icons/contact/Mail.astro'
+import MapPin from '@/components/icons/contact/MapPin.astro'
+import Phone from '@/components/icons/contact/Phone.astro'
 import {
   site,
   directorio,
   correosInstitucionales,
   infoContacto,
 } from '@/data/institucion'
-import PersonCard from '@/components/ui/PersonCard.astro'
-import SectionHeader from '@/components/ui/SectionHeader.astro'
-import ContactInfoItem from '@/components/ui/ContactInfoItem.astro'
-import Mail from '@/components/icons/contact/Mail.astro'
-import MapPin from '@/components/icons/contact/MapPin.astro'
-import Phone from '@/components/icons/contact/Phone.astro'
 ---
 
 <Layout
   title="Contactos"
   description={`Directorio de contactos y estructura organizacional de ${site.name}`}
 >
-  <section class="bg-gray-50 py-16">
-    <div class="mx-auto max-w-7xl px-6">
-      <SectionHeader title="Directorio de Contactos" />
+  <PageHero
+    title="Directorio de Contactos"
+    description="Encuentra la información de contacto de nuestro equipo institucional"
+  />
 
+  <section class="bg-surface py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
       {
         directorio.map(({ departamento, personal }) => (
-          <div class="mb-12">
-            <h2 class="text-primary mb-6 text-xl font-bold uppercase">
-              {departamento}
-            </h2>
-            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div class="mb-14">
+            <div class="mb-6 flex items-center gap-3">
+              <div class="bg-accent h-0.5 w-6 rounded-full" />
+              <h2 class="text-primary font-display text-xl font-normal">
+                {departamento}
+              </h2>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {personal.map((persona) => (
                 <PersonCard {...persona} />
               ))}
@@ -38,23 +44,27 @@ import Phone from '@/components/icons/contact/Phone.astro'
       }
 
       <!-- Correos Institucionales por Área -->
-      <div class="mt-12 mb-12">
-        <h2 class="text-primary mb-6 text-xl font-bold uppercase">
-          Correos Institucionales por Área
-        </h2>
-        <div class="grid gap-6 md:grid-cols-2">
+      <div class="mt-16 mb-14">
+        <div class="mb-8 flex items-center gap-3">
+          <div class="bg-accent h-0.5 w-6 rounded-full"></div>
+          <h2 class="text-primary font-display text-xl font-normal">
+            Correos Institucionales por Área
+          </h2>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
           {
             correosInstitucionales.map((contacto) => (
-              <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg">
-                <h3 class="text-primary mb-3 text-lg font-bold">
+              <div class="group relative overflow-hidden rounded-xl border border-gray-200/60 bg-white p-6 transition-all duration-500 hover:shadow-lg">
+                <div class="bg-accent absolute top-0 left-0 h-0.5 w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
+                <h3 class="text-primary mb-2 font-display text-lg font-normal">
                   {contacto.area}
                 </h3>
-                <p class="mb-4 text-sm leading-relaxed text-gray-700">
+                <p class="mb-4 text-sm leading-relaxed text-text-secondary">
                   {contacto.descripcion}
                 </p>
                 <a
                   href={`mailto:${contacto.email}`}
-                  class="text-primary hover:text-primary-light inline-flex items-center gap-2 text-sm font-semibold transition-colors"
+                  class="text-primary hover:text-accent inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200"
                 >
                   <Mail />
                   {contacto.email}
@@ -66,10 +76,17 @@ import Phone from '@/components/icons/contact/Phone.astro'
       </div>
 
       <!-- Información de contacto general -->
-      <div class="mt-8 rounded-xl bg-white p-8 shadow-md">
-        <h2 class="text-primary mb-8 text-center text-2xl font-bold">
-          Información de Contacto General
-        </h2>
+      <div
+        class="mt-10 rounded-xl border border-gray-200/60 bg-white p-8 md:p-10"
+      >
+        <div class="mb-8 text-center">
+          <h2
+            class="text-primary mb-3 font-display text-2xl font-normal md:text-3xl"
+          >
+            Información de Contacto General
+          </h2>
+          <div class="bg-accent mx-auto h-0.5 w-12 rounded-full"></div>
+        </div>
         <div class="grid gap-8 md:grid-cols-3">
           <ContactInfoItem label="Dirección" value={infoContacto.direccion}>
             <MapPin />

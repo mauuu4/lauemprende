@@ -8,10 +8,18 @@ interface Props {
 const { title, subtitle, class: className = '' } = Astro.props
 ---
 
-<div class:list={['mb-12 text-center', className]}>
-  <h2 class="text-primary mb-3 text-3xl font-bold md:text-4xl">
+<div class:list={['mb-14 text-center', className]}>
+  <h2
+    class="text-primary mb-3 font-display text-3xl font-normal md:text-4xl lg:text-[2.75rem]"
+  >
     {title}
   </h2>
-  <div class="bg-accent mx-auto h-1 w-24 rounded-full"></div>
-  {subtitle && <p class="mt-4 text-gray-600">{subtitle}</p>}
+  <div class="bg-accent mx-auto h-0.5 w-12 rounded-full"></div>
+  {
+    subtitle && (
+      <p class="mt-4 max-w-2xl mx-auto text-text-secondary text-base leading-relaxed">
+        {subtitle}
+      </p>
+    )
+  }
 </div>

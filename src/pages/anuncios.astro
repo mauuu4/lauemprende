@@ -23,9 +23,9 @@ const anunciosOrdenados = [...anuncios]
   />
 
   <!-- Contenido -->
-  <section class="bg-gray-50 py-16">
+  <section class="bg-surface py-16 md:py-24">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
           anunciosOrdenados.map((anuncio) => (
             <ContentCard
@@ -36,7 +36,7 @@ const anunciosOrdenados = [...anuncios]
               imagen={anuncio.imagen}
               enlaces={anuncio.enlaces}
             >
-              <div slot="placeholder-icon" class="text-primary/30 text-center">
+              <div slot="placeholder-icon" class="text-primary/20 text-center">
                 <Megaphone class="mx-auto h-12 w-12" />
                 <p class="mt-2 text-sm font-medium">Anuncio</p>
               </div>

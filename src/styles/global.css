@@ -1,48 +1,167 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=DM+Serif+Display:ital@0;1&display=swap');
 @import 'tailwindcss';
 
 @theme {
-  /* Fuente */
+  /* Tipografía — Editorial institucional */
   --font-sans:
-    Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Helvetica Neue', sans-serif;
+  --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
 
-  /* Paleta de colores personalizada */
-  --color-primary: #003366;
-  --color-primary-light: #00509e;
-  --color-primary-dark: #002b55;
+  /* Paleta de colores institucional refinada */
+  --color-primary: #0a2540;
+  --color-primary-light: #163a5f;
+  --color-primary-dark: #061b2e;
 
-  --color-accent: #eab308;
+  --color-accent: #d4a017;
+  --color-accent-light: #e8b84a;
+  --color-accent-dark: #b8890f;
 
-  /* Colores secundarios para textos y UI */
-  --color-secondary: #dbeafe;
-  --color-muted: #bfdbfe;
-  --color-border-light: #1e40af;
+  /* Superficies y fondos */
+  --color-surface: #f8f7f4;
+  --color-surface-warm: #f3f0ea;
+  --color-surface-card: #ffffff;
+
+  /* Textos */
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4a5568;
+  --color-text-muted: #718096;
+
+  /* Colores secundarios para UI */
+  --color-secondary: #c8d6e5;
+  --color-muted: #94a3b8;
+  --color-border-light: #163a5f;
+
+  /* Animaciones */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply m-0 min-h-screen w-full font-sans antialiased;
+    color: var(--color-text-primary);
+    background-color: var(--color-surface);
   }
 
-  /* Scrollbar personalizado - Tema azul */
+  /* Tipografía base refinada */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  /* Scrollbar personalizado */
   ::-webkit-scrollbar {
-    @apply w-2;
+    @apply w-1.5;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-gray-100;
+    background: var(--color-surface);
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-primary-light hover:bg-primary-dark rounded-full transition-colors;
+    background: var(--color-primary-light);
+    border-radius: 9999px;
+    transition: background 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
   }
 
   *:focus-visible {
     @apply outline-accent outline-2 outline-offset-2;
+  }
+
+  /* Selección de texto con colores de marca */
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-primary);
+  }
+}
+
+@layer utilities {
+  /* Animación de entrada sutil */
+  .animate-fade-up {
+    animation: fadeUp 0.7s var(--ease-out-expo) both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s var(--ease-out-expo) both;
+  }
+
+  /* Patrón decorativo de fondo */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(10, 37, 64, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10, 37, 64, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Textura sutil de ruido */
+  .bg-noise {
+    position: relative;
+  }
+
+  .bg-noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Línea decorativa dorada */
+  .gold-line {
+    position: relative;
+  }
+
+  .gold-line::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--color-accent);
+    margin-top: 12px;
+  }
+
+  .gold-line-center::after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

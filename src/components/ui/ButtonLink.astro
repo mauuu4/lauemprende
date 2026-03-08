@@ -18,18 +18,20 @@ const {
 } = Astro.props
 
 const baseClasses =
-  'inline-flex items-center gap-1 rounded-lg font-semibold backdrop-blur-sm shadow-lg transition-all hover:scale-105'
+  'inline-flex items-center gap-1.5 font-semibold transition-all duration-300'
 
 const variantClasses = {
-  primary: 'bg-primary text-white hover:bg-primary-light',
-  secondary: 'bg-white/90 text-gray-900 hover:bg-white',
-  link: 'bg-accent/90 text-primary hover:bg-accent',
+  primary:
+    'bg-accent text-primary hover:bg-accent-light rounded-lg shadow-md hover:shadow-lg',
+  secondary:
+    'bg-white/90 text-primary hover:bg-white rounded-lg shadow-md hover:shadow-lg',
+  link: 'bg-white/10 text-white hover:bg-white/20 rounded-lg border border-white/20 hover:border-white/30 backdrop-blur-sm',
 }
 
 const sizeClasses = {
-  sm: 'px-3 py-2 text-[11px]',
-  md: 'px-4 py-2.5 text-sm',
-  lg: 'px-5 py-3 text-base',
+  sm: 'px-3.5 py-2 text-[11px]',
+  md: 'px-5 py-2.5 text-sm',
+  lg: 'px-6 py-3 text-base',
 }
 
 const uppercaseClass = uppercase ? 'uppercase tracking-wide' : ''
