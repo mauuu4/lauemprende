@@ -3,7 +3,7 @@ import type { Modulo } from '@/types'
 /** Módulos de acceso rápido mostrados en el Hero — usados por Hero.astro */
 export const modulos: Modulo[] = [
   {
-    title: 'Inscripciones',
+    title: 'Inscripciones a cursos y eventos',
     subtitle: 'Módulo Cursos',
     href: 'https://cloud.lauemprende.com/ords/f?p=236:31:::NO:31,6::',
     icon: 'Edit',
@@ -27,7 +27,7 @@ export const modulos: Modulo[] = [
     icon: 'Briefcase',
   },
   {
-    title: 'Resultados',
+    title: 'Resultados de inglés',
     subtitle: 'Exámenes de Ubicación',
     href: '/uploads/RESULTADOS PRUEBA UBICACION.pdf',
     icon: 'Chart',

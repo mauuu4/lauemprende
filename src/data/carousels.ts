@@ -9,22 +9,16 @@ import afiche04 from '@/assets/images/cursos/afiche-04.jpg'
 import afiche05 from '@/assets/images/cursos/afiche-05.jpg'
 import afiche06 from '@/assets/images/cursos/afiche-06.jpg'
 import afiche07 from '@/assets/images/cursos/afiche-07.jpg'
-import cambridgeQua from '@/assets/images/cursos/cambridge-qua.jpg'
-import cambridge3Ene2026 from '@/assets/images/cursos/Cambridge3Ene2026.jpeg'
-import fechasEnero from '@/assets/images/cursos/fechasEnero.jpg'
 import traducciones from '@/assets/images/cursos/traducciones.jpg'
 
 // ---------------------------------------------------------------------------
 // Imágenes de invitaciones
 // ---------------------------------------------------------------------------
 import abastecimientoDisel2 from '@/assets/images/invitaciones/abastecimientoDisel2.png'
-import irc2024 from '@/assets/images/invitaciones/IRC2024.png'
 import giro3v3 from '@/assets/images/invitaciones/giro3v3.png'
 import giro3_2 from '@/assets/images/invitaciones/giro3_2.png'
 import giroNegocio3 from '@/assets/images/invitaciones/giroNegocio3.png'
 import giroNegocio2_4 from '@/assets/images/invitaciones/giroNegocio2_4.png'
-import rendicionCuentas2023 from '@/assets/images/invitaciones/Rendicion_Cuentas_web.png'
-import irc2022 from '@/assets/images/invitaciones/IRC20222.png'
 import giroNegocio5 from '@/assets/images/invitaciones/GiroNegocio5.png'
 
 // ---------------------------------------------------------------------------
@@ -34,71 +28,50 @@ import giroNegocio5 from '@/assets/images/invitaciones/GiroNegocio5.png'
 export const cursos: ItemCarousel[] = [
   {
     id: 1,
-    titulo: 'Curso - Afiche 1',
+    titulo: 'Prueba de Ubicación de Inglés',
     imagen: afiche01,
     enlaces: [],
     activo: true,
   },
   {
     id: 2,
-    titulo: 'Curso - Afiche 3',
+    titulo: 'Exámenes Internacionales Cambridge',
     imagen: afiche03,
     enlaces: [],
     activo: true,
   },
   {
     id: 3,
-    titulo: 'Curso - Afiche 4',
+    titulo: 'Colonias Vacacionales de Inglés para Niños y Adolescentes',
     imagen: afiche04,
     enlaces: [],
     activo: true,
   },
   {
     id: 4,
-    titulo: 'Curso - Afiche 5',
+    titulo: 'Duplicación de Certificados de Suficiencia B1/B2',
     imagen: afiche05,
     enlaces: [],
     activo: true,
   },
   {
     id: 5,
-    titulo: 'Curso - Afiche 6',
+    titulo: 'Centro de Idiomas LA UEMPRENDE E.P. – UTN',
     imagen: afiche06,
     enlaces: [],
     activo: true,
   },
   {
     id: 6,
-    titulo: 'Curso - Afiche 7',
+    titulo: 'Cursos Regulares de Inglés — Información General',
     imagen: afiche07,
     enlaces: [],
     activo: true,
   },
   {
     id: 7,
-    titulo: 'Traducciones',
+    titulo: 'Traducciones Español-Inglés / Inglés-Español',
     imagen: traducciones,
-    enlaces: [],
-    activo: true,
-  },
-  {
-    id: 8,
-    titulo: 'Cambridge Qualifications',
-    imagen: cambridgeQua,
-    enlaces: [],
-    activo: true,
-  },
-  {
-    id: 9,
-    titulo: 'Cambridge Enero 2026',
-    imagen: cambridge3Ene2026,
-    enlaces: [],
-    activo: true,
-  },
-  {
-    id: 10,
-    titulo: 'Fechas Enero',
-    imagen: fechasEnero,
     enlaces: [],
     activo: true,
   },
@@ -130,20 +103,6 @@ export const invitaciones: ItemCarousel[] = [
   },
   {
     id: 2,
-    titulo: 'Informe de Rendición de Cuentas 2024',
-    imagen: irc2024,
-    enlaces: [
-      {
-        texto: 'VER INFORME',
-        url: 'https://utneduec-my.sharepoint.com/:f:/g/personal/rendicioncuentas_lauemprende_com/EqXp1knMcIVMv5KI4sLU2dgBv-PbCy52j3x56dkD7Z36Jg?e=sqiBJS',
-        tipo: 'primary',
-      },
-    ],
-    fecha: '2025',
-    activo: true,
-  },
-  {
-    id: 3,
     titulo: 'Giro de Negocio 3 - Versión 3',
     imagen: giro3v3,
     enlaces: [
@@ -162,7 +121,7 @@ export const invitaciones: ItemCarousel[] = [
     activo: true,
   },
   {
-    id: 4,
+    id: 3,
     titulo: 'Giro de Negocio 3.2',
     imagen: giro3_2,
     enlaces: [
@@ -181,7 +140,7 @@ export const invitaciones: ItemCarousel[] = [
     activo: true,
   },
   {
-    id: 5,
+    id: 4,
     titulo: 'Giro de Negocio 3',
     imagen: giroNegocio3,
     enlaces: [
@@ -200,7 +159,7 @@ export const invitaciones: ItemCarousel[] = [
     activo: true,
   },
   {
-    id: 6,
+    id: 5,
     titulo: 'Giro de Negocio 2.4',
     imagen: giroNegocio2_4,
     enlaces: [
@@ -219,55 +178,7 @@ export const invitaciones: ItemCarousel[] = [
     activo: true,
   },
   {
-    id: 7,
-    titulo: 'Rendición de Cuentas 2023',
-    imagen: rendicionCuentas2023,
-    enlaces: [
-      {
-        texto: 'VER INFORME',
-        url: 'https://utneduec-my.sharepoint.com/:f:/g/personal/rendicioncuentas_lauemprende_com/EgylvZhdNd5Ony4hGeGPUy0BsmxCvuGFzZmX5Qecwhjh9Q?e=WxfwYW',
-        tipo: 'primary',
-      },
-      {
-        texto: 'REGISTRE SUS APORTES AQUÍ',
-        url: 'https://forms.office.com/r/qketnc7t5A',
-        tipo: 'secondary',
-      },
-      {
-        texto: 'MIRA EL EVENTO AQUÍ',
-        url: 'https://www.facebook.com/LAUEMPRENDE?mibextid=LQQJ4d',
-        tipo: 'link',
-      },
-    ],
-    fecha: '2023',
-    activo: true,
-  },
-  {
-    id: 8,
-    titulo: 'Informe de Rendición de Cuentas 2022',
-    imagen: irc2022,
-    enlaces: [
-      {
-        texto: 'VER INFORME',
-        url: 'https://utneduec-my.sharepoint.com/:p:/g/personal/rendicioncuentas_lauemprende_com/EcekEs7ab3FLtZpESU2fUjwBj_zNLbq7sAQ1c52dJXauHg?e=Jt3B5K',
-        tipo: 'primary',
-      },
-      {
-        texto: 'REGISTRE SUS APORTES AQUÍ',
-        url: 'https://forms.office.com/r/qketnc7t5A',
-        tipo: 'secondary',
-      },
-      {
-        texto: 'MIRA EL EVENTO AQUÍ',
-        url: 'https://fb.me/e/6z63RSHPJ',
-        tipo: 'link',
-      },
-    ],
-    fecha: '2023',
-    activo: true,
-  },
-  {
-    id: 9,
+    id: 6,
     titulo: 'Giro de Negocio 5',
     imagen: giroNegocio5,
     enlaces: [

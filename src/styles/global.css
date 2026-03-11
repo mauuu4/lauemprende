@@ -1,25 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
 @import 'tailwindcss';
 
 @theme {
-  /* Tipografía — Editorial institucional */
+  /* Tipografía */
   --font-sans:
-    'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Helvetica Neue', sans-serif;
+    'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
   --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
 
-  /* Paleta de colores institucional refinada */
-  --color-primary: #0a2540;
-  --color-primary-light: #163a5f;
-  --color-primary-dark: #061b2e;
+  /* Paleta de colores institucional */
+  --color-primary: #003366;
+  --color-primary-light: #00509e;
+  --color-primary-dark: #002b55;
 
-  --color-accent: #d4a017;
-  --color-accent-light: #e8b84a;
-  --color-accent-dark: #b8890f;
+  --color-accent: #eab308;
+  --color-accent-light: #f0c030;
+  --color-accent-dark: #ca9a06;
 
   /* Superficies y fondos */
-  --color-surface: #f8f7f4;
-  --color-surface-warm: #f3f0ea;
+  --color-surface: #f4f6f9;
+  --color-surface-warm: #eef1f5;
   --color-surface-card: #ffffff;
 
   /* Textos */
@@ -28,9 +28,9 @@
   --color-text-muted: #718096;
 
   /* Colores secundarios para UI */
-  --color-secondary: #c8d6e5;
-  --color-muted: #94a3b8;
-  --color-border-light: #163a5f;
+  --color-secondary: #dbeafe;
+  --color-muted: #bfdbfe;
+  --color-border-light: #1e40af;
 
   /* Animaciones */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -105,8 +105,8 @@
   /* Patrón decorativo de fondo */
   .bg-grid-pattern {
     background-image:
-      linear-gradient(to right, rgba(10, 37, 64, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(10, 37, 64, 0.03) 1px, transparent 1px);
+      linear-gradient(to right, rgba(0, 51, 102, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 51, 102, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 

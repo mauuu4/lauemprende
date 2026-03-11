@@ -1,5 +1,5 @@
 ---
-import { site, infoContacto } from '@/data/institucion'
+import { site, infoContacto, correosInstitucionales } from '@/data/institucion'
 import { footerLinks } from '@/data/navLinks'
 import Logo from '@/components/ui/Logo.astro'
 import Facebook from '@icons/social/Facebook.astro'
@@ -50,6 +50,16 @@ const contactInfo = [
     text: infoContacto.emailPrincipal,
   },
 ]
+
+// Correos institucionales por área con etiqueta corta para el footer
+const correosAreas = correosInstitucionales.map((c) => ({
+  ...c,
+  etiqueta: c.area
+    .replace('Centro de Idiomas', 'Idiomas')
+    .replace('Escuela de Conducción', 'Conducción')
+    .replace('Dirección De Operaciones', 'Operaciones')
+    .replace('Dirección de Proyectos y Capacitación Continua', 'Dir. Proyectos'),
+}))
 
 const currentYear = new Date().getFullYear()
 ---
@@ -150,6 +160,25 @@ const currentYear = new Date().getFullYear()
             )
           }
         </ul>
+
+        <!-- Correos de direcciones -->
+        <div class="mt-4 space-y-2 border-t border-white/8 pt-4">
+          {
+            correosAreas.map(({ etiqueta, email }) => (
+              <div class="flex flex-col items-center gap-0.5 md:items-start">
+                <span class="text-[10px] uppercase tracking-wide text-white/30">
+                  {etiqueta}
+                </span>
+                <a
+                  href={`mailto:${email}`}
+                  class="text-xs text-white/45 transition-colors duration-200 hover:text-white"
+                >
+                  {email}
+                </a>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
 

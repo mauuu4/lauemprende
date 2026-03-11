@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets'
 import Layout from '@/layouts/Layout.astro'
 import { site } from '@/data/institucion'
 import PageHero from '@/components/ui/PageHero.astro'
@@ -39,6 +40,15 @@ import { rendicionCuentas } from '@/data/transparencia'
               <div class="space-y-6">
                 {anio.informes.map((informe) => (
                   <div class="flex flex-col gap-6 sm:flex-row">
+                    {informe.imagen && (
+                      <div class="shrink-0 sm:w-56">
+                        <Image
+                          src={informe.imagen}
+                          alt={informe.titulo}
+                          class="w-full rounded-lg object-cover shadow-md"
+                        />
+                      </div>
+                    )}
                     <div class="flex flex-1 flex-col justify-center">
                       <h3 class="text-primary mb-2 font-display text-lg font-normal">
                         {informe.titulo}
@@ -60,3 +70,4 @@ import { rendicionCuentas } from '@/data/transparencia'
     </div>
   </section>
 </Layout>
+

@@ -1,6 +1,8 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import { cursos, invitaciones } from '@/data/carousels'
+import { anuncioDestacado } from '@/data/contenido'
+import AnnouncementModal from '@/components/ui/AnnouncementModal.astro'
 import Carousel from '@/components/ui/Carousel.astro'
 import Hero from '@/components/sections/Hero.astro'
 import Counter from '@/components/ui/Counter.astro'
@@ -14,6 +16,15 @@ const invitacionesOrdenadas = [...invitaciones].reverse()
 ---
 
 <Layout title="Inicio">
+  {
+    anuncioDestacado?.imagen && (
+      <AnnouncementModal
+        titulo={anuncioDestacado.titulo}
+        descripcion={anuncioDestacado.descripcion}
+        imagen={anuncioDestacado.imagen}
+      />
+    )
+  }
   <Hero />
 
   <section id="cursos" class="scroll-mt-16 bg-surface py-16 md:py-24">

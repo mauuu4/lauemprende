@@ -1,4 +1,7 @@
 import type { AnioRendicion, CategoriaLegislacion } from '@/types'
+import irc2024 from '@/assets/images/rendicion-de-cuentas/IRC2024.png'
+import rendicionCuentas2023 from '@/assets/images/rendicion-de-cuentas/Rendicion_Cuentas_web.png'
+import irc2022 from '@/assets/images/rendicion-de-cuentas/IRC20222.png'
 
 // ---------------------------------------------------------------------------
 // Legislación — marco normativo aplicable a la institución
@@ -104,6 +107,7 @@ export const rendicionCuentas: AnioRendicion[] = [
       {
         id: 2,
         titulo: 'Informe de Rendición de Cuentas 2024',
+        imagen: irc2024,
         enlaces: [
           {
             texto: 'VER INFORME',
@@ -120,6 +124,7 @@ export const rendicionCuentas: AnioRendicion[] = [
       {
         id: 3,
         titulo: 'Rendición de Cuentas 2023',
+        imagen: rendicionCuentas2023,
         enlaces: [
           {
             texto: 'VER INFORME',
@@ -146,6 +151,7 @@ export const rendicionCuentas: AnioRendicion[] = [
       {
         id: 4,
         titulo: 'Informe de Rendición de Cuentas 2022',
+        imagen: irc2022,
         enlaces: [
           {
             texto: 'VER INFORME',

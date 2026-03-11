@@ -84,16 +84,6 @@ export interface AnioRendicion {
   informes: InformeRendicion[]
 }
 
-/** Noticia con imagen/video y descripción */
-export interface Noticia {
-  id: number
-  titulo: string
-  descripcion: string
-  imagen?: ImageMetadata | string
-  video?: string
-  fecha: string
-}
-
 /** Anuncio para el grid estático */
 export interface Anuncio {
   id: number

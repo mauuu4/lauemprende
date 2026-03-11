@@ -31,9 +31,9 @@ const modulosResolved = modulos.map((m) => ({
     class="absolute inset-0 h-full w-full object-cover"
   />
 
-  <!-- Overlay azul institucional -->
+  <!-- Overlay institucional -->
   <div
-    class="absolute inset-0 bg-linear-to-b from-primary/90 via-primary/85 to-primary/95"
+    class="from-primary/60 via-primary/30 bg-primary/70 absolute inset-0 bg-linear-to-t to-transparent mix-blend-multiply"
     aria-hidden="true"
   >
   </div>
@@ -77,6 +77,15 @@ const modulosResolved = modulos.map((m) => ({
           uppercase={false}
         >
           Invitaciones
+        </ButtonLink>
+        <ButtonLink
+          variant="secondary"
+          size="md"
+          href="/anuncios"
+          target="_self"
+          uppercase={false}
+        >
+          Anuncios
         </ButtonLink>
       </div>
     </div>
@@ -131,20 +140,21 @@ const modulosResolved = modulos.map((m) => ({
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            class="group relative flex flex-col items-center overflow-hidden rounded-xl border border-gray-200/40 bg-white p-6 text-center shadow-md transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+            class="group hover:border-primary relative flex flex-col items-center overflow-hidden rounded-xl border border-gray-100 bg-white p-6 text-center shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             style={`animation: fadeUp 0.6s var(--ease-out-expo) ${0.1 + index * 0.08}s both`}
           >
-            <!-- Barra dorada superior -->
-            <div class="bg-accent absolute top-0 left-0 h-0.5 w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
+            <div class="bg-primary/5 absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-            <div class="bg-primary/5 group-hover:bg-primary mb-4 flex h-14 w-14 items-center justify-center rounded-xl transition-all duration-400 group-hover:text-white group-hover:shadow-lg">
+            <div class="group-hover:bg-primary bg-primary/5 relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:text-white">
               <Icon size={28} />
             </div>
 
-            <h3 class="text-primary mb-0.5 text-sm font-bold">
+            <h3 class="text-primary relative z-10 mb-1 text-sm font-bold transition-colors">
               {title}
             </h3>
-            <span class="text-[11px] text-text-muted">{subtitle}</span>
+            <span class="relative z-10 text-xs text-gray-500">{subtitle}</span>
+
+            <div class="bg-primary absolute bottom-0 left-0 h-1 w-full scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
           </a>
         ))
       }
