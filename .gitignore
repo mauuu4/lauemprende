@@ -26,6 +26,9 @@ pnpm-debug.log*
 # large files
 public/uploads/portafolio_UEmprende.pdf
 
+# datos generados por PHP en el servidor
+public/api/datos-clicks.json
+
 .agents
 skills-lock.json
 AGENTS.md

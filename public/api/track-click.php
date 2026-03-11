@@ -1,15 +1,35 @@
 <?php
 /**
  * API para registrar clicks en enlaces externos.
- * Recibe POST con JSON: { url, label, page }
+ * Recibe POST con JSON: { url, titulo, pagina }
  * Guarda los clicks en un archivo JSON con conteo acumulado.
+ * Usa flock() para lectura y escritura atómica (evita pérdida de datos concurrentes).
  */
 
 // Solo aceptar POST
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // Preflight CORS
+    $origenesPermitidos = [
+        'https://lauemprende.com',
+        'https://www.lauemprende.com',
+        'https://prueba.lauemprende.com',
+        'http://localhost:4321'
+    ];
+    $origen = $_SERVER['HTTP_ORIGIN'] ?? '';
+    if (in_array($origen, $origenesPermitidos, true)) {
+        header("Access-Control-Allow-Origin: $origen");
+        header('Access-Control-Allow-Methods: POST');
+        header('Access-Control-Allow-Headers: Content-Type');
+        header('Access-Control-Max-Age: 86400');
+    }
+    http_response_code(204);
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Method not allowed']);
+    echo json_encode(['error' => 'Método no permitido']);
     exit;
 }
 
@@ -19,98 +39,125 @@ header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 header('Cache-Control: no-store');
 
-// Dominios permitidos (CORS para mismo dominio)
-$allowedOrigins = [
+// Dominios permitidos (CORS)
+$origenesPermitidos = [
     'https://lauemprende.com',
     'https://www.lauemprende.com',
     'https://prueba.lauemprende.com',
     'http://localhost:4321'
 ];
 
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if (in_array($origin, $allowedOrigins, true)) {
-    header("Access-Control-Allow-Origin: $origin");
+$origen = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origen, $origenesPermitidos, true)) {
+    header("Access-Control-Allow-Origin: $origen");
     header('Access-Control-Allow-Methods: POST');
     header('Access-Control-Allow-Headers: Content-Type');
 }
 
 // Leer body
-$input = json_decode(file_get_contents('php://input'), true);
-
-if (!$input || empty($input['url'])) {
+$cuerpo = file_get_contents('php://input');
+if (!$cuerpo) {
     http_response_code(400);
-    echo json_encode(['error' => 'Missing required field: url']);
+    echo json_encode(['error' => 'Cuerpo de la solicitud vacío']);
+    exit;
+}
+
+$entrada = json_decode($cuerpo, true);
+if (json_last_error() !== JSON_ERROR_NONE) {
+    http_response_code(400);
+    echo json_encode(['error' => 'JSON inválido']);
+    exit;
+}
+
+if (!$entrada || empty($entrada['url'])) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Campo requerido faltante: url']);
     exit;
 }
 
 // Sanitizar datos
-$url = filter_var($input['url'], FILTER_SANITIZE_URL);
-$label = isset($input['label']) ? mb_substr(strip_tags($input['label']), 0, 200) : '';
-$page = isset($input['page']) ? mb_substr(strip_tags($input['page']), 0, 200) : '';
+$url = filter_var($entrada['url'], FILTER_SANITIZE_URL);
+$titulo = isset($entrada['titulo']) ? mb_substr(strip_tags($entrada['titulo']), 0, 300) : '';
+$pagina = isset($entrada['pagina']) ? mb_substr(strip_tags($entrada['pagina']), 0, 200) : '';
 
 // Validar que sea una URL real
 if (!filter_var($url, FILTER_VALIDATE_URL)) {
     http_response_code(400);
-    echo json_encode(['error' => 'Invalid URL']);
+    echo json_encode(['error' => 'URL inválida']);
     exit;
 }
 
 // Archivo de datos
-$dataFile = __DIR__ . '/click-data.json';
+$archivoDatos = __DIR__ . '/datos-clicks.json';
+$mes = date('Y-m');
+$clave = md5($url);
 
-// Leer datos existentes
-$data = [];
-if (file_exists($dataFile)) {
-    $content = file_get_contents($dataFile);
-    $data = json_decode($content, true) ?: [];
+// Lectura y escritura atómica con flock() para evitar race conditions
+$fp = fopen($archivoDatos, 'c+');
+if (!$fp) {
+    http_response_code(500);
+    echo json_encode(['error' => 'No se pudo abrir el archivo de datos']);
+    exit;
 }
 
-// Clave unica por URL
-$key = md5($url);
-$now = date('Y-m-d H:i:s');
-$month = date('Y-m');
+// Bloquear archivo (espera si otro proceso lo tiene bloqueado)
+if (!flock($fp, LOCK_EX)) {
+    fclose($fp);
+    http_response_code(500);
+    echo json_encode(['error' => 'No se pudo obtener el bloqueo del archivo']);
+    exit;
+}
 
-if (!isset($data[$key])) {
-    // Primer click en esta URL
-    $data[$key] = [
+// Leer contenido actual dentro del bloqueo
+$contenido = '';
+$tamano = filesize($archivoDatos);
+if ($tamano > 0) {
+    $contenido = fread($fp, $tamano);
+}
+$datos = $contenido ? (json_decode($contenido, true) ?: []) : [];
+
+// Crear o actualizar entrada
+if (!isset($datos[$clave])) {
+    $datos[$clave] = [
         'url' => $url,
-        'label' => $label,
-        'page' => $page,
-        'totalClicks' => 0,
-        'firstClick' => $now,
-        'lastClick' => $now,
-        'monthly' => []
+        'titulo' => $titulo,
+        'pagina' => $pagina,
+        'clicksTotales' => 0,
+        'mensual' => []
     ];
 }
 
 // Incrementar contadores
-$data[$key]['totalClicks']++;
-$data[$key]['lastClick'] = $now;
+$datos[$clave]['clicksTotales']++;
 
-// Actualizar label/page si vienen (puede cambiar con el tiempo)
-if ($label) $data[$key]['label'] = $label;
-if ($page) $data[$key]['page'] = $page;
+// Actualizar titulo/pagina si vienen (puede cambiar con el tiempo)
+if ($titulo) $datos[$clave]['titulo'] = $titulo;
+if ($pagina) $datos[$clave]['pagina'] = $pagina;
 
 // Conteo mensual
-if (!isset($data[$key]['monthly'][$month])) {
-    $data[$key]['monthly'][$month] = 0;
+if (!isset($datos[$clave]['mensual'][$mes])) {
+    $datos[$clave]['mensual'][$mes] = 0;
 }
-$data[$key]['monthly'][$month]++;
+$datos[$clave]['mensual'][$mes]++;
 
-// Guardar
-$saved = file_put_contents(
-    $dataFile,
-    json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
-    LOCK_EX
-);
+// Escribir datos actualizados (truncar archivo primero)
+ftruncate($fp, 0);
+rewind($fp);
+$json = json_encode($datos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+$escrito = fwrite($fp, $json);
 
-if ($saved === false) {
+// Liberar bloqueo y cerrar
+fflush($fp);
+flock($fp, LOCK_UN);
+fclose($fp);
+
+if ($escrito === false) {
     http_response_code(500);
-    echo json_encode(['error' => 'Failed to save data']);
+    echo json_encode(['error' => 'Error al guardar los datos']);
     exit;
 }
 
 echo json_encode([
-    'success' => true,
-    'totalClicks' => $data[$key]['totalClicks']
+    'exito' => true,
+    'clicksTotales' => $datos[$clave]['clicksTotales']
 ]);

@@ -1,0 +1,508 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import PageHero from '@/components/ui/PageHero.astro'
+---
+
+<Layout
+  title="Estadísticas de Clicks"
+  description="Panel de estadísticas de clicks en enlaces externos"
+>
+  <PageHero
+    title="Estadísticas de Clicks"
+    description="Seguimiento de interacciones en enlaces externos del sitio"
+  />
+
+  <section class="min-h-[60vh] bg-surface py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <!-- Estado de carga -->
+      <div id="estado-carga" class="py-20 text-center">
+        <p class="text-sm text-text-muted">Cargando datos...</p>
+      </div>
+
+      <!-- Dashboard -->
+      <div id="dashboard" class="hidden">
+        <!-- Resumen general -->
+        <div class="mb-10 grid gap-5 sm:grid-cols-3">
+          <div
+            class="rounded-xl border border-gray-200/60 bg-white p-6 text-center"
+          >
+            <p class="mb-1 text-sm font-medium text-text-muted">
+              Total de clicks
+            </p>
+            <p
+              id="stat-total"
+              class="font-display text-3xl font-normal text-primary"
+            >
+              &mdash;
+            </p>
+          </div>
+          <div
+            class="rounded-xl border border-gray-200/60 bg-white p-6 text-center"
+          >
+            <p class="mb-1 text-sm font-medium text-text-muted">
+              Enlaces rastreados
+            </p>
+            <p
+              id="stat-enlaces"
+              class="font-display text-3xl font-normal text-primary"
+            >
+              &mdash;
+            </p>
+          </div>
+          <div
+            class="rounded-xl border border-gray-200/60 bg-white p-6 text-center"
+          >
+            <p class="mb-1 text-sm font-medium text-text-muted">
+              Clicks este mes
+            </p>
+            <p
+              id="stat-mes"
+              class="font-display text-3xl font-normal text-primary"
+            >
+              &mdash;
+            </p>
+          </div>
+        </div>
+
+        <!-- Filtros -->
+        <div
+          class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <div class="h-0.5 w-6 rounded-full bg-accent"></div>
+            <h2 class="font-display text-xl font-normal text-primary">
+              Detalle por enlace
+            </h2>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <select
+              id="filtro-anio"
+              aria-label="Filtrar por año"
+              class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+              <option value="todos">Todos los años</option>
+            </select>
+            <select
+              id="filtro-mes"
+              aria-label="Filtrar por mes"
+              class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+              <option value="todos">Todos los meses</option>
+            </select>
+            <select
+              id="filtro-pagina"
+              aria-label="Filtrar por página"
+              class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+              <option value="todas">Todas las páginas</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Tabla de enlaces -->
+        <div class="overflow-hidden rounded-xl border border-gray-200/60">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead>
+                <tr class="bg-primary text-white">
+                  <th class="px-5 py-3.5 font-semibold">#</th>
+                  <th class="px-5 py-3.5 font-semibold">Título</th>
+                  <th class="px-5 py-3.5 font-semibold">Página</th>
+                  <th class="px-5 py-3.5 font-semibold">Destino</th>
+                  <th
+                    class="min-w-[100px] px-5 py-3.5 text-right font-semibold"
+                  >
+                    Clicks
+                  </th>
+                  <th
+                    class="min-w-[120px] px-5 py-3.5 text-right font-semibold"
+                  >
+                    % del total
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="tabla-cuerpo">
+                <tr>
+                  <td
+                    colspan="6"
+                    class="px-5 py-10 text-center text-text-muted"
+                  >
+                    Cargando datos...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Resumen mensual -->
+        <div class="mt-12">
+          <div class="mb-6 flex items-center gap-3">
+            <div class="h-0.5 w-6 rounded-full bg-accent"></div>
+            <h2 class="font-display text-xl font-normal text-primary">
+              Resumen mensual
+            </h2>
+          </div>
+          <div
+            id="resumen-mensual"
+            class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  /** Nombres de meses en español */
+  const MESES: Record<string, string> = {
+    '01': 'Enero',
+    '02': 'Febrero',
+    '03': 'Marzo',
+    '04': 'Abril',
+    '05': 'Mayo',
+    '06': 'Junio',
+    '07': 'Julio',
+    '08': 'Agosto',
+    '09': 'Septiembre',
+    '10': 'Octubre',
+    '11': 'Noviembre',
+    '12': 'Diciembre',
+  }
+
+  /** Estructura de cada enlace en datos-clicks.json (escrito por track-click.php) */
+  interface EntradaClick {
+    url: string
+    titulo: string
+    pagina: string
+    clicksTotales: number
+    mensual: Record<string, number>
+  }
+
+  /** El JSON es un objeto con claves MD5 */
+  type DatosClicks = Record<string, EntradaClick>
+
+  let enlacesGlobales: EntradaClick[] = []
+
+  function formatearMes(claveMes: string): string {
+    const [anio, mes] = claveMes.split('-')
+    return `${MESES[mes] || mes} ${anio}`
+  }
+
+  function nombreMes(numMes: string): string {
+    return MESES[numMes] || numMes
+  }
+
+  function acortarUrl(url: string, max = 40): string {
+    try {
+      const parsed = new URL(url)
+      let mostrar = parsed.hostname + parsed.pathname
+      if (mostrar.length > max) mostrar = mostrar.substring(0, max) + '…'
+      return mostrar
+    } catch {
+      return url.substring(0, max)
+    }
+  }
+
+  function obtenerTipoDestino(url: string): string {
+    if (url.includes('zoom.us')) return 'Zoom'
+    if (url.includes('drive.google.com')) return 'Google Drive'
+    if (url.includes('sharepoint.com') || url.includes('onedrive'))
+      return 'OneDrive'
+    if (url.includes('forms.office.com') || url.includes('forms.microsoft.com'))
+      return 'Microsoft Forms'
+    if (url.includes('facebook.com') || url.includes('fb.me')) return 'Facebook'
+    return 'Externo'
+  }
+
+  /** Calcula los clicks de un enlace según filtros de año y mes */
+  function calcularClicks(
+    enlace: EntradaClick,
+    anio: string,
+    mes: string,
+  ): number {
+    if (anio === 'todos' && mes === 'todos') {
+      return enlace.clicksTotales
+    }
+
+    let total = 0
+    for (const [clave, clicks] of Object.entries(enlace.mensual)) {
+      const [a, m] = clave.split('-')
+      const coincideAnio = anio === 'todos' || a === anio
+      const coincideMes = mes === 'todos' || m === mes
+      if (coincideAnio && coincideMes) {
+        total += clicks
+      }
+    }
+    return total
+  }
+
+  function renderizarTabla(
+    enlaces: EntradaClick[],
+    anio: string,
+    mes: string,
+    pagina: string,
+  ) {
+    const cuerpo = document.getElementById('tabla-cuerpo')
+    if (!cuerpo) return
+
+    // Filtrar por página
+    let filtrados = enlaces
+    if (pagina !== 'todas') {
+      filtrados = filtrados.filter((e) => e.pagina === pagina)
+    }
+
+    // Calcular clicks según filtros
+    const conClicks = filtrados.map((e) => ({
+      ...e,
+      clicksMostrados: calcularClicks(e, anio, mes),
+    }))
+
+    // Filtrar los que tienen 0 clicks
+    const visibles = conClicks.filter((e) => e.clicksMostrados > 0)
+
+    // Ordenar por clicks (mayor primero)
+    visibles.sort((a, b) => b.clicksMostrados - a.clicksMostrados)
+
+    const totalFiltrado = visibles.reduce(
+      (sum, e) => sum + e.clicksMostrados,
+      0,
+    )
+
+    if (visibles.length === 0) {
+      cuerpo.innerHTML = `<tr><td colspan="6" class="px-5 py-10 text-center text-text-muted">No hay datos para el filtro seleccionado</td></tr>`
+      return
+    }
+
+    cuerpo.innerHTML = visibles
+      .map((enlace, i) => {
+        const porcentaje =
+          totalFiltrado > 0
+            ? ((enlace.clicksMostrados / totalFiltrado) * 100).toFixed(1)
+            : '0.0'
+        const tipo = obtenerTipoDestino(enlace.url)
+        const barraAncho =
+          totalFiltrado > 0
+            ? (enlace.clicksMostrados / totalFiltrado) * 100
+            : 0
+
+        return `<tr class="border-t border-gray-100 transition-colors hover:bg-surface/50 ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}">
+          <td class="px-5 py-3.5 font-medium text-text-muted">${i + 1}</td>
+          <td class="px-5 py-3.5">
+            <div class="font-medium text-primary">${enlace.titulo || 'Sin título'}</div>
+            <div class="mt-0.5 text-xs text-text-muted">${tipo}</div>
+          </td>
+          <td class="px-5 py-3.5">
+            <span class="inline-flex rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">${enlace.pagina || '—'}</span>
+          </td>
+          <td class="px-5 py-3.5">
+            <a href="${enlace.url}" target="_blank" rel="noopener noreferrer" class="text-xs text-primary/70 underline decoration-primary/30 transition-colors hover:text-primary hover:decoration-primary">${acortarUrl(enlace.url)}</a>
+          </td>
+          <td class="px-5 py-3.5 text-right">
+            <span class="font-semibold text-primary">${enlace.clicksMostrados}</span>
+          </td>
+          <td class="px-5 py-3.5 text-right">
+            <div class="flex items-center justify-end gap-2">
+              <div class="h-1.5 w-16 overflow-hidden rounded-full bg-gray-200">
+                <div class="h-full rounded-full bg-accent transition-all duration-500" style="width: ${barraAncho}%"></div>
+              </div>
+              <span class="min-w-[3rem] text-xs text-text-muted">${porcentaje}%</span>
+            </div>
+          </td>
+        </tr>`
+      })
+      .join('')
+  }
+
+  function renderizarResumenMensual(enlaces: EntradaClick[]) {
+    const contenedor = document.getElementById('resumen-mensual')
+    if (!contenedor) return
+
+    // Recopilar todos los meses con sus totales
+    const totalesPorMes: Record<string, number> = {}
+    for (const enlace of enlaces) {
+      for (const [mes, clicks] of Object.entries(enlace.mensual)) {
+        totalesPorMes[mes] = (totalesPorMes[mes] || 0) + clicks
+      }
+    }
+
+    // Ordenar meses de más reciente a más antiguo
+    const mesesOrdenados = Object.keys(totalesPorMes).sort().reverse()
+
+    if (mesesOrdenados.length === 0) {
+      contenedor.innerHTML =
+        '<p class="text-sm text-text-muted">No hay datos mensuales disponibles.</p>'
+      return
+    }
+
+    const maxClicks = Math.max(...Object.values(totalesPorMes))
+
+    contenedor.innerHTML = mesesOrdenados
+      .map((mes) => {
+        const total = totalesPorMes[mes]
+        const barraAncho = maxClicks > 0 ? (total / maxClicks) * 100 : 0
+
+        return `<div class="rounded-xl border border-gray-200/60 bg-white p-5 transition-all duration-300 hover:shadow-md">
+          <div class="mb-3 flex items-center justify-between">
+            <h3 class="font-display text-lg font-normal text-primary">${formatearMes(mes)}</h3>
+            <span class="font-display text-2xl font-normal text-primary">${total}</span>
+          </div>
+          <div class="h-2 overflow-hidden rounded-full bg-gray-100">
+            <div class="h-full rounded-full bg-accent transition-all duration-700" style="width: ${barraAncho}%"></div>
+          </div>
+          <p class="mt-2 text-xs text-text-muted">clicks totales</p>
+        </div>`
+      })
+      .join('')
+  }
+
+  /** Extrae años y meses únicos de los datos y puebla los selects */
+  function poblarFiltros(enlaces: EntradaClick[]) {
+    const selectAnio = document.getElementById(
+      'filtro-anio',
+    ) as HTMLSelectElement
+    const selectMes = document.getElementById(
+      'filtro-mes',
+    ) as HTMLSelectElement
+    const selectPagina = document.getElementById(
+      'filtro-pagina',
+    ) as HTMLSelectElement
+
+    const anios = new Set<string>()
+    const meses = new Set<string>()
+    const paginas = new Set<string>()
+
+    for (const enlace of enlaces) {
+      if (enlace.pagina) paginas.add(enlace.pagina)
+      for (const clave of Object.keys(enlace.mensual)) {
+        const [a, m] = clave.split('-')
+        anios.add(a)
+        meses.add(m)
+      }
+    }
+
+    // Poblar años (más reciente primero)
+    if (selectAnio) {
+      for (const anio of Array.from(anios).sort().reverse()) {
+        const option = document.createElement('option')
+        option.value = anio
+        option.textContent = anio
+        selectAnio.appendChild(option)
+      }
+    }
+
+    // Poblar meses (enero a diciembre)
+    if (selectMes) {
+      for (const mes of Array.from(meses).sort()) {
+        const option = document.createElement('option')
+        option.value = mes
+        option.textContent = nombreMes(mes)
+        selectMes.appendChild(option)
+      }
+    }
+
+    // Poblar páginas
+    if (selectPagina) {
+      for (const pagina of Array.from(paginas).sort()) {
+        const option = document.createElement('option')
+        option.value = pagina
+        option.textContent = pagina
+        selectPagina.appendChild(option)
+      }
+    }
+  }
+
+  async function cargarDatos(): Promise<boolean> {
+    try {
+      const resp = await fetch(`/api/datos-clicks.json?t=${Date.now()}`, { cache: 'no-store' })
+      if (!resp.ok) return false
+
+      const datos: DatosClicks = await resp.json()
+
+      // Convertir objeto a array
+      enlacesGlobales = Object.values(datos)
+
+      // Ordenar por clicks totales (mayor primero)
+      enlacesGlobales.sort((a, b) => b.clicksTotales - a.clicksTotales)
+
+      // Calcular totales
+      const totalClicks = enlacesGlobales.reduce(
+        (sum, e) => sum + e.clicksTotales,
+        0,
+      )
+
+      // Clicks del mes actual
+      const mesActual = new Date().toISOString().slice(0, 7)
+      const clicksMesActual = enlacesGlobales.reduce(
+        (sum, e) => sum + (e.mensual[mesActual] ?? 0),
+        0,
+      )
+
+      // Actualizar resumen
+      const statTotal = document.getElementById('stat-total')
+      const statEnlaces = document.getElementById('stat-enlaces')
+      const statMes = document.getElementById('stat-mes')
+
+      if (statTotal) statTotal.textContent = totalClicks.toString()
+      if (statEnlaces)
+        statEnlaces.textContent = enlacesGlobales.length.toString()
+      if (statMes) statMes.textContent = clicksMesActual.toString()
+
+      // Poblar filtros y renderizar
+      poblarFiltros(enlacesGlobales)
+      renderizarTabla(enlacesGlobales, 'todos', 'todos', 'todas')
+      renderizarResumenMensual(enlacesGlobales)
+
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  function inicializar() {
+    const estadoCarga = document.getElementById('estado-carga')
+    const dashboard = document.getElementById('dashboard')
+    const filtroAnio = document.getElementById(
+      'filtro-anio',
+    ) as HTMLSelectElement
+    const filtroMes = document.getElementById('filtro-mes') as HTMLSelectElement
+    const filtroPagina = document.getElementById(
+      'filtro-pagina',
+    ) as HTMLSelectElement
+
+    if (!estadoCarga || !dashboard) return
+
+    // Cargar datos inmediatamente
+    cargarDatos().then((exito) => {
+      estadoCarga.classList.add('hidden')
+      if (exito) {
+        dashboard.classList.remove('hidden')
+      } else {
+        estadoCarga.classList.remove('hidden')
+        estadoCarga.innerHTML =
+          '<p class="text-sm text-text-muted">No hay datos de clicks disponibles aún.</p>'
+      }
+    })
+
+    // Filtros
+    const aplicarFiltros = () => {
+      if (enlacesGlobales.length === 0) return
+      const anio = filtroAnio?.value || 'todos'
+      const mes = filtroMes?.value || 'todos'
+      const pagina = filtroPagina?.value || 'todas'
+      renderizarTabla(enlacesGlobales, anio, mes, pagina)
+    }
+
+    filtroAnio?.addEventListener('change', aplicarFiltros)
+    filtroMes?.addEventListener('change', aplicarFiltros)
+    filtroPagina?.addEventListener('change', aplicarFiltros)
+  }
+
+  // Inicializar
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inicializar)
+  } else {
+    inicializar()
+  }
+</script>
