@@ -15,7 +15,7 @@ const { titulo, descripcion, imagen, href = '/anuncios' } = Astro.props
 <!-- Overlay -->
 <div
   id="announcement-overlay"
-  class="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm transition-opacity duration-300"
+  class="fixed inset-0 z-9998 bg-black/40 transition-opacity duration-300"
   aria-hidden="true"
 >
 </div>
@@ -23,14 +23,14 @@ const { titulo, descripcion, imagen, href = '/anuncios' } = Astro.props
 <!-- Modal -->
 <dialog
   id="announcement-modal"
-  class="fixed inset-0 z-[9999] m-auto flex max-h-[90dvh] w-[92vw] max-w-lg flex-col overflow-hidden rounded-2xl border border-gray-200/40 bg-white shadow-2xl outline-none transition-all duration-300 open:animate-modal-in sm:w-full"
+  class="fixed inset-0 z-9999 m-auto flex max-h-[90dvh] w-[92vw] max-w-lg flex-col overflow-hidden rounded-2xl border border-gray-200/40 bg-white shadow-2xl outline-none transition-all duration-300 open:animate-modal-in sm:w-full"
   aria-labelledby="announcement-title"
 >
   <!-- Botón cerrar -->
   <button
     id="announcement-close"
     type="button"
-    class="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-text-secondary shadow-md backdrop-blur-sm transition-all duration-200 hover:bg-white hover:text-primary hover:shadow-lg focus-visible:outline-accent"
+    class="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/20 text-white/90 shadow-lg backdrop-blur-md transition-all duration-200 hover:bg-black/30 hover:text-white hover:shadow-xl focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none cursor-pointer"
     aria-label="Cerrar anuncio"
   >
     <svg
@@ -105,9 +105,6 @@ const { titulo, descripcion, imagen, href = '/anuncios' } = Astro.props
       </span>
     </div>
   </a>
-
-  <!-- Barra dorada inferior decorativa -->
-  <div class="bg-accent h-1 w-full"></div>
 </dialog>
 
 <style>

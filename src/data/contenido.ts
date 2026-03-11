@@ -10,22 +10,22 @@ import fechasEnero from '@/assets/images/cursos/fechasEnero.jpg'
 export const anuncios: Anuncio[] = [
   {
     id: 1,
-    titulo: 'Examen Internacional Cambridge — 13 de febrero 2026',
-    descripcion:
-      'Rinde el Examen Internacional de Inglés Cambridge y obtén una certificación global. Niveles disponibles: B1, B2, C1 y C2. Fecha: viernes 13 de febrero de 2026, 09h00. Centro de Idiomas LA UEMPRENDE E.P. – UTN.',
-    imagen: cambridge3Ene2026,
-    enlaces: [],
-    fecha: '2026-02-13',
-    activo: true,
-  },
-  {
-    id: 2,
     titulo: 'Exámenes Cambridge — Reserva tu cupo',
     descripcion:
       'Reserva tu espacio para el examen oficial Cambridge Qualifications. Sesiones disponibles: B2 First, C1 Advanced y B1 Preliminary el 6 de febrero de 2026. Registro hasta el 26 de enero de 2026.',
     imagen: cambridgeQua,
     enlaces: [],
     fecha: '2026-02-06',
+    activo: true,
+  },
+  {
+    id: 2,
+    titulo: 'Examen Internacional Cambridge — 13 de febrero 2026',
+    descripcion:
+      'Rinde el Examen Internacional de Inglés Cambridge y obtén una certificación global. Niveles disponibles: B1, B2, C1 y C2. Fecha: viernes 13 de febrero de 2026, 09h00. Centro de Idiomas LA UEMPRENDE E.P. – UTN.',
+    imagen: cambridge3Ene2026,
+    enlaces: [],
+    fecha: '2026-02-13',
     activo: true,
   },
   {

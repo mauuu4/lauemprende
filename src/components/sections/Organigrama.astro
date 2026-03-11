@@ -5,18 +5,20 @@ import organigramaImg from '@/assets/images/institucional/Organigrama2025.png'
 ---
 
 <section id="organigrama" class="scroll-mt-20 bg-white py-16 md:py-24">
-  <div class="mx-auto max-w-7xl px-6">
-    <div class="mx-auto max-w-5xl">
+  <div class="mx-auto max-w-7xl px-2 md:px-6">
+    <div class="mx-auto md:max-w-5xl">
       <div
         class="overflow-hidden rounded-xl border border-gray-200/60 bg-white"
       >
         <Image
           src={organigramaImg}
           alt={`Organigrama ${site.fullName}`}
-          width={1200}
-          height={800}
+          width={1280}
+          height={720}
+          format="png"
+          quality={100}
           class="h-auto w-full"
-          loading="lazy"
+          loading="eager"
         />
       </div>
     </div>

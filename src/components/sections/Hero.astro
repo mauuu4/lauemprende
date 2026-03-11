@@ -117,12 +117,15 @@ const modulosResolved = modulos.map((m) => ({
               target="_blank"
               rel="noopener noreferrer"
               class="text-primary flex items-center gap-4 px-6 py-3.5 transition-colors hover:bg-surface"
+              aria-label={`${title} — ${subtitle}`}
             >
               <div class="bg-primary/5 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg">
                 <Icon size={22} />
               </div>
               <div class="flex-1">
-                <h3 class="text-sm font-semibold">{title}</h3>
+                <h3 class="text-sm font-semibold" aria-label={title}>
+                  {title}
+                </h3>
                 <p class="text-xs text-text-muted">{subtitle}</p>
               </div>
               <ChevronRight class="h-4 w-4 shrink-0 text-text-muted" />

@@ -39,10 +39,11 @@ export function getImageSize(index: number, total: number): string {
 }
 
 /**
- * Determina si una imagen debe cargarse con eager loading
+ * Determina si una imagen debe cargarse con eager loading.
+ * Solo la primera imagen de la primera categoría se carga eager,
+ * ya que es la única visible en el viewport en mobile.
  */
 export function shouldLoadEager(catIndex: number, imgIndex: number): boolean {
-  if (catIndex === 0) return true
-  if (catIndex === 1 && imgIndex < 3) return true
+  if (catIndex === 0 && imgIndex < 5) return true
   return false
 }

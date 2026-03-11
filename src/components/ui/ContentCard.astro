@@ -14,6 +14,7 @@ interface Props {
   imagen?: ImageMetadata | string
   video?: string
   enlaces?: Enlace[]
+  loading?: 'eager' | 'lazy'
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   imagen,
   video,
   enlaces = [],
+  loading = 'lazy',
 } = Astro.props
 ---
 
@@ -65,7 +67,7 @@ const {
             width="600"
             height="340"
             class="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
+            loading={loading}
           />
         </div>
       ) : (
@@ -76,7 +78,7 @@ const {
             width={600}
             height={imagen.height}
             class="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
+            loading={loading}
           />
         </div>
       )

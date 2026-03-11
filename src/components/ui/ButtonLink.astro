@@ -6,6 +6,7 @@ interface Props {
   href: string
   target?: '_blank' | '_self'
   class?: string
+  'aria-label'?: string
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   href,
   target = '_blank',
   class: className = '',
+  'aria-label': ariaLabel,
 } = Astro.props
 
 const baseClasses =
@@ -35,6 +37,9 @@ const sizeClasses = {
 const uppercaseClass = uppercase ? 'uppercase tracking-wide' : ''
 
 const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${uppercaseClass} ${className}`
+
+// Detectar si es enlace externo para tracking
+const isExternal = href.startsWith('http') && !href.includes('lauemprende.com')
 ---
 
 <a
@@ -42,6 +47,8 @@ const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} 
   target={target}
   rel={target === '_blank' ? 'noopener noreferrer' : undefined}
   class={classes}
+  aria-label={ariaLabel}
+  data-track-click={isExternal ? true : undefined}
 >
   <slot />
 </a>

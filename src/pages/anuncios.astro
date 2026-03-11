@@ -27,7 +27,7 @@ const anunciosOrdenados = [...anuncios]
     <div class="mx-auto max-w-7xl px-6">
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
-          anunciosOrdenados.map((anuncio) => (
+          anunciosOrdenados.map((anuncio, index) => (
             <ContentCard
               titulo={anuncio.titulo}
               descripcion={anuncio.descripcion}
@@ -35,6 +35,7 @@ const anunciosOrdenados = [...anuncios]
               fechaFormateada={formatDate(anuncio.fecha)}
               imagen={anuncio.imagen}
               enlaces={anuncio.enlaces}
+              loading={index < 1 ? 'eager' : 'lazy'}
             >
               <div slot="placeholder-icon" class="text-primary/20 text-center">
                 <Megaphone class="mx-auto h-12 w-12" />

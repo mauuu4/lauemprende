@@ -50,7 +50,10 @@ import { rendicionCuentas } from '@/data/transparencia'
                       </div>
                     )}
                     <div class="flex flex-1 flex-col justify-center">
-                      <h3 class="text-primary mb-2 font-display text-lg font-normal">
+                      <h3
+                        class="text-primary mb-2 font-display text-lg font-normal"
+                        aria-label={informe.titulo}
+                      >
                         {informe.titulo}
                       </h3>
                       {informe.descripcion && (

@@ -13,7 +13,12 @@ const { enlaces } = Astro.props
   enlaces.length > 0 && (
     <div class="flex flex-wrap gap-2">
       {enlaces.map((enlace) => (
-        <ButtonLink variant={enlace.tipo} size="sm" href={enlace.url}>
+        <ButtonLink
+          variant={enlace.tipo}
+          size="sm"
+          href={enlace.url}
+          aria-label={enlace.texto}
+        >
           {enlace.texto}
         </ButtonLink>
       ))}
