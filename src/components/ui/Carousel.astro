@@ -26,6 +26,7 @@ const { items, id, loading = 'lazy', eagerCount = 6 } = Astro.props
                 alt={item.titulo}
                 width={800}
                 height={1100}
+                format="webp"
                 class="carousel-image h-full w-full cursor-zoom-in object-cover transition-all duration-500 group-hover:scale-110"
                 loading={
                   loading === 'eager' && index < eagerCount ? 'eager' : 'lazy'

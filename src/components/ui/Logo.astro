@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets'
 import { site } from '@/data/institucion'
-import logoSrc from '@public/favicon.svg'
 
 interface Props {
   class?: string
@@ -10,14 +8,6 @@ interface Props {
 }
 
 const { class: className = '', size = 'md', loading = 'eager' } = Astro.props
-
-const sizeMap = {
-  xs: { width: 40, height: 40 },
-  sm: { width: 48, height: 48 },
-  md: { width: 64, height: 64 },
-  lg: { width: 80, height: 80 },
-  xl: { width: 96, height: 96 },
-}
 
 const sizeClasses = {
   xs: 'h-10 w-auto',
@@ -28,11 +18,9 @@ const sizeClasses = {
 }
 ---
 
-<Image
-  src={logoSrc}
+<img
+  src="/favicon.svg"
   alt={`Logo de ${site.name}`}
-  width={sizeMap[size].width}
-  height={sizeMap[size].height}
   class:list={[sizeClasses[size], className]}
   loading={loading}
   decoding="async"
