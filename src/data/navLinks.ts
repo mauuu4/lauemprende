@@ -1,4 +1,4 @@
-import type { NavChild, NavLink } from '@/types'
+import type { FooterLinkGroup, NavLink } from '@/types'
 
 /** Links de navegación principal — usados por Header.astro */
 export const navLinks: NavLink[] = [
@@ -28,10 +28,23 @@ export const navLinks: NavLink[] = [
   { href: '/contactos', label: 'Contactos' },
 ]
 
-/** Links del pie de página (sección "Información legal") — usados por Footer.astro */
-export const footerLinks: NavChild[] = [
-  { href: '/transparencia', label: 'Portal de Transparencia' },
-  { href: '/legislacion', label: 'Legislación' },
-  { href: '/rendicion-de-cuentas', label: 'Rendición de Cuentas' },
-  { href: '/contactos', label: 'Contactos' },
+/** Grupos de links del pie de página — usados por Footer.astro */
+export const footerLinkGroups: FooterLinkGroup[] = [
+  {
+    title: 'Institución',
+    links: [
+      { href: '/quienes-somos', label: 'Quiénes somos' },
+      { href: '/servicios', label: 'Servicios' },
+      { href: '/anuncios', label: 'Anuncios' },
+      { href: '/contactos', label: 'Contactos' },
+    ],
+  },
+  {
+    title: 'Información legal',
+    links: [
+      { href: '/transparencia', label: 'LOTAIP' },
+      { href: '/legislacion', label: 'Legislación' },
+      { href: '/rendicion-de-cuentas', label: 'Rendición de Cuentas' },
+    ],
+  },
 ]

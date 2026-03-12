@@ -1,6 +1,6 @@
 ---
 import { site, infoContacto, correosInstitucionales } from '@/data/institucion'
-import { footerLinks } from '@/data/navLinks'
+import { footerLinkGroups } from '@/data/navLinks'
 import Logo from '@/components/ui/Logo.astro'
 import Facebook from '@icons/social/Facebook.astro'
 import Twitter from '@icons/social/Twitter.astro'
@@ -108,28 +108,33 @@ const currentYear = new Date().getFullYear()
         </div>
       </div>
 
-      <!-- Links legales -->
-      <div class="text-center md:text-left lg:col-span-3">
-        <h3
-          class="mb-4 text-[11px] font-semibold tracking-[0.15em] text-white/30 uppercase"
-        >
-          Información legal
-        </h3>
-        <ul class="space-y-2.5">
-          {
-            footerLinks.map(({ href, label }) => (
-              <li>
-                <a
-                  href={href}
-                  class="text-sm text-white/50 transition-colors duration-200 hover:text-white"
-                >
-                  {label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      <!-- Institución e Información legal -->
+      <nav
+        class="text-center md:text-left lg:col-span-3"
+        aria-label="Enlaces institucionales"
+      >
+        {
+          footerLinkGroups.map(({ title, links }, i) => (
+            <div class={i > 0 ? 'mt-6' : ''}>
+              <h3 class="mb-4 text-[11px] font-semibold tracking-[0.15em] text-white/30 uppercase">
+                {title}
+              </h3>
+              <ul class="space-y-2.5">
+                {links.map(({ href, label }) => (
+                  <li>
+                    <a
+                      href={href}
+                      class="text-sm text-white/50 transition-colors duration-200 hover:text-white"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </nav>
 
       <!-- Contacto -->
       <div class="text-center md:text-left lg:col-span-4">

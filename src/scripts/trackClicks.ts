@@ -59,8 +59,7 @@ function iniciarRastreoClicks() {
   })
 }
 
-// Inicializar
+// Inicializar una sola vez al cargar el script.
+// Usa delegación de eventos en document, por lo que no necesita
+// reinicializarse con View Transitions ni astro:page-load.
 iniciarRastreoClicks()
-
-// Soporte para View Transitions de Astro
-document.addEventListener('astro:page-load', iniciarRastreoClicks)

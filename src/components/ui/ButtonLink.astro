@@ -34,10 +34,6 @@ const sizeClasses = {
   lg: 'px-6 py-3 text-base',
 }
 
-const uppercaseClass = uppercase ? 'uppercase tracking-wide' : ''
-
-const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${uppercaseClass} ${className}`
-
 // Detectar si es enlace externo para tracking
 const isExternal = href.startsWith('http') && !href.includes('lauemprende.com')
 ---
@@ -46,7 +42,13 @@ const isExternal = href.startsWith('http') && !href.includes('lauemprende.com')
   href={href}
   target={target}
   rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-  class={classes}
+  class:list={[
+    baseClasses,
+    variantClasses[variant],
+    sizeClasses[size],
+    uppercase && 'uppercase tracking-wide',
+    className,
+  ]}
   aria-label={ariaLabel}
   data-track-click={isExternal ? true : undefined}
 >

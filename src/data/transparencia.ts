@@ -91,13 +91,13 @@ export const legislacion: CategoriaLegislacion[] = [
         url: 'https://utneduec-my.sharepoint.com/:b:/g/personal/transparencia_lauemprende_com/IQAty8hQGTzhR55n2xAd0qQSAcnwhz4adZsX6I6VYGx6U0I?e=gWHZdK',
       },
       {
-        titulo: 'Transparencia',
-        url: '#',
+        titulo:
+        'Reglamento para la Administración Uso y Control de los Fondos de Reposición y a Rendir Cuentas de la Empresa Pública LA UEMPRENDE EP',
+        url: 'https://utneduec-my.sharepoint.com/:b:/g/personal/transparencia_lauemprende_com/IQBTa2bUhNvwT6H87LpbYoUmAeU2ALG3lBv2sJX8Ymcmnjg?e=UcrkqB',
       },
       {
-        titulo:
-          'Reglamento para la Administración Uso y Control de los Fondos de Reposición y a Rendir Cuentas de la Empresa Pública LA UEMPRENDE EP',
-        url: 'https://utneduec-my.sharepoint.com/:b:/g/personal/transparencia_lauemprende_com/IQBTa2bUhNvwT6H87LpbYoUmAeU2ALG3lBv2sJX8Ymcmnjg?e=UcrkqB',
+        titulo: 'Transparencia',
+        url: '#',
       },
       {
         titulo: 'Giro de Negocio',

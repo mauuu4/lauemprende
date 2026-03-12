@@ -17,6 +17,12 @@ export interface NavLink {
   children?: NavChild[]
 }
 
+/** Grupo de links del footer (título + items) */
+export interface FooterLinkGroup {
+  title: string
+  links: NavChild[]
+}
+
 // ---------------------------------------------------------------------------
 // Módulos de acceso rápido (Hero)
 // ---------------------------------------------------------------------------

@@ -11,7 +11,7 @@ export const site = {
   /** Nombre legal / institucional completo */
   fullName: 'Empresa Pública LA UEMPRENDE EP',
   /** URL base del sitio (sin trailing slash) */
-  url: 'https://www.lauemprende.com',
+  url: 'https://prueba.lauemprende.com',
   /** Descripción por defecto para SEO */
   description:
     'Empresa Pública LA UEMPRENDE EP - Innovación y emprendimiento universitario',

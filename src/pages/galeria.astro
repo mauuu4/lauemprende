@@ -22,7 +22,7 @@ const categorias = loadGalleryImages()
     <div class="mx-auto max-w-7xl px-6">
       {
         categorias.map((categoria, catIndex) => (
-          <article class="mb-16 last:mb-0">
+          <section class="mb-16 last:mb-0">
             <div class="mb-6 flex items-center gap-3">
               <div class="bg-accent h-0.5 w-6 rounded-full" />
               <h2 class="text-primary font-display text-2xl font-normal md:text-3xl">
@@ -56,7 +56,7 @@ const categorias = loadGalleryImages()
                 </a>
               ))}
             </div>
-          </article>
+          </section>
         ))
       }
     </div>
