@@ -2,6 +2,7 @@ import type { Anuncio } from '@/types'
 import cambridgeQua from '@/assets/images/cursos/cambridge-qua.jpg'
 import cambridge3Ene2026 from '@/assets/images/cursos/Cambridge3Ene2026.jpeg'
 import fechasEnero from '@/assets/images/cursos/fechasEnero.jpg'
+import RendicionDeCuentas2025 from '@/assets/images/rendicion-de-cuentas/rendicion-cuentas-2025.png'
 
 // ---------------------------------------------------------------------------
 // Anuncios institucionales
@@ -10,6 +11,16 @@ import fechasEnero from '@/assets/images/cursos/fechasEnero.jpg'
 export const anuncios: Anuncio[] = [
   {
     id: 1,
+    titulo: 'Informe de Rendición de Cuentas 2025',
+    descripcion:
+      'En cumplimiento a lo dispuesto en la Constitución de la República del Ecuador y la Ley Orgánica del Consejo de Participación Ciudadana y Control Social la Empresa Pública LA UEMPRENDE EP invita a la: RENDICIÓN DE CUENTAS 2025.',
+    imagen: RendicionDeCuentas2025,
+    enlaces: [],
+    fecha: '2026-04-28',
+    activo: true,
+  },
+  {
+    id: 2,
     titulo: 'Exámenes Cambridge — Reserva tu cupo',
     descripcion:
       'Reserva tu espacio para el examen oficial Cambridge Qualifications. Sesiones disponibles: B2 First, C1 Advanced y B1 Preliminary el 6 de febrero de 2026. Registro hasta el 26 de enero de 2026.',
@@ -19,7 +30,7 @@ export const anuncios: Anuncio[] = [
     activo: true,
   },
   {
-    id: 2,
+    id: 3,
     titulo: 'Examen Internacional Cambridge — 13 de febrero 2026',
     descripcion:
       'Rinde el Examen Internacional de Inglés Cambridge y obtén una certificación global. Niveles disponibles: B1, B2, C1 y C2. Fecha: viernes 13 de febrero de 2026, 09h00. Centro de Idiomas LA UEMPRENDE E.P. – UTN.',
@@ -29,7 +40,7 @@ export const anuncios: Anuncio[] = [
     activo: true,
   },
   {
-    id: 3,
+    id: 4,
     titulo: 'Fechas de Exámenes Cambridge — Enero 2026',
     descripcion:
       'B2 First · C1 Advanced · B1 Preliminary — 6 de febrero 2026. Registra al estudiante hasta el 26 de enero 2026. Para más información: examenes@booksandbits.com.ec.',

@@ -2,6 +2,7 @@ import type { AnioRendicion, CategoriaLegislacion } from '@/types'
 import irc2024 from '@/assets/images/rendicion-de-cuentas/IRC2024.png'
 import rendicionCuentas2023 from '@/assets/images/rendicion-de-cuentas/Rendicion_Cuentas_web.png'
 import irc2022 from '@/assets/images/rendicion-de-cuentas/IRC20222.png'
+import RendicionDeCuentas2025 from '@/assets/images/rendicion-de-cuentas/rendicion-cuentas-2025.png'
 
 // ---------------------------------------------------------------------------
 // Legislación — marco normativo aplicable a la institución
@@ -118,8 +119,19 @@ export const rendicionCuentas: AnioRendicion[] = [
       {
         id: 1,
         titulo: 'Informe de Rendición de Cuentas 2025',
-        descripcion: 'Próximamente',
-        enlaces: [],
+        imagen: RendicionDeCuentas2025,
+        enlaces: [
+          {
+            texto: 'Rendición de Cuentas 2025',
+            url: 'https://utneduec-my.sharepoint.com/:f:/g/personal/rendicioncuentas_lauemprende_com/EqXp1knMcIVMv5KI4sLU2dgBv-PbCy52j3x56dkD7Z36Jg?e=sqiBJS',
+            tipo: 'primary',
+          },
+          {
+            texto: 'Formulario Preliminar RC-2025',
+            url: 'https://utneduec-my.sharepoint.com/:f:/g/personal/rendicioncuentas_lauemprende_com/EqXp1knMcIVMv5KI4sLU2dgBv-PbCy52j3x56dkD7Z36Jg?e=sqiBJS',
+            tipo: 'secondary',
+          },
+        ],
       },
     ],
   },
