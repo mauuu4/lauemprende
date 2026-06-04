@@ -24,6 +24,7 @@ export const navLinks: NavLink[] = [
     ],
   },
   { href: '/servicios', label: 'Servicios' },
+  { href: '/internet', label: 'Internet' },
   { href: '/anuncios', label: 'Anuncios' },
   { href: '/contactos', label: 'Contactos' },
 ]
@@ -35,6 +36,7 @@ export const footerLinkGroups: FooterLinkGroup[] = [
     links: [
       { href: '/quienes-somos', label: 'Quiénes somos' },
       { href: '/servicios', label: 'Servicios' },
+      { href: '/internet', label: 'Internet' },
       { href: '/anuncios', label: 'Anuncios' },
       { href: '/contactos', label: 'Contactos' },
     ],
@@ -45,6 +47,8 @@ export const footerLinkGroups: FooterLinkGroup[] = [
       { href: '/transparencia', label: 'LOTAIP' },
       { href: '/legislacion', label: 'Legislación' },
       { href: '/rendicion-de-cuentas', label: 'Rendición de Cuentas' },
+      { href: '/internet#normativa', label: 'Normativa ARCOTEL' },
+      { href: '/internet#derechos', label: 'Lo que ofrecemos' },
     ],
   },
 ]
