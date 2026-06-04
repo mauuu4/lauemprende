@@ -1,0 +1,504 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import ButtonLink from '@/components/ui/ButtonLink.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import ArrowRight from '@icons/ui/ArrowRight.astro'
+import FileText from '@icons/ui/FileText.astro'
+import Megaphone from '@icons/ui/Megaphone.astro'
+import Target from '@icons/ui/Target.astro'
+import TrendUp from '@icons/ui/TrendUp.astro'
+import MapPin from '@icons/contact/MapPin.astro'
+import Mail from '@icons/contact/Mail.astro'
+import Phone from '@icons/contact/Phone.astro'
+import { infoContacto, site } from '@/data/institucion'
+import {
+  attentionNotes,
+  coverageChecks,
+  coverageSteps,
+  contractorCommitments,
+  internetBenefits,
+  internetFaqs,
+  internetHighlights,
+  internetPlans,
+  internetSectionNav,
+  normativeDocuments,
+  regulatoryLinks,
+} from '@/data/internet'
+
+const internetEmail = 'internet@lauemprende.com'
+
+const benefitIcons = {
+  file: FileText,
+  megaphone: Megaphone,
+  target: Target,
+  trend: TrendUp,
+}
+
+const benefits = internetBenefits.map((benefit) => ({
+  ...benefit,
+  icon: benefitIcons[benefit.icon as keyof typeof benefitIcons],
+}))
+
+const channels = [
+  {
+    label: 'Teléfono',
+    value: `${infoContacto.telefono} ${infoContacto.telefonoExtension}`,
+    href: infoContacto.telefonoHref,
+    icon: Phone,
+  },
+  {
+    label: 'Correo institucional',
+    value: internetEmail,
+    href: `mailto:${internetEmail}`,
+    icon: Mail,
+  },
+  {
+    label: 'Atención presencial',
+    value: infoContacto.direccion,
+    href: infoContacto.mapsUrl,
+    icon: MapPin,
+    external: true,
+  },
+]
+---
+
+<Layout
+  title="Internet"
+  description={`Servicio de Internet de ${site.fullName}: planes referenciales, cobertura, beneficios, normativa y canales de atención.`}
+  ogImage="/images/internet-fibra-optica.png"
+>
+  <section class="bg-primary relative overflow-hidden text-white">
+    <div class="bg-grid-pattern absolute inset-0 opacity-20" aria-hidden="true">
+    </div>
+    <div
+      class="from-primary-light/25 via-primary to-primary-dark absolute inset-0 bg-linear-to-br"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div
+      class="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 md:grid-cols-[1.02fr_0.98fr] md:py-20 lg:py-24"
+    >
+      <div class="animate-fade-up">
+        <div class="bg-accent mb-6 h-0.5 w-12 rounded-full"></div>
+        <p
+          class="text-accent mb-4 text-xs font-semibold tracking-[0.18em] uppercase"
+        >
+          Servicio de Acceso a Internet
+        </p>
+        <h1
+          class="font-display max-w-3xl text-4xl leading-tight font-normal md:text-5xl lg:text-6xl"
+        >
+          Conectividad para hogares, negocios y proyectos
+        </h1>
+        <p
+          class="mt-5 max-w-2xl text-base leading-relaxed text-white/72 md:text-lg"
+        >
+          Internet para estudiar, trabajar, vender y estar conectado con lo que
+          importa. Consulta la disponibilidad en tu sector y recibe una
+          propuesta clara antes de contratar.
+        </p>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <ButtonLink
+            href="#planes"
+            target="_self"
+            variant="secondary"
+            size="md"
+          >
+            Ver planes
+            <ArrowRight size={16} />
+          </ButtonLink>
+          <ButtonLink href="#atencion" target="_self" variant="link" size="md">
+            Solicitar información
+            <ArrowRight size={16} />
+          </ButtonLink>
+        </div>
+
+        <nav
+          class="mt-8 flex flex-wrap gap-2"
+          aria-label="Navegación interna de Internet"
+        >
+          {
+            internetSectionNav.map(({ href, label }) => (
+              <a
+                href={href}
+                class="hover:border-accent/50 rounded-full border border-white/10 bg-white/6 px-3 py-1.5 text-xs font-medium text-white/65 transition-colors hover:text-white"
+              >
+                {label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+
+      <div class="animate-fade-in relative">
+        <div
+          class="absolute -inset-3 rounded-2xl border border-white/10 bg-white/5"
+          aria-hidden="true"
+        >
+        </div>
+        <img
+          src="/images/internet-fibra-optica.png"
+          alt="Fibras ópticas iluminadas que representan conectividad a internet"
+          class="relative aspect-[4/3] w-full rounded-xl object-cover shadow-2xl ring-1 ring-white/10"
+          width="1536"
+          height="1024"
+          loading="eager"
+          decoding="async"
+        />
+        <div
+          class="relative -mt-10 grid gap-2 px-4 sm:grid-cols-3"
+          aria-label="Características del servicio"
+        >
+          {
+            internetHighlights.map(({ value, label }) => (
+              <div class="bg-primary-dark/88 rounded-lg border border-white/10 p-3 shadow-lg backdrop-blur">
+                <p class="text-accent text-lg font-bold">{value}</p>
+                <p class="mt-1 text-xs leading-snug text-white/58">{label}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="planes" class="bg-surface scroll-mt-20 py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <SectionHeader
+        title="Planes de internet"
+        subtitle="Elige el tipo de servicio que se acerca a tu necesidad. La disponibilidad, valores y condiciones se confirman con una propuesta clara antes de contratar."
+      />
+
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          internetPlans.map((plan) => (
+            <article class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-200/70 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div class="bg-accent absolute top-0 left-0 h-0.5 w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
+              <p class="text-accent mb-3 text-xs font-bold tracking-[0.14em] uppercase">
+                {plan.audience}
+              </p>
+              <h3 class="text-primary text-2xl font-normal">{plan.name}</h3>
+              <p class="text-text-secondary mt-3 text-sm">{plan.description}</p>
+              <ul class="mt-5 grow space-y-2.5">
+                {plan.features.map((feature) => (
+                  <li class="text-text-secondary flex items-start gap-2 text-sm">
+                    <span class="bg-accent mt-2 h-1.5 w-1.5 shrink-0 rounded-full" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#atencion"
+                class="text-primary hover:text-primary-light mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
+              >
+                Consultar disponibilidad
+                <ArrowRight size={15} />
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="cobertura" class="scroll-mt-20 bg-white py-16 md:py-24">
+    <div
+      class="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start"
+    >
+      <div>
+        <p
+          class="text-accent mb-3 text-xs font-bold tracking-[0.16em] uppercase"
+        >
+          Cobertura
+        </p>
+        <h2 class="text-primary text-3xl font-normal md:text-4xl">
+          Verificamos cobertura en tu sector
+        </h2>
+        <p class="text-text-secondary mt-4 max-w-xl">
+          Antes de contratar, revisamos si el servicio está disponible en tu
+          domicilio, local u oficina. Así recibes una respuesta real y una
+          propuesta acorde a tu ubicación.
+        </p>
+
+        <div class="bg-surface mt-6 rounded-xl border border-gray-200/70 p-5">
+          <h3 class="text-primary text-lg font-normal">
+            ¿Qué se confirma en la revisión?
+          </h3>
+          <ul class="mt-4 space-y-2.5">
+            {
+              coverageChecks.map((item) => (
+                <li class="text-text-secondary flex items-start gap-2 text-sm">
+                  <span class="bg-accent mt-2 h-1.5 w-1.5 shrink-0 rounded-full" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid gap-3">
+        {
+          coverageSteps.map((step, index) => (
+            <article class="bg-surface flex gap-4 rounded-xl border border-gray-200/70 px-5 py-4">
+              <span class="bg-primary text-accent flex size-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold">
+                {index + 1}
+              </span>
+              <div>
+                <h3 class="text-primary text-lg font-normal">{step.title}</h3>
+                <p class="text-text-secondary mt-1 text-sm md:text-base">
+                  {step.text}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="beneficios" class="bg-surface scroll-mt-20 py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <SectionHeader
+        title="Beneficios"
+        subtitle="Una propuesta de conectividad pensada para que consultes, contrates y recibas atención de forma sencilla."
+      />
+
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          benefits.map(({ title, text, icon: Icon }) => (
+            <article class="group rounded-xl border border-gray-200/70 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div class="bg-primary/8 text-primary group-hover:bg-primary group-hover:text-accent mb-4 flex size-10 items-center justify-center rounded-lg transition-colors">
+                <Icon size={20} />
+              </div>
+              <h3 class="text-primary text-xl font-normal">{title}</h3>
+              <p class="text-text-secondary mt-2 text-sm">{text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="derechos" class="bg-surface scroll-mt-20 py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <SectionHeader
+        title="Lo que ofrecemos a nuestros contratantes"
+        subtitle="Quienes soliciten o contraten el servicio contarán con información clara, acompañamiento y canales de atención para cada etapa."
+      />
+
+      <div class="grid gap-3 md:grid-cols-2">
+        {
+          contractorCommitments.map((right, index) => (
+            <article class="flex gap-4 rounded-xl border border-gray-200/70 bg-white px-5 py-4 shadow-sm">
+              <span class="bg-primary text-accent flex size-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <p class="text-text-secondary text-sm md:text-base">{right}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="atencion" class="scroll-mt-20 bg-white py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <SectionHeader
+        title="Canales de atención"
+        subtitle="Comunícate con La UEmprende EP para solicitar información, validar cobertura o reportar novedades relacionadas con el servicio."
+      />
+
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          channels.map(({ label, value, href, icon: Icon, external }) => (
+            <a
+              href={href}
+              target={external ? '_blank' : undefined}
+              rel={external ? 'noopener noreferrer' : undefined}
+              class="group bg-surface rounded-xl border border-gray-200/70 p-5 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-md"
+            >
+              <div class="bg-primary text-accent mb-4 flex size-10 items-center justify-center rounded-lg">
+                <Icon size={19} />
+              </div>
+              <p class="text-accent text-xs font-bold tracking-[0.14em] uppercase">
+                {label}
+              </p>
+              <p class="text-text-secondary group-hover:text-primary mt-2 text-sm">
+                {value}
+              </p>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="bg-surface mt-8 rounded-xl border border-gray-200/70 p-5">
+        <h3 class="text-primary text-xl font-normal">Para atenderte mejor</h3>
+        <ul class="mt-4 grid gap-3 md:grid-cols-3">
+          {
+            attentionNotes.map((note) => (
+              <li class="text-text-secondary flex items-start gap-2 text-sm">
+                <span class="bg-accent mt-2 h-1.5 w-1.5 shrink-0 rounded-full" />
+                <span>{note}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="preguntas" class="bg-surface scroll-mt-20 py-16 md:py-24">
+    <div class="mx-auto max-w-4xl px-6">
+      <SectionHeader
+        title="Preguntas frecuentes"
+        subtitle="Respuestas breves para orientar la solicitud inicial del servicio."
+      />
+
+      <div class="space-y-3">
+        {
+          internetFaqs.map(({ question, answer }) => (
+            <details class="group rounded-xl border border-gray-200/70 bg-white p-5 shadow-sm">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left">
+                <span class="text-primary font-semibold">{question}</span>
+                <span
+                  class="bg-surface text-primary flex size-8 shrink-0 items-center justify-center rounded-lg transition-transform group-open:rotate-45"
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </summary>
+              <p class="text-text-secondary mt-3 text-sm">{answer}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="normativa" class="scroll-mt-20 bg-white py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <SectionHeader
+        title="Transparencia y normativa"
+        subtitle="Consulta normativa, reglamentos y accesos relacionados con el Servicio de Acceso a Internet."
+      />
+
+      <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <div
+          class="bg-primary relative overflow-hidden rounded-xl p-6 text-white shadow-lg md:p-8"
+        >
+          <div
+            class="bg-grid-pattern absolute inset-0 opacity-15"
+            aria-hidden="true"
+          >
+          </div>
+          <div class="relative">
+            <div class="mb-5 flex items-start gap-3">
+              <div
+                class="bg-accent text-primary flex size-11 shrink-0 items-center justify-center rounded-lg"
+              >
+                <FileText size={22} />
+              </div>
+              <div>
+                <p
+                  class="text-accent text-xs font-bold tracking-[0.16em] uppercase"
+                >
+                  Documentos y reglamentos
+                </p>
+                <h2 class="mt-2 text-2xl font-normal md:text-3xl">
+                  Normativa del servicio
+                </h2>
+                <p class="mt-3 max-w-2xl text-sm text-white/62 md:text-base">
+                  Este espacio reúne los accesos que los usuarios podrán
+                  consultar para conocer reglas, derechos, privacidad y calidad
+                  del servicio.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid gap-2 sm:grid-cols-2">
+              {
+                normativeDocuments.map((item) =>
+                  item.href ? (
+                    <a
+                      href={item.href}
+                      target={item.external ? '_blank' : undefined}
+                      rel={item.external ? 'noopener noreferrer' : undefined}
+                      class="group hover:border-accent/50 flex min-h-12 items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/8 px-4 py-3 text-sm text-white/78 transition-colors hover:bg-white/12 hover:text-white"
+                    >
+                      <span>{item.title}</span>
+                      <ArrowRight
+                        size={15}
+                        class="text-accent shrink-0 transition-transform group-hover:translate-x-1"
+                      />
+                    </a>
+                  ) : (
+                    <span class="flex min-h-12 items-center rounded-lg border border-white/10 bg-white/6 px-4 py-3 text-sm text-white/62">
+                      {item.title}
+                    </span>
+                  )
+                )
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-4">
+          {
+            regulatoryLinks.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group bg-surface hover:border-primary/30 rounded-xl border border-gray-200/70 p-5 transition-colors hover:bg-white"
+              >
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 class="text-primary text-xl font-normal">
+                      {link.title}
+                    </h3>
+                    <p class="text-text-secondary mt-2 text-sm">
+                      {link.description}
+                    </p>
+                    <p class="text-accent mt-3 text-xs font-bold tracking-[0.12em] uppercase">
+                      Abrir fuente oficial
+                    </p>
+                  </div>
+                  <ArrowRight
+                    size={18}
+                    class="text-accent mt-1 shrink-0 transition-transform group-hover:translate-x-1"
+                  />
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary py-12 text-white">
+    <div
+      class="mx-auto flex max-w-7xl flex-col gap-6 px-6 md:flex-row md:items-center md:justify-between"
+    >
+      <div>
+        <p class="text-accent text-xs font-bold tracking-[0.16em] uppercase">
+          Consulta de disponibilidad
+        </p>
+        <h2 class="mt-2 text-3xl font-normal md:text-4xl">
+          Solicita la revisión de cobertura para tu sector
+        </h2>
+        <p class="mt-3 max-w-2xl text-sm text-white/62 md:text-base">
+          Nuestro equipo podrá orientarte sobre cobertura, requisitos, valores y
+          pasos para contratar según la propuesta vigente.
+        </p>
+      </div>
+      <ButtonLink href="#atencion" target="_self" variant="secondary" size="md">
+        Solicitar información
+        <ArrowRight size={16} />
+      </ButtonLink>
+    </div>
+  </section>
+</Layout>
