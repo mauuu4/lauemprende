@@ -2,6 +2,9 @@ import type { Anuncio } from '@/types'
 import cambridgeQua from '@/assets/images/cursos/cambridge-qua.jpg'
 import cambridge3Ene2026 from '@/assets/images/cursos/Cambridge3Ene2026.jpeg'
 import fechasEnero from '@/assets/images/cursos/fechasEnero.jpg'
+import objetivosInstitucionales from '@/assets/images/cursos/objetivos_institucionales.jpeg'
+import politicaCalidad from '@/assets/images/cursos/politica_calidad.jpeg'
+import politicas from '@/assets/images/cursos/politicas.jpeg'
 import RendicionDeCuentas2025 from '@/assets/images/rendicion-de-cuentas/rendicion-cuentas-2025.png'
 
 // ---------------------------------------------------------------------------
@@ -49,14 +52,43 @@ export const anuncios: Anuncio[] = [
     fecha: '2026-01-26',
     activo: true,
   },
+  {
+    id: 5,
+    titulo: 'Objetivos Institucionales',
+    descripcion:
+      'La Universidad Técnica del Norte fortalece la docencia, la investigación, la vinculación con la sociedad y la gestión para impulsar una formación integral con pertinencia científica y social.',
+    imagen: objetivosInstitucionales,
+    enlaces: [],
+    fecha: '2026-06-05',
+    activo: true,
+  },
+  {
+    id: 6,
+    titulo: 'Política de Calidad',
+    descripcion:
+      'La política de calidad promueve una formación basada en gestión académica, investigación, vinculación y administración, con responsabilidad social, ética, excelencia y mejora continua.',
+    imagen: politicaCalidad,
+    enlaces: [],
+    fecha: '2026-06-05',
+    activo: true,
+  },
 ]
 
 // ---------------------------------------------------------------------------
 // Anuncio destacado (se muestra como modal al entrar al sitio)
 // ---------------------------------------------------------------------------
 
-/** El primer anuncio activo se usa como anuncio emergente en la página de inicio */
-export const anuncioDestacado = anuncios.find((a) => a.activo) ?? null
+/** Anuncio emergente de la página de inicio */
+export const anuncioDestacado: Anuncio = {
+  id: 7,
+  titulo: 'Política de Calidad',
+  descripcion:
+    'Conoce los principios que orientan nuestra gestión de calidad: pertinencia, mejora continua, cumplimiento de requisitos y compromiso institucional.',
+  imagen: politicas,
+  enlaces: [],
+  fecha: '2026-06-05',
+  activo: true,
+}
 
 // ---------------------------------------------------------------------------
 // Servicios institucionales
