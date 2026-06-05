@@ -13,11 +13,17 @@ $allowedDomains = [
 
 $requestedDomain = $_SERVER['HTTP_HOST'] ?? '';
 $domain = in_array($requestedDomain, $allowedDomains, true) ? $requestedDomain : 'lauemprende.com';
+$domainBase = preg_replace('/^www\./', '', $domain);
+$candidateDomains = array_values(array_unique([$domain, $domainBase]));
 
 // Rutas
 $baseDir = dirname(dirname(__DIR__));
+// Hosting suele tener /public_html y /webstats como carpetas hermanas.
 $webstatsDir = $baseDir . '/webstats';
-$cacheFile = __DIR__ . '/stats-cache-' . str_replace('.', '-', $domain) . '.json';
+if (!is_dir($webstatsDir)) {
+    $webstatsDir = $baseDir . '/../webstats';
+}
+$cacheFile = __DIR__ . '/stats-cache-' . str_replace('.', '-', $domainBase) . '.json';
 $cacheMaxAge = 24 * 60 * 60; // 24 horas (los AWStats se actualizan 1 vez al día)
 
 // Headers de seguridad
@@ -73,9 +79,23 @@ function parseSiderBlock($content) {
 if (is_dir($webstatsDir)) {
     $response['success'] = true;
 
+    $buildAwstatsPath = function (int $month, int $year, string $statsDomain) use ($webstatsDir) {
+        return sprintf('%s/awstats%02d%d.%s.txt', $webstatsDir, $month, $year, $statsDomain);
+    };
+
+    $findAwstatsFile = function (int $month, int $year) use ($candidateDomains, $buildAwstatsPath) {
+        foreach ($candidateDomains as $statsDomain) {
+            $path = $buildAwstatsPath($month, $year, $statsDomain);
+            if (file_exists($path)) {
+                return $path;
+            }
+        }
+        return null;
+    };
+
     // Mes actual
-    $currentFile = sprintf('%s/awstats%02d%d.%s.txt', $webstatsDir, $currentMonth, $currentYear, $domain);
-    if (file_exists($currentFile)) {
+    $currentFile = $findAwstatsFile($currentMonth, $currentYear);
+    if ($currentFile) {
         $content = file_get_contents($currentFile);
         if (preg_match('/TotalVisits\s+(\d+)/', $content, $m)) {
             $response['currentMonth']['visits'] = (int) $m[1];
@@ -84,8 +104,8 @@ if (is_dir($webstatsDir)) {
     }
 
     // Mes anterior
-    $lastFile = sprintf('%s/awstats%02d%d.%s.txt', $webstatsDir, $lastMonth, $lastYear, $domain);
-    if (file_exists($lastFile)) {
+    $lastFile = $findAwstatsFile($lastMonth, $lastYear);
+    if ($lastFile) {
         $content = file_get_contents($lastFile);
         if (preg_match('/TotalVisits\s+(\d+)/', $content, $m)) {
             $response['lastMonth']['visits'] = (int) $m[1];
