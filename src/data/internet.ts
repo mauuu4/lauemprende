@@ -124,20 +124,34 @@ interface NormativeDocument {
 }
 
 export const normativeDocuments: NormativeDocument[] = [
-  { title: 'Normas - Regulaciones' },
-  { title: 'Reglamento de Abonados' },
-  { title: 'Norma SVA' },
-  { title: 'Guía de Control Parental' },
-  { title: 'Reglamento del Adulto Mayor' },
-  { title: 'Ley del Adulto Mayor' },
-  { title: 'Resolución ARCOTEL sobre el Adulto Mayor' },
-  { title: 'Reforma al Reglamento General' },
-  { title: 'Calidad' },
-  { title: 'Política de Protección de Datos' },
-  { title: 'Políticas de Privacidad' },
   {
-    title: 'ARCOTEL',
-    href: 'https://www.arcotel.gob.ec/servicio-de-acceso-a-internet-sai/',
+    title: 'Reforma al Reglamento General',
+    href: '/uploads/reforma-al-reglamento-general.pdf',
+    external: true,
+  },
+  {
+    title: 'Ley del Adulto Mayor',
+    href: '/uploads/ley-del-adulto-mayor.pdf',
+    external: true,
+  },
+  {
+    title: 'Reglamento del Adulto Mayor',
+    href: '/uploads/reglamento-del-adulto-mayor.pdf',
+    external: true,
+  },
+  {
+    title: 'Guía de control parental',
+    href: '/uploads/guia-de-control-parental.pdf',
+    external: true,
+  },
+  {
+    title: 'Norma SVA',
+    href: '/uploads/norma-sva.pdf',
+    external: true,
+  },
+  {
+    title: 'Reglamento de abonados',
+    href: '/uploads/reglamento-de-abonados.pdf',
     external: true,
   },
 ]
