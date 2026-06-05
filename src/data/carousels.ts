@@ -9,6 +9,10 @@ import afiche04 from '@/assets/images/cursos/afiche-04.jpg'
 import afiche05 from '@/assets/images/cursos/afiche-05.jpg'
 import afiche06 from '@/assets/images/cursos/afiche-06.jpg'
 import afiche07 from '@/assets/images/cursos/afiche-07.jpg'
+import coloniaVacacional from '@/assets/images/cursos/colonia_vacacional.jpg'
+import dconvalidada from '@/assets/images/cursos/dconvalidada.jpg'
+import dregular from '@/assets/images/cursos/dregular.jpg'
+import iesIntensivo from '@/assets/images/cursos/ies_intensivo.jpeg'
 import traducciones from '@/assets/images/cursos/traducciones.jpg'
 
 // ---------------------------------------------------------------------------
@@ -73,6 +77,58 @@ export const cursos: ItemCarousel[] = [
     titulo: 'Traducciones Español-Inglés / Inglés-Español',
     imagen: traducciones,
     enlaces: [],
+    activo: true,
+  },
+  {
+    id: 8,
+    titulo: 'Curso de Conducción — Licencia Tipo D Regular',
+    imagen: dregular,
+    enlaces: [
+      {
+        texto: 'INSCRÍBETE AQUÍ',
+        url: 'https://cloud.lauemprende.com/ords/f?p=236:6:::NO:RP,6:P6_ID_EVENTO_AUX:5509',
+        tipo: 'secondary',
+      },
+    ],
+    activo: true,
+  },
+  {
+    id: 9,
+    titulo: 'Curso de Conducción — Licencia Tipo D Convalidada',
+    imagen: dconvalidada,
+    enlaces: [
+      {
+        texto: 'INSCRÍBETE AQUÍ',
+        url: 'https://cloud.lauemprende.com/ords/f?p=236:6:::NO:RP,6:P6_ID_EVENTO_AUX:5510',
+        tipo: 'secondary',
+      },
+    ],
+    activo: true,
+  },
+  {
+    id: 10,
+    titulo: 'Curso de Preparación para el Ingreso a la Universidad',
+    imagen: iesIntensivo,
+    enlaces: [
+      {
+        texto: 'INSCRÍBETE AQUÍ',
+        url: 'https://cloud.lauemprende.com/ords/f?p=236:6:::NO:RP,6:P6_ID_EVENTO_AUX:5517',
+        tipo: 'secondary',
+      },
+    ],
+    activo: true,
+  },
+  {
+    id: 11,
+    titulo: 'Colonia Vacacional de Inglés',
+    imagen: coloniaVacacional,
+    enlaces: [
+      {
+        texto: 'INSCRÍBETE AQUÍ',
+        url: 'https://cloud.lauemprende.com/ords/f?p=236:6:::NO:RP,6:P6_ID_EVENTO_AUX:5519',
+        tipo: 'secondary',
+      },
+    ],
     activo: true,
   },
 ]

@@ -15,6 +15,9 @@ export const navLinks: NavLink[] = [
       { href: '/galeria', label: 'Galería' },
     ],
   },
+  { href: '/internet', label: 'Internet' },
+  { href: '/servicios', label: 'Servicios' },
+  { href: '/anuncios', label: 'Anuncios' },
   {
     label: 'Transparencia',
     children: [
@@ -23,9 +26,6 @@ export const navLinks: NavLink[] = [
       { href: '/rendicion-de-cuentas', label: 'Rendición de Cuentas' },
     ],
   },
-  { href: '/servicios', label: 'Servicios' },
-  { href: '/internet', label: 'Internet' },
-  { href: '/anuncios', label: 'Anuncios' },
   { href: '/contactos', label: 'Contactos' },
 ]
 
